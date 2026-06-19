@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- tudo dentro do <head> NÃO aparece visualmente na página — são "configurações" da página -->
+  <meta charset="UTF-8">
+  <!-- charset UTF-8 garante que acentos (ç, ã, é...) apareçam certinho, sem caracteres estranhos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- viewport é ESSENCIAL pro mobile: diz "use a largura real da tela do celular", sem isso o site fica minúsculo no celular -->
+  <title>Quadra Co. — Feita para quem joga, vive e veste esporte</title>
+  <!-- title é o texto que aparece na ABA do navegador -->
+  <meta name="description" content="Quadra Co.: camisetas inspiradas no espírito de time, criadas por três amigas apaixonadas por esporte.">
+  <!-- description é o textinho que aparece no Google quando alguém pesquisa pela marca -->
+  <link rel="stylesheet" href="style.css">
+  <!-- aqui a página "puxa" o arquivo style.css — sem essa linha, NADA do CSS funcionaria -->
+</head>
+<body>
+  <!-- tudo dentro do <body> é o que realmente aparece na tela -->
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <!-- <header> = tag semântica do HTML5 que indica "isso é o topo/cabeçalho do site" -->
+    <div class="container header-inner">
+      <!-- <div> é uma "caixa" genérica, usada aqui só pra aplicar as classes de layout (.container, .header-inner) -->
+      <a href="index.html" class="logo">
+        <!-- clicar no logo leva pra Home (index.html) -->
+        <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo Quadra Co.">
+          <!-- <svg> é um desenho vetorial (não é foto, é feito de formas matemáticas) -->
+          <!-- viewBox="0 0 100 100" define uma "grade" de 100x100 onde as formas abaixo são desenhadas -->
+          <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="6"/>
+          <!-- círculo: centro em (50,50), raio 46, preenchido de grafite, com borda (stroke) verde-água de 6px -->
+          <path d="M18 72 L82 28" stroke="var(--coral)" stroke-width="9" stroke-linecap="round"/>
+          <!-- path = uma linha desenhada do ponto (18,72) até o ponto (82,28) — é a faixa diagonal coral -->
+          <text x="50" y="64" text-anchor="middle" font-family="Anton, Arial Black, sans-serif" font-size="48" fill="#FFFFFF">Q</text>
+          <!-- a letra "Q" branca, centralizada (text-anchor="middle") dentro do círculo -->
+        </svg>
+        <span class="logo-text">QUADRA <strong>CO.</strong></span>
+        <!-- <strong> deixa "CO." em negrito E é o que o CSS usa (.logo-text strong) pra colorir de coral -->
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <!-- checkbox ESCONDIDA (o CSS faz isso) que guarda se o menu mobile está aberto (marcada) ou fechado (desmarcada) -->
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
+        <!-- o for="nav-toggle" liga esse label à checkbox de cima: clicar no ícone "marca/desmarca" a checkbox -->
+        <span></span><span></span><span></span>
+        <!-- os 3 <span> vazios são os 3 risquinhos do ícone de hambúrguer (o CSS estiliza cada um) -->
+      </label>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <!-- <nav> = tag semântica indicando "aqui tem os links de navegação do site" -->
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <!-- class="active" marca visualmente (linha coral embaixo) que estamos NA página Home -->
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html">Tabela de Preços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- <main> = tag semântica indicando "aqui está o CONTEÚDO principal da página" (nem header, nem footer) -->
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <!-- <section> = um "bloco" de conteúdo com um tema próprio (aqui: o banner principal) -->
+      <span class="hero-number" aria-hidden="true">07</span>
+      <!-- aria-hidden="true" diz pra leitores de tela IGNORAREM esse elemento — ele é só decoração visual -->
+      <div class="container">
+        <div class="hero-inner">
+          <span class="hero-eyebrow">Coleção esportiva</span>
+          <!-- "eyebrow" é o nome comum pra esse textinho pequeno ACIMA do título principal -->
+          <h1>Quadra Co.</h1>
+          <!-- <h1> = título de MAIOR importância da página (só deve ter um h1 por página) -->
+          <p class="hero-slogan">Feita para quem joga, vive e veste esporte.</p>
+          <p class="hero-text">
+            Camisetas com a alma do time: tecido que aguenta o jogo, caimento que veste bem
+            fora dela e estampas que carregam a energia da quadra pro seu dia a dia.
+          </p>
+          <div class="hero-actions">
+            <a href="produtos.html" class="btn btn-primary">Ver coleção</a>
+            <!-- botão de ação principal (cor sólida coral) -->
+            <a href="sobre.html" class="btn btn-outline">Conhecer a marca</a>
+            <!-- botão secundário (só contorno, sem fundo) -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APRESENTAÇÃO DA EMPRESA ============ -->
+    <section class="apresentacao">
+      <div class="container apresentacao-grid">
+        <!-- .apresentacao-grid é o que o CSS usa pra colocar texto e gráfico em 2 colunas -->
+        <div>
+          <h2>Da quadra pra <span>rua</span></h2>
+          <!-- a palavra "rua" está dentro de um <span> só pra poder ser colorida separadamente pelo CSS -->
+          <p>
+            A Quadra Co. nasceu da vontade de três amigas de transformar a vibração dos jogos
+            de vôlei em camisetas pra usar todos os dias. A gente queria peças que tivessem a
+            mesma identidade de um uniforme de time — só que com liberdade pra vestir em
+            qualquer lugar, dentro ou fora da quadra.
+          </p>
+          <p>
+            Cada coleção é desenhada por quem realmente joga, então cada detalhe — corte,
+            estampa, cor — tem motivo de existir.
+          </p>
+        </div>
+        <div class="apresentacao-grafico" aria-hidden="true"></div>
+        <!-- essa div está VAZIA de propósito: o gradiente, as listras e o texto "QUADRA" são
+             desenhados 100% pelo CSS (::before e ::after), não precisam de conteúdo HTML aqui -->
+      </div>
+    </section>
+
+    <!-- ============ DESTAQUES DA MARCA ============ -->
+    <section class="destaques">
+      <div class="container">
+        <div class="destaques-header">
+          <h2>Destaques da marca</h2>
+          <p>O que faz uma camiseta Quadra Co. ser uma Quadra Co.</p>
+        </div>
+        <div class="destaques-grid">
+          <!-- cada <article> abaixo é um "card" de destaque — article = conteúdo que faz sentido sozinho -->
+          <article class="destaque-card">
+            <span class="destaque-numero">Nº 04</span>
+            <h3>Tecido que joga junto</h3>
+            <p>Malha respirável e elástica, pensada pra acompanhar o movimento de um jogo — ou de um dia corrido.</p>
+          </article>
+          <article class="destaque-card">
+            <span class="destaque-numero">Nº 10</span>
+            <h3>Estampas de quadra</h3>
+            <p>Gráficos inspirados em linhas de jogo, rede e bola, sem ficar óbvio ou clichê.</p>
+          </article>
+          <article class="destaque-card">
+            <span class="destaque-numero">Nº 23</span>
+            <h3>Caimento pra qualquer corpo</h3>
+            <p>Modelagem pensada pra vestir bem em qualquer corpo, sem rótulo de "tamanho de menina" ou "de menino".</p>
+          </article>
+          <article class="destaque-card">
+            <span class="destaque-numero">Nº 07</span>
+            <h3>Feita por quem joga</h3>
+            <p>Cada coleção nasce de quem entende de saque, ataque e bloqueio — não só de moda.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <!-- <footer> = tag semântica indicando "isso é o rodapé do site" -->
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="6"/>
+            <path d="M18 72 L82 28" stroke="var(--coral)" stroke-width="9" stroke-linecap="round"/>
+            <text x="50" y="64" text-anchor="middle" font-family="Anton, Arial Black, sans-serif" font-size="48" fill="#FFFFFF">Q</text>
+          </svg>
+          <span class="logo-text">QUADRA <strong>CO.</strong></span>
+        </div>
+        <p class="footer-tagline">Feita para quem joga, vive e veste esporte.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Links do rodapé">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html">Tabela de Preços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">IG</a>
+        <!-- href="#" é um link "placeholder" — quando vocês tiverem o Instagram real, troquem o # pelo link de verdade -->
+        <a href="#" aria-label="TikTok">TT</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Quadra Co. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
