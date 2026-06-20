@@ -128,23 +128,35 @@ h1, h2, h3 {
  
 /* ---------- Logo (badge usado no header e footer) ---------- */
 .logo {
-  display: flex;        /* flex = alinha os itens de dentro (ícone + texto) em linha, lado a lado */
-  align-items: center;  /* centraliza verticalmente o ícone e o texto */
-  gap: 12px;             /* espaço de 12px entre o ícone e o texto */
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
-.logo-badge {
-  width: 42px;       /* largura do ícone/brasão */
-  height: 42px;      /* altura do ícone/brasão */
-  flex-shrink: 0;    /* impede o ícone de "encolher" se faltar espaço na tela */
-}
+
 .logo-text {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 1px;
-  color: var(--graphite);
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
+
+.logo-text span {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
 .logo-text strong {
-  color: var(--coral); /* a parte "CO." dentro do logotipo (que está numa tag <strong>) fica colorida de coral */
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--coral);
+}
+
+.logo-badge {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
 }
  
 /* =========================================================
@@ -216,29 +228,36 @@ h1, h2, h3 {
  
 .footer-inner {
   display: flex;
-  flex-wrap: wrap;            /* se não couber tudo numa linha, quebra pra próxima (importante no mobile) */
-  gap: 32px;
-  justify-content: space-between;
-  align-items: flex-start;    /* alinha tudo pelo topo (em vez de centralizar verticalmente) */
-  padding-top: 48px;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+
+  padding-top: 20px;
   padding-bottom: 32px;
 }
  
-.footer-brand .logo-text {
-  color: var(--white); /* no footer (fundo escuro) o texto do logo precisa ser branco pra dar contraste */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
+
 .footer-tagline {
-  color: #B7BABA;       /* cinza claro, texto secundário sobre fundo escuro */
-  font-size: 0.9rem;
-  margin-top: 8px;
-  max-width: 240px;     /* quebra o texto em até 240px de largura, pra não ficar uma linha gigante */
+  margin: 0;
+  max-width: 260px;
+  color: #B7BABA;
+  font-size: 1rem;
 }
  
 .footer-nav ul {
   display: flex;
-  flex-direction: column; /* aqui os links do footer ficam EMPILHADOS (um embaixo do outro), diferente do menu do header */
-  gap: 10px;
+  flex-direction: row;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
 .footer-nav a {
   font-size: 0.9rem;
   color: #D8DADA;
@@ -272,7 +291,7 @@ h1, h2, h3 {
   text-align: center;
   font-size: 0.8rem;
   color: #9C9F9F;
-  padding: 16px 0;
+  padding: 15px -10;
 }
  
 /* =========================================================
