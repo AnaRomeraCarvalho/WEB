@@ -1,5 +1,10 @@
 /* ---------- Fontes ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+/* @import busca fontes externas direto do Google Fonts antes de qualquer outra regra do arquivo.
+   Estamos carregando 3 famílias de uma vez só (separadas por &): Anton, Space Mono e Work Sans.
+   :wght@400;700 → diz quais "pesos" (espessuras) da fonte Space Mono vamos usar: 400 (normal) e 700 (negrito).
+   display=swap → enquanto a fonte não carrega, o navegador mostra uma fonte padrão no lugar
+   (em vez de deixar o texto invisível), e troca pela fonte certa assim que ela terminar de carregar. */
 
 /* ---------- Tokens de marca ---------- */
 /* :root é a "raiz" do documento. Aqui a gente cria VARIÁVEIS CSS
@@ -15,14 +20,14 @@
   --graphite-soft: #5B5F61;/* cinza médio, usado em textos secundários (menos importantes) */
   --bg: #F3F4F2;           /* cor de fundo clara do site */
   --white: #FFFFFF;        /* branco puro */
- 
+
   --font-display: 'Anton', sans-serif;    /* fonte dos títulos grandes */
   --font-body: 'Work Sans', sans-serif;   /* fonte do texto corrido */
   --font-mono: 'Space Mono', monospace;   /* fonte dos números/tags */
- 
+
   --container-w: 1140px;   /* largura máxima do conteúdo (pra não ficar gigante em tela enorme) */
 }
- 
+
 /* ---------- Reset básico ---------- */
 /* Navegadores aplicam margem/espaçamento "padrão" diferente em cada
    elemento. O * seleciona TUDO na página e zera isso, pra gente
@@ -32,11 +37,11 @@
   padding: 0;            /* zera o padding (espaço DENTRO do elemento) de tudo */
   box-sizing: border-box; /* faz padding/borda entrarem DENTRO da largura definida, não somar a ela */
 }
- 
+
 html {
   scroll-behavior: smooth; /* quando clica num link "#algo", rola a página suavemente em vez de pular seco */
 }
- 
+
 body {
   font-family: var(--font-body); /* usa a fonte Work Sans como padrão em todo o site */
   color: var(--graphite);        /* cor do texto: grafite (quase preto) */
@@ -44,40 +49,40 @@ body {
   line-height: 1.6;              /* espaço entre linhas do texto (1.6x o tamanho da fonte = mais respirado) */
   -webkit-font-smoothing: antialiased; /* deixa a fonte com bordas mais suaves em telas Apple/Chrome */
 }
- 
+
 img, svg {
   display: block;     /* tira o espacinho fantasma que imagem/svg tem por padrão embaixo */
   max-width: 100%;     /* imagem nunca fica maior que o espaço do elemento pai (evita "vazar" da tela) */
 }
- 
+
 a {
   color: inherit;          /* link usa a MESMA cor do texto ao redor, não o azul/roxo padrão do navegador */
   text-decoration: none;   /* tira o sublinhado padrão dos links */
 }
- 
+
 ul {
   list-style: none; /* tira as bolinhas/marcadores padrão de listas (<ul><li>) */
 }
- 
+
 h1, h2, h3 {
   font-family: var(--font-display); /* todos os títulos usam a fonte Anton */
   text-transform: uppercase;        /* força todo título a aparecer em CAIXA ALTA */
   letter-spacing: 0.5px;            /* espaço extra entre as letras (deixa mais "estiloso") */
   line-height: 1.1;                 /* linhas mais coladas (bom pra título grande) */
 }
- 
+
 .container {
   width: 100%;                  /* ocupa 100% da tela disponível... */
   max-width: var(--container-w);/* ...mas nunca passa de 1140px de largura */
   margin: 0 auto;                /* margin "auto" nas laterais = centraliza o bloco na página */
   padding: 0 24px;               /* respiro de 24px nas laterais (pra não colar nas bordas da tela) */
 }
- 
+
 :focus-visible {
   outline: 3px solid var(--teal); /* quando navega pelo TAB do teclado, mostra um contorno verde-água */
   outline-offset: 2px;            /* afasta um pouquinho o contorno do elemento (visual mais limpo) */
 }
- 
+
 /* ---------- Botões (uso geral no site) ---------- */
 .btn {
   display: inline-block;        /* botão se comporta como bloco, mas fica na mesma linha de outros elementos */
@@ -98,7 +103,7 @@ h1, h2, h3 {
 .btn:hover {
   transform: translateY(-2px); /* :hover = quando o mouse passa por cima. Aqui sobe o botão 2px (efeito "flutuar") */
 }
- 
+
 .btn-primary {
   background: var(--coral); /* fundo coral = botão de ação principal ("Ver coleção") */
   color: var(--white);
@@ -106,7 +111,7 @@ h1, h2, h3 {
 .btn-primary:hover {
   background: var(--coral-dark); /* escurece o coral quando passa o mouse, dando feedback visual */
 }
- 
+
 .btn-outline {
   background: transparent;     /* sem fundo, só borda */
   border-color: var(--white);  /* borda branca */
@@ -116,37 +121,41 @@ h1, h2, h3 {
   background: var(--white);    /* no hover, inverte: fundo fica branco */
   color: var(--graphite);      /* e o texto fica escuro, pra continuar legível */
 }
- 
+
 /* ---------- Logo (badge usado no header e footer) ---------- */
+/* Estas 5 regras controlam como o logo (ícone SVG + texto "QUADRA SPORTWEAR")
+   se organiza. Elas são usadas tanto no header quanto no footer, por isso
+   ficam aqui numa seção compartilhada em vez de dentro de .site-header
+   ou .site-footer. */
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: flex;          /* coloca o SVG do ícone e o texto lado a lado (em linha) */
+  align-items: center;    /* centraliza ícone e texto verticalmente um em relação ao outro */
+  gap: 14px;               /* espaço de 14px entre o ícone e o texto do logo */
 }
 
 .logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+  display: flex;             /* permite empilhar "QUADRA" e "SPORTWEAR" um sobre o outro (no footer) */
+  flex-direction: column;    /* organiza os itens internos em coluna (de cima pra baixo) */
+  line-height: 1;             /* linhas bem coladas, sem respiro extra entre "QUADRA" e "SPORTWEAR" */
 }
 
 .logo-text span {
- color: var(--graphite);
+  color: var(--graphite);   /* a palavra "QUADRA" (dentro de <span>) usa a cor grafite (quase preto) */
 }
 
 .logo-text strong {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: var(--coral);
+  font-family: var(--font-body); /* "SPORTWEAR" usa a fonte de texto corrido, não a fonte de título */
+  font-size: 0.8rem;              /* tamanho menor, já que é um complemento do nome principal */
+  letter-spacing: 3px;            /* espaçamento largo entre as letras, dando um ar mais "técnico/esportivo" */
+  color: var(--coral);            /* "SPORTWEAR" em coral, pra criar contraste de cor com "QUADRA" */
 }
 
 .logo-badge {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
+  width: 50px;        /* tamanho fixo do ícone SVG do logo */
+  height: 50px;
+  flex-shrink: 0;     /* impede que o ícone "encolha" se o espaço disponível ficar pequeno (mantém o tamanho) */
 }
- 
+
 /* =========================================================
    HEADER / NAV (compartilhado em todas as páginas)
    ========================================================= */
@@ -157,7 +166,7 @@ h1, h2, h3 {
   top: 0;            /* define ONDE ele cola: a 0px do topo */
   z-index: 100;      /* garante que o header fique por CIMA de outros elementos (camada de cima) */
 }
- 
+
 .header-inner {
   display: flex;                  /* logo e menu lado a lado */
   align-items: center;            /* centralizados verticalmente */
@@ -165,12 +174,12 @@ h1, h2, h3 {
   padding-top: 16px;
   padding-bottom: 16px;
 }
- 
+
 .main-nav ul {
   display: flex; /* os links do menu ficam em LINHA (um do lado do outro) em vez de empilhados */
   gap: 32px;      /* espaço de 32px entre cada link do menu */
 }
- 
+
 .main-nav a {
   font-weight: 600;
   font-size: 0.95rem;
@@ -180,17 +189,17 @@ h1, h2, h3 {
   border-bottom: 3px solid transparent; /* linha embaixo do link, invisível até o hover/active */
   transition: border-color 0.2s ease, color 0.2s ease;
 }
- 
+
 .main-nav a:hover,
 .main-nav a.active {
   border-color: var(--coral); /* mostra a linha coral embaixo do link quando passa o mouse OU quando é a página atual */
 }
- 
+
 /* Toggle mobile (funciona sem JS; Pessoa 3 pode evoluir depois) */
 .nav-toggle-input {
   display: none; /* esconde a checkbox (ela só existe "por trás" pra guardar o estado aberto/fechado do menu) */
 }
- 
+
 .nav-toggle-label {
   display: none;      /* esconde o ícone de "hamburguer" (3 risquinhos) no computador */
   flex-direction: column; /* organiza os 3 risquinhos um embaixo do outro */
@@ -199,12 +208,12 @@ h1, h2, h3 {
   padding: 6px;
 }
 .nav-toggle-label span {
-  width: 26px;
-  height: 3px;
-  background: var(--graphite);
-  border-radius: 2px;
+  width: 26px;                  /* largura de cada risquinho do ícone hambúrguer */
+  height: 3px;                  /* altura bem fina, pra parecer uma linha */
+  background: var(--graphite);  /* cor escura, igual ao resto dos ícones/textos do header */
+  border-radius: 2px;           /* pontas levemente arredondadas em cada risquinho */
 }
- 
+
 /* =========================================================
    FOOTER (compartilhado em todas as páginas)
    ========================================================= */
@@ -213,50 +222,50 @@ h1, h2, h3 {
   color: var(--white);
   margin-top: 80px; /* espaço grande ANTES do footer, separando do conteúdo */
 }
- 
+
 .footer-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 50px;
+  display: flex;             /* organiza marca, navegação e redes sociais do footer */
+  flex-direction: column;    /* empilhados de cima pra baixo (marca → links → redes sociais) */
+  align-items: center;       /* tudo centralizado horizontalmente */
+  gap: 50px;                  /* espaço generoso entre cada bloco do footer */
 
   padding-top: 20px;
   padding-bottom: 32px;
 }
- 
+
 .footer-brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  display: flex;             /* coloca o logo e a tagline lado a lado */
+  align-items: center;       /* centralizados verticalmente entre si */
+  justify-content: center;   /* centralizados horizontalmente dentro do bloco */
+  gap: 20px;                  /* espaço entre o logo e o texto da tagline */
 }
 
 .footer-tagline {
-  margin: 0;
-  max-width: 260px;
-  color: #B7BABA;
+  margin: 0;                  /* remove margem padrão do <p>, já que o gap do .footer-brand cuida do espaçamento */
+  max-width: 260px;            /* limita a largura do texto, pra não esticar e quebrar mal em linhas longas */
+  color: #B7BABA;              /* cinza claro — legível sobre o fundo escuro do footer, mas discreto */
   font-size: 1rem;
 }
- 
+
 .footer-nav ul {
-  display: flex;
+  display: flex;             /* links do footer ficam em linha (lado a lado) */
   flex-direction: row;
-  gap: 32px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 32px;                   /* mesmo espaçamento usado no menu principal, pra manter consistência visual */
+  flex-wrap: wrap;             /* se a tela for estreita e não couber tudo numa linha, quebra pra próxima */
+  justify-content: center;     /* centraliza os links horizontalmente */
 }
 
 .footer-nav a {
-  font-size: 0.9rem;
-  color: #D8DADA;
+  font-size: 0.9rem;   /* texto um pouco menor que o menu principal, já que o footer é secundário */
+  color: #D8DADA;       /* cinza claro, legível sobre o fundo escuro mas sem competir com o branco puro */
 }
 .footer-nav a:hover {
   color: var(--teal); /* link do footer fica verde-água ao passar o mouse */
 }
- 
+
 .footer-social {
-  display: flex;
-  gap: 14px;
+  display: flex;   /* ícones de redes sociais (ex: "IG", "TT") em linha, lado a lado */
+  gap: 14px;         /* espaço entre cada círculo de rede social */
 }
 .footer-social a {
   width: 38px;
@@ -273,7 +282,7 @@ h1, h2, h3 {
   background: var(--teal);    /* preenche o círculo de verde-água no hover */
   color: var(--graphite);     /* e escurece o texto de dentro, pra continuar legível */
 }
- 
+
 .footer-copy {
   border-top: 1px solid #3A3D3E; /* linha fina separando o "© 2026..." do resto do footer */
   text-align: center;
@@ -281,7 +290,7 @@ h1, h2, h3 {
   color: #9C9F9F;
   padding: 15px 0;
 }
- 
+
 /* =========================================================
    HOME — Hero principal
    ========================================================= */
@@ -292,7 +301,7 @@ h1, h2, h3 {
   overflow: hidden;   /* esconde qualquer parte do número gigante que "vaze" pra fora do banner */
   padding: 110px 0 100px; /* respiro grande em cima (110px) e embaixo (100px) */
 }
- 
+
 .hero-number {
   position: absolute;  /* tira o número do fluxo normal e permite posicionar exatamente onde quiser */
   right: -40px;          /* encosta (e passa um pouco) da borda direita */
@@ -306,13 +315,13 @@ h1, h2, h3 {
   pointer-events: none;   /* impede que esse número "roube" cliques do mouse (ele é só decoração) */
   user-select: none;      /* impede a pessoa de selecionar/copiar esse texto por engano */
 }
- 
+
 .hero-inner {
   position: relative; /* garante que o texto fique por CIMA do número gigante (não atrás dele) */
   z-index: 1;           /* reforça essa camada acima */
   max-width: 620px;     /* texto não estica até o fim da tela, fica mais legível */
 }
- 
+
 .hero-eyebrow {
   font-family: var(--font-mono);
   font-size: 0.85rem;
@@ -325,61 +334,61 @@ h1, h2, h3 {
   padding: 4px 12px;
   border-radius: 30px;          /* valor alto = vira formato de pílula/cápsula */
 }
- 
+
 .hero h1 {
   font-size: 4.2rem; /* título GIGANTE — é o nome da marca "QUADRA CO." */
   margin-bottom: 18px;
 }
- 
+
 .hero-slogan {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--teal); /* slogan em destaque na cor verde-água */
   margin-bottom: 18px;
 }
- 
+
 .hero-text {
   color: #D8DADA;    /* cinza claro (legível sobre fundo escuro, mas menos chamativo que o branco puro) */
   margin-bottom: 36px;
   max-width: 480px;
 }
- 
+
 .hero-actions {
   display: flex;     /* os dois botões ("Ver coleção" e "Conhecer a marca") ficam lado a lado */
   gap: 16px;
   flex-wrap: wrap;   /* se a tela for pequena e não couber os dois na mesma linha, quebra pra próxima */
 }
- 
+
 /* =========================================================
    HOME — Apresentação da empresa
    ========================================================= */
 .apresentacao {
   padding: 90px 0; /* respiro grande em cima e embaixo dessa seção */
 }
- 
+
 .apresentacao-grid {
   display: grid;                       /* grid = organiza em "grade" (colunas e linhas), diferente do flex */
   grid-template-columns: 1.1fr 0.9fr;  /* 2 colunas: a esquerda (texto) um pouco mais larga que a direita (gráfico) */
   gap: 60px;                            /* espaço entre as duas colunas */
   align-items: center;                  /* centraliza as colunas verticalmente uma em relação à outra */
 }
- 
+
 .apresentacao h2 {
   font-size: 2.3rem;
   margin-bottom: 20px;
 }
- 
+
 .apresentacao h2 span {
   color: var(--coral); /* a palavra dentro de <span> (ex: "rua") fica destacada em coral */
 }
- 
+
 .apresentacao p {
   color: var(--graphite-soft);
   font-size: 1.05rem;
   margin-bottom: 16px;
   max-width: 480px;
 }
- 
+
 /* Recorte gráfico decorativo (sem depender de fotos) */
 .apresentacao-grafico {
   position: relative;
@@ -416,7 +425,7 @@ h1, h2, h3 {
   color: var(--white);
   letter-spacing: 1px;
 }
- 
+
 /* =========================================================
    HOME — Destaques da marca
    ========================================================= */
@@ -424,22 +433,24 @@ h1, h2, h3 {
   padding: 90px 0;
   background: var(--white); /* fundo branco, diferente do cinza claro do resto da página (separa visualmente a seção) */
 }
- 
+
 .destaques-header {
   text-align: center;
   max-width: 560px;
   margin: 0 auto 50px; /* centraliza o bloco e deixa 50px de espaço embaixo dele */
 }
- 
+
 .destaques-header h2 { font-size: 2.3rem; margin-bottom: 12px; }
+/* ↑ tamanho do título da seção + espaço embaixo dele, antes do parágrafo de apoio */
 .destaques-header p { color: var(--graphite-soft); }
- 
+/* ↑ parágrafo de apoio em cinza médio, pra ficar mais discreto que o título */
+
 .destaques-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* repete 4 colunas, todas do mesmo tamanho (1fr = "1 fração" igual) */
   gap: 24px; /* espaço entre os cards, tanto na horizontal quanto vertical */
 }
- 
+
 .destaque-card {
   background: var(--bg);
   border-radius: 8px;
@@ -454,7 +465,7 @@ h1, h2, h3 {
 .destaque-card:hover {
   transform: translateY(-6px); /* sobe o card 6px ao passar o mouse, dando sensação de "destacar" */
 }
- 
+
 .destaque-numero {
   font-family: var(--font-mono);
   font-weight: 700;
@@ -466,18 +477,18 @@ h1, h2, h3 {
 .destaque-card:nth-child(even) .destaque-numero {
   color: var(--teal-dark); /* o número também muda de cor nos cards pares, acompanhando a faixa do topo */
 }
- 
+
 .destaque-card h3 {
   font-size: 1.15rem;
   margin-bottom: 10px;
   letter-spacing: 0; /* "desliga" o letter-spacing herdado da regra geral de h1/h2/h3, fica mais compacto aqui */
 }
- 
+
 .destaque-card p {
   font-size: 0.92rem;
   color: var(--graphite-soft);
 }
- 
+
 /* =========================================================
    SOBRE — Hero compacto
    ========================================================= */
@@ -485,7 +496,7 @@ h1, h2, h3 {
   padding: 80px 0 60px;
   text-align: left; /* texto alinhado à esquerda (diferente de seções centralizadas como .destaques-header) */
 }
- 
+
 .hero-sobre-eyebrow {
   font-family: var(--font-mono);
   color: var(--coral-dark);
@@ -493,42 +504,42 @@ h1, h2, h3 {
   font-size: 0.85rem;
   text-transform: uppercase;
 }
- 
+
 .hero-sobre h1 {
   font-size: 3rem; /* menor que o h1 da Home (4.2rem), porque aqui é um título de página, não o nome da marca */
   margin: 14px 0 16px;
 }
- 
+
 .hero-sobre p {
   color: var(--graphite-soft);
   max-width: 560px;
   font-size: 1.05rem;
 }
- 
+
 /* =========================================================
    SOBRE — História
    ========================================================= */
 .historia {
   padding: 30px 0 90px;
 }
- 
+
 .historia-grid {
   display: grid;
   grid-template-columns: 1fr 0.7fr; /* coluna do texto maior, coluna do "selo/crachá" menor */
   gap: 60px;
   align-items: center;
 }
- 
+
 .historia h2 {
   font-size: 2rem;
   margin-bottom: 18px;
 }
- 
+
 .historia p {
   color: var(--graphite-soft);
   margin-bottom: 16px;
 }
- 
+
 .historia-crest {
   background: var(--graphite);  /* caixa escura, tipo um "selo" da marca */
   border-radius: 8px;
@@ -543,13 +554,13 @@ h1, h2, h3 {
   height: 90px;
 }
 .historia-crest span {
-  font-family: var(--font-mono);
-  color: var(--teal);
+  font-family: var(--font-mono);   /* texto "FUNDADA POR 3 JOGADORAS" usa a fonte tipo "máquina de escrever" */
+  color: var(--teal);                /* cor verde-água, contrastando com o fundo escuro do crachá */
   font-size: 0.85rem;
-  letter-spacing: 2px;
+  letter-spacing: 2px;                /* letras bem espaçadas, reforçando o ar de "selo/carimbo" */
   text-align: center;
 }
- 
+
 /* =========================================================
    SOBRE — Missão / Visão
    ========================================================= */
@@ -557,56 +568,60 @@ h1, h2, h3 {
   padding: 90px 0;
   background: var(--white);
 }
- 
+
 .mvv-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 colunas iguais: Missão do lado da Visão */
   gap: 28px;
 }
- 
+
 .mvv-card {
-  background: var(--bg);
-  border-radius: 8px;
-  padding: 36px 32px;
+  background: var(--bg);   /* fundo claro pro card, contrastando com o fundo branco da seção */
+  border-radius: 8px;       /* cantos arredondados, mesmo padrão visual usado nos outros cards do site */
+  padding: 36px 32px;        /* respiro interno generoso, deixando o texto confortável dentro do card */
 }
- 
+
 .mvv-card.missao { border-left: 6px solid var(--coral); } /* faixa colorida na LATERAL esquerda (não no topo, como os destaques) */
 .mvv-card.visao { border-left: 6px solid var(--teal); }
- 
+
 .mvv-card h3 {
   font-size: 1.4rem;
   margin-bottom: 14px;
 }
 .mvv-card.missao h3 { color: var(--coral-dark); }
+/* ↑ título "Missão" usa coral escuro, combinando com a faixa lateral do mesmo card */
 .mvv-card.visao h3 { color: var(--teal-dark); }
- 
+/* ↑ título "Visão" usa verde-água escuro, combinando com a faixa lateral do mesmo card */
+
 .mvv-card p {
-  color: var(--graphite-soft);
+  color: var(--graphite-soft);  /* texto do parágrafo em cinza médio, igual ao padrão usado no resto do site */
   font-size: 1rem;
 }
- 
+
 /* =========================================================
    SOBRE — Valores
    ========================================================= */
 .valores {
   padding: 90px 0;
 }
- 
+
 .valores-header {
   text-align: center;
   max-width: 560px;
   margin: 0 auto 40px;
 }
 .valores-header h2 { font-size: 2.3rem; margin-bottom: 12px; }
+/* ↑ título "Nossos valores", mesmo padrão de tamanho usado em .destaques-header h2 */
 .valores-header p { color: var(--graphite-soft); }
- 
+/* ↑ subtítulo de apoio em cinza médio */
+
 .valores-lista {
   display: flex;
   flex-wrap: wrap;       /* se não couber todas as "pílulas" numa linha, quebra pra próxima linha */
   justify-content: center;
   gap: 16px;
 }
- 
+
 .valor-pill {
   font-family: var(--font-body);
   font-weight: 600;
@@ -619,14 +634,14 @@ h1, h2, h3 {
 .valor-pill:nth-child(even) {
   background: var(--teal); /* alterna cor: 1ª/3ª pílula coral, 2ª/4ª verde-água */
 }
- 
+
 /* =========================================================
    RESPONSIVIDADE BÁSICA
    (Pessoa 3 cuida da responsividade completa do site;
    isto garante que Home e Sobre não quebrem no mobile
    enquanto isso.)
    ========================================================= */
- 
+
 /* @media = "só aplique essas regras SE a tela for assim".
    max-width: 900px significa: "telas com até 900px de largura"
    (tablets e parte dos celulares maiores) */
@@ -638,11 +653,11 @@ h1, h2, h3 {
   .hero-number { font-size: 18rem; top: -20px; } /* número gigante de fundo fica menor, cabendo melhor */
   .hero h1 { font-size: 3rem; } /* título da Home encolhe um pouco */
 }
- 
+
 /* Essa segunda regra é mais restrita: só telas até 700px (celulares) */
 @media (max-width: 700px) {
   .nav-toggle-label { display: flex; } /* mostra o ícone de hamburguer (3 risquinhos) só no celular */
- 
+
   .main-nav {
     display: none;   /* o menu fica ESCONDIDO por padrão no celular... */
     width: 100%;
@@ -664,9 +679,9 @@ h1, h2, h3 {
        Esse é o truque que faz o menu abrir/fechar SEM JavaScript. */
     display: block;
   }
- 
+
   .header-inner { flex-wrap: wrap; } /* permite o menu mobile quebrar pra segunda linha */
- 
+
   .destaques-grid { grid-template-columns: 1fr; } /* no celular, os 4 cards ficam empilhados, 1 por linha */
   .hero { padding: 80px 0 70px; }
   .hero h1 { font-size: 2.6rem; }
