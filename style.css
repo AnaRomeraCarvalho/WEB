@@ -143,6 +143,10 @@ h1, h2, h3 {
   color: var(--graphite);   /* a palavra "QUADRA" (dentro de <span>) usa a cor grafite (quase preto) */
 }
 
+.site-footer .logo-text span {
+  color: var(--white);
+}
+
 .logo-text strong {
   font-family: var(--font-body); /* "SPORTWEAR" usa a fonte de texto corrido, não a fonte de título */
   font-size: 0.8rem;              /* tamanho menor, já que é um complemento do nome principal */

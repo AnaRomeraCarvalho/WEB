@@ -1,141 +1,82 @@
 <!DOCTYPE html>
-<!-- DOCTYPE: instrução obrigatória que diz ao navegador "isso é HTML5 moderno".
-     Sem ela, o navegador pode entrar em "quirks mode" e renderizar a página de forma errada. -->
-
 <html lang="pt-BR">
-<!-- <html> é o elemento raiz que envolve TODO o documento HTML.
-     lang="pt-BR" declara o idioma (Português do Brasil) — ajuda leitores de tela
-     e mecanismos de busca a processar o conteúdo corretamente. -->
 
 <head>
-<!-- <head> é o cabeçalho técnico da página — o usuário NÃO vê nada daqui diretamente.
-     Aqui ficam metadados, link para o CSS e configurações do navegador. -->
 
   <meta charset="UTF-8">
-  <!-- Define a codificação de caracteres como UTF-8.
-       Sem isso, acentos e cedilha (ã, ê, ç) aparecem corrompidos no navegador. -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Essencial para responsividade mobile.
-       Faz a página usar a largura real da tela do celular em vez de simular um desktop. -->
-
-  <title>Sobre — Quadra Sportwear</title>
-  <!-- Texto que aparece na aba do navegador e nos resultados do Google.
-       Diferente do index.html (que tem o slogan), cada página tem seu próprio title
-       descritivo. Boas práticas: "Título da Página — Nome do Site". -->
-
+  <title>Sobre — Quadra Sportwear</title> 
   <meta name="description" content="Conheça a história, missão, visão e valores da Quadra Sportwear">
-  <!-- Resumo da página exibido nos resultados de busca do Google (abaixo do título).
-       Cada página deve ter uma description única e relevante ao seu conteúdo. -->
-
   <link rel="stylesheet" href="style.css">
-  <!-- Carrega o MESMO arquivo style.css do index.html.
-       Usar um único CSS compartilhado é o que garante identidade visual consistente
-       em todas as páginas do site — mesmas fontes, cores, header, footer etc. -->
 
 </head>
 
 <body>
-<!-- Contém tudo que é visível ao usuário na tela. -->
 
-  <!-- ============================================================
-       HEADER — Idêntico ao do index.html, com UMA única diferença
-  ============================================================= -->
-
-  <!-- Esse header é IDÊNTICO ao do index.html em estrutura e classes.
-       A ÚNICA diferença real é QUAL link tem a class="active" — aqui é "Sobre".
-       Isso é o padrão em sites HTML estático: copia o header em cada página
-       e move o "active" para o link correto. -->
+  <!-- HEADER — Idêntico ao do index.html, 
+       A ÚNICA diferença real é QUAL link tem a class="active" — aqui é "Sobre". -->
 
   <header class="site-header">
-  <!-- <header> = tag semântica HTML5 para o cabeçalho do site.
-       Comunica para leitores de tela e buscadores que aqui está o topo da página. -->
+  <!-- <header> = cabeçalho do site.-->
 
     <div class="container header-inner">
-    <!-- .container → centraliza e limita a largura do conteúdo (ex: max-width: 1200px).
-         .header-inner → provavelmente Flexbox que posiciona logo à esquerda e nav à direita. -->
+    <!-- .container → centraliza e limita a largura do conteúdo.
+         .header-inner → posiciona logo à esquerda e nav à direita. -->
 
       <a href="index.html" class="logo">
-      <!-- O logo sempre aponta para index.html — padrão de usabilidade: clicar no logo volta à Home. -->
+      <!-- O logo sempre aponta para index.html. -->
 
         <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
              role="img" aria-label="Logotipo Quadra Sportwear">
-        <!-- SVG (Scalable Vector Graphics) embutido no HTML — gráfico vetorial desenhado em código.
-             Vantagem: escala sem perder qualidade em qualquer tamanho de tela.
-             role="img" → informa leitores de tela que este SVG é uma imagem.
-             aria-label → texto alternativo lido no lugar do SVG por leitores de tela.
-             viewBox="0 0 100 100" → sistema de coordenadas interno do SVG. -->
 
           <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
-          <!-- Círculo de fundo do logo.
-               cx/cy → coordenadas do centro (50,50 = centro do viewBox).
-               r="46" → raio de 46 unidades.
-               fill/stroke → usam variáveis CSS definidas no :root do style.css. -->
-
           <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
-          <!-- Curva superior do logo. M = mover para; Q = curva quadrática de Bézier.
-               fill="none" → sem preenchimento, só o traço. -->
-
           <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
-          <!-- Curva inferior, simétrica à anterior. -->
-
           <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-          <!-- Linha curva vertical esquerda do logo. -->
-
           <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-          <!-- Linha curva vertical direita, espelho da anterior. -->
-
+          
           <text x="50" y="61" text-anchor="middle"
                 font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
             Q
           </text>
-          <!-- Letra "Q" centralizada no logo.
-               text-anchor="middle" → centraliza horizontalmente em torno de x=50.
-               font-family lista fontes em ordem de preferência (fallback). -->
 
         </svg>
 
         <span class="logo-text">QUADRA <strong>SPORTWEAR</strong></span>
         <!-- Texto do logo ao lado do ícone SVG.
-             <strong> = forte importância semântica (negrito + peso semântico para leitores de tela).
-             Aqui escrito em linha (sem quebrar) ao invés de duas linhas como no index — mesmo resultado visual. -->
+             <strong> = forte importância semântica. -->
 
       </a>
 
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
       <!-- Checkbox escondida visualmente que controla o estado do menu mobile.
-           Marcada = menu aberto | Desmarcada = menu fechado.
-           O CSS usa o seletor :checked para mostrar/esconder a <nav>. Sem JavaScript. -->
+           Marcada = menu aberto | Desmarcada = menu fechado. -->
 
       <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
-      <!-- Label ligado ao checkbox via for="nav-toggle" (deve casar com o id do input).
+      <!-- Label ligado ao checkbox via for="nav-toggle".
            Clicar neste label marca/desmarca o checkbox automaticamente.
-           aria-label → texto para leitores de tela (o label não tem texto visível). -->
+           aria-label → texto para leitores de tela. -->
 
         <span></span><span></span><span></span>
-        <!-- Os 3 spans vazios são os 3 risquinhos do ícone hambúrguer (☰).
+        <!-- Os 3 spans vazios são os 3 risquinhos do ícone (☰).
              O CSS os estiliza como linhas horizontais e, quando o menu abre,
              os anima para formar um X (✕). -->
 
       </label>
 
       <nav class="main-nav" aria-label="Navegação principal">
-      <!-- <nav> = tag semântica HTML5 para blocos de links de navegação.
-           aria-label diferencia este nav do nav do rodapé para leitores de tela. -->
+      <!-- <nav> = links de navegação.
+           aria-label diferencia este nav do nav do rodapé. -->
 
         <ul>
-        <!-- <ul> = Unordered List. Lista de itens sem numeração.
-             Semanticamente correto para um menu de navegação (é uma lista de links). -->
+        <!-- <ul> = Lista de itens sem numeração. -->
 
           <li><a href="index.html">Home</a></li>
-          <!-- <li> = List Item. Sem class="active" → não é a página atual. -->
+          <!-- <li> = List Item. -->
 
           <li><a href="sobre.html" class="active">Sobre</a></li>
-          <!-- ÚNICA DIFERENÇA EM RELAÇÃO AO HEADER DO INDEX.HTML:
-               aqui o "active" está em SOBRE, não em Home.
-               class="active" → o CSS aplica estilo visual (ex: sublinhado coral)
-               indicando que o usuário está NESSA página agora.
-               Em cada nova página HTML, o active muda para o link correto. -->
+          <!-- "active" está em SOBRE.
+               class="active" → o CSS aplica estilo visual (sublinhado coral). -->
 
           <li><a href="produtos.html">Produtos</a></li>
           <li><a href="precos.html">Tabela de Preços</a></li>
@@ -145,63 +86,44 @@
     </div>
   </header>
 
-  <!-- ============================================================
-       MAIN — Conteúdo principal desta página (Sobre)
-  ============================================================= -->
+  <!-- MAIN — Conteúdo principal desta página (Sobre) -->
 
   <main>
-  <!-- <main> = tag semântica para o conteúdo PRINCIPAL e ÚNICO da página.
-       Só pode existir um <main> por página.
-       Leitores de tela oferecem atalho para pular diretamente para o <main>
-       (útil para usuários que navegam com teclado ou sintetizador de voz). -->
+  <!-- <main> = PRINCIPAL e ÚNICO da página.-->
 
-    <!-- --------------------------------------------------------
-         HERO SOBRE — Banner de entrada da página Sobre
-         (mais simples e compacto que o hero da Home)
-    --------------------------------------------------------- -->
+    <!-- HERO SOBRE — Banner de entrada da página Sobre -->
 
     <section class="hero-sobre">
-    <!-- <section> = tag semântica HTML5 para bloco de conteúdo com tema próprio.
-         class="hero-sobre" → CSS específico para o hero desta página.
-         Diferente da Home (que tem fundo escuro, número 07, dois botões),
-         este hero é mais limpo, sem tantos elementos visuais. -->
+    <!-- <section> = conteúdo com tema próprio.
+         class="hero-sobre" → CSS específico para o hero desta página. -->
 
       <div class="container">
 
         <span class="hero-sobre-eyebrow">Nossa história</span>
-        <!-- Eyebrow = textinho pequeno que aparece ACIMA do título principal.
-             Comum em design: orienta o usuário sobre o tema antes de ler o h1.
-             É <span> (inline, sem valor semântico de hierarquia). -->
+        <!-- Eyebrow = textinho pequeno que aparece ACIMA do título principal. -->
 
         <h1>Três amigas, uma quadra, uma marca.</h1>
-        <!-- <h1> = título de maior hierarquia — só um por página.
-             Esta página tem um h1 DIFERENTE do index.html, como deve ser:
-             cada página descreve seu próprio conteúdo no h1. -->
+        <!-- <h1> = título de maior hierarquia. -->
 
         <p>A Quadra Sportwear é mais que uma loja de camisetas: é a forma que três amigas
           encontraram de vestir aquilo que mais amam — o esporte.</p>
-        <!-- <p> = parágrafo. Subtítulo/introdução do hero. -->
 
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-         HISTÓRIA — Texto da origem da empresa + selo visual
-    --------------------------------------------------------- -->
+    <!-- HISTÓRIA — Texto da origem da empresa + selo visual -->
 
     <section class="historia">
     <!-- Seção temática sobre a história da marca. -->
 
       <div class="container historia-grid">
-      <!-- .historia-grid → divide em 2 colunas (provavelmente CSS Grid):
-           coluna maior para o texto, coluna menor para o selo/crachá visual. -->
-
+      <!-- .historia-grid → divide em 2 colunas:
+           coluna maior para o texto, coluna menor para o selo. -->
         <div>
         <!-- Div sem classe, que ocupa a coluna principal com os parágrafos da história. -->
 
           <h2>Como tudo começou</h2>
-          <!-- <h2> = segundo nível de hierarquia. Hierarquia correta: h1 (hero) → h2 (seção).
-               Nunca pular níveis (ex: de h1 para h3) — prejudica acessibilidade e SEO. -->
+          <!-- <h2> = segundo nível de hierarquia. -->
 
           <p>
             Tudo começou entre treinos, competições e momentos compartilhados
@@ -226,8 +148,7 @@
             esporte, desenvolvidos para acompanhar pessoas dentro e fora das
             quadras.
           </p>
-          <!-- Múltiplos <p> separados criam respiro visual entre parágrafos.
-               Usar um único <p> grande com <br> seria semanticamente incorreto. -->
+          <!-- Múltiplos <p> separados criam respiro visual entre parágrafos. -->
 
         </div>
 
@@ -236,59 +157,46 @@
              (bloco escuro com o logo grande e o texto das fundadoras).
              O visual deste bloco é criado pelo CSS usando a class "historia-crest". -->
 
-          <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- SVG do logo em versão maior/variante para o bloco do crachá.
-               aria-hidden="true" → leitores de tela ignoram este SVG.
-               Diferente do header, aqui o SVG NÃO tem role="img" nem aria-label,
-               porque é decorativo — o texto "FUNDADA POR 3 JOGADORAS" ao lado já
-               informa o conteúdo. Duplicar info para leitores de tela seria ruim. -->
+           <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                         role="img" aria-label="Logotipo Quadra Sportwear">
+                    <!-- SVG idêntico ao do header. -->
 
-            <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="6" />
-            <!-- Círculo de fundo, desta vez com stroke-width="6" (borda mais grossa que o logo do header). -->
+                        <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+                        <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+                        <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+                        <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+                        <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+                        <text x="50" y="61" text-anchor="middle"
+                              font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
+                            Q
+                        </text>
 
-            <path d="M18 72 L82 28" stroke="var(--coral)" stroke-width="9" stroke-linecap="round" />
-            <!-- DIFERENÇA em relação ao logo do header: aqui é uma linha DIAGONAL simples (L = LineTo),
-                 não as curvas duplas de Bézier (Q). É uma variação do logo para este contexto.
-                 stroke-linecap="round" → as pontas da linha ficam arredondadas. -->
-
-            <text x="50" y="64" text-anchor="middle"
-                  font-family="Anton, Arial Black, sans-serif" font-size="48" fill="#FFFFFF">Q</text>
-            <!-- Letra "Q" com font-size="48" (maior que os 34 do header) porque este logo
-                 é exibido em tamanho maior neste bloco decorativo. -->
-
-          </svg>
+                    </svg>
 
           <span>FUNDADA POR<br>3 JOGADORAS</span>
-          <!-- Texto abaixo/ao lado do logo do crachá.
-               <br> força uma quebra de linha MANUAL dentro do texto.
-               Uso aceitável aqui pois é um texto curto e decorativo — em parágrafos longos,
-               <br> deve ser evitado (o CSS cuida do reflow do texto). -->
+          <!-- Texto abaixo do logo.
+               <br> força uma quebra de linha MANUAL dentro do texto. -->
 
         </div>
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-         MVV — Missão e Visão da empresa
-    --------------------------------------------------------- -->
+    <!-- MVV — Missão e Visão da empresa -->
 
     <section class="mvv">
-    <!-- "mvv" é a sigla de Missão/Visão/Valores — nome técnico comum em branding.
-         Aqui serve como nome curto para a class CSS da seção. -->
+    <!-- "mvv" é a sigla de Missão/Visão/Valores. -->
 
       <div class="container mvv-grid">
-      <!-- .mvv-grid → provavelmente exibe os cards de missão e visão lado a lado (2 colunas). -->
+      <!-- .mvv-grid → exibe os cards de missão e visão lado a lado (2 colunas). -->
 
         <article class="mvv-card missao">
-        <!-- <article> = tag semântica para conteúdo autossuficiente, que faz sentido sozinho.
+        <!-- <article> = autossuficiente, que faz sentido sozinho.
              Cada card de missão/visão poderia ser lido/distribuído independentemente.
              class="mvv-card" → estilo base de todos os cards.
-             class="missao" → estilo específico deste card (ex: cor de destaque diferente). -->
+             class="missao" → estilo específico deste card. -->
 
           <h3>Missão</h3>
-          <!-- <h3> = terceiro nível. Hierarquia: h1 (hero) → h2 (seção mvv implícita) → h3 (card).
-               Aqui a seção "mvv" não tem h2 explícito, mas a hierarquia ainda faz sentido
-               contextualmente pela ordem na página. -->
+          <!-- <h3> = terceiro nível. -->
 
           <p>
             Vestir pessoas que vivem o esporte, oferecendo camisetas que unem
@@ -298,7 +206,7 @@
         </article>
 
         <article class="mvv-card visao">
-        <!-- Segundo card com class="visao" para eventuais estilos diferentes de "missao". -->
+        <!-- Segundo card com class="visao". -->
 
           <h3>Visão</h3>
           <p>
@@ -311,18 +219,15 @@
       </div>
     </section>
 
-    <!-- --------------------------------------------------------
-         VALORES — Lista de valores da marca em formato de "pills"
-    --------------------------------------------------------- -->
+    <!-- VALORES — Lista de valores da marca em formato de "pills" -->
 
     <section class="valores">
-    <!-- Seção que exibe os valores da empresa em formato visual de etiquetas/pílulas. -->
+    <!-- exibe os valores da empresa em formato visual de etiquetas. -->
 
       <div class="container">
 
         <div class="valores-header">
-        <!-- Div que separa o cabeçalho (título + subtítulo) da lista de valores,
-             permitindo estilos e espaçamentos independentes para cada parte. -->
+        <!-- Div que separa o cabeçalho da lista de valores. -->
 
           <h2>Nossos valores</h2>
           <p>O que carregamos pra dentro de cada coleção.</p>
@@ -330,7 +235,7 @@
         </div>
 
         <div class="valores-lista">
-        <!-- .valores-lista → provavelmente usa Flexbox com flex-wrap para organizar
+        <!-- .valores-lista → usa Flexbox com flex-wrap para organizar
              as pills em múltiplas linhas conforme a largura da tela permite. -->
 
           <span class="valor-pill">Paixão pelo esporte</span>
@@ -341,9 +246,7 @@
           <span class="valor-pill">Movimento e superação</span>
           <!-- "Pills" (pílulas) são elementos visuais arredondados comuns em design.
                Cada valor é um <span> com a class "valor-pill".
-               <span> é inline e sem semântica própria — adequado aqui pois são etiquetas visuais.
-               Todos compartilham a mesma class para terem o mesmo estilo.
-               O CSS provavelmente aplica: fundo colorido, border-radius alto (para o formato oval),
+               O CSS aplica: fundo colorido, border-radius alto (para o formato oval),
                padding horizontal e fonte pequena. -->
 
         </div>
@@ -352,82 +255,75 @@
 
   </main>
 
-  <!-- ============================================================
-       FOOTER — Idêntico ao do index.html
-  ============================================================= -->
+  <!-- FOOTER — Rodapé com logo, nav secundária e copyright -->
 
-  <!-- Footer IDÊNTICO ao do index.html.
-       Em sites HTML estático, o footer é copiado em cada página.
-       Em frameworks modernos (React, Vue) ou com includes (PHP),
-       o footer seria um componente reutilizável e não precisaria ser repetido. -->
+    <footer class="site-footer">
 
-  <footer class="site-footer">
-  <!-- <footer> = tag semântica HTML5 para o rodapé do site. -->
+        <div class="container footer-inner">
+        <!-- footer-inner → Flexbox para organizar logo e nav lado a lado. -->
 
-    <div class="container footer-inner">
+            <div class="footer-brand">
+            <!-- Agrupa o logo e o tagline do rodapé. -->
 
-      <div class="footer-brand">
+                <div class="logo">
+                <!-- REPETIÇÃO do logo do header. -->
 
-        <div class="logo">
-          <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-               role="img" aria-label="Logotipo Quadra Sportwear">
-          <!-- SVG do logo com role="img" e aria-label — diferente do SVG do historia-crest
-               (que tinha aria-hidden). Aqui o logo é identificado para leitores de tela
-               pois está no rodapé, onde pode ser o único ponto de referência da marca. -->
+                    <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                         role="img" aria-label="Logotipo Quadra Sportwear">
+                    <!-- SVG idêntico ao do header. -->
 
-            <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
-            <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
-            <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
-            <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-            <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-            <text x="50" y="61" text-anchor="middle"
-                  font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
-              Q
-            </text>
-            <!-- Logo idêntico ao do header, com as mesmas curvas e dimensões. -->
+                        <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+                        <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+                        <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+                        <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+                        <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+                        <text x="50" y="61" text-anchor="middle"
+                              font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
+                            Q
+                        </text>
 
-          </svg>
+                    </svg>
 
-          <div class="logo-text">
-            <span>QUADRA</span>
-            <strong>SPORTWEAR</strong>
-          </div>
-          <!-- Texto do logo em <div> (bloco) ao invés de <span> (inline) como no header.
-               O resultado visual é o mesmo, mas o <div> gera um novo bloco de layout.
-               <span> e <strong> internos funcionam igual ao header. -->
+                    <div class="logo-text">
+                        <span>QUADRA</span>
+                        <strong>SPORTWEAR</strong>
+                    </div>
+                    <!-- Diferença sutil do header: aqui logo-text usa <div> em vez de <span>.
+                         O <span> e <strong> dentro
+                         funcionam da mesma forma que no header. -->
 
+                </div>
+
+                <p class="footer-tagline">
+                    Feita para quem joga, vive e veste esporte.
+                </p>
+                <!-- Tagline (slogan curto) da marca no rodapé. -->
+
+            </div>
+
+            <nav class="footer-nav" aria-label="Links do rodapé">
+            <!-- Segundo <nav> da página. O aria-label "Links do rodapé" diferencia este
+                 da navegação principal.
+                 Sem aria-label diferente, seria ambíguo qual nav é qual. -->
+
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="precos.html">Tabela de Preços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <!-- Repete os mesmos links do menu principal. -->
+
+            </nav>
         </div>
 
-        <p class="footer-tagline">
-          Feita para quem joga, vive e veste esporte.
-        </p>
-        <!-- Tagline do rodapé. Mesmo texto em TODAS as páginas do site — faz parte da identidade. -->
+        <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
+        <!-- Texto de copyright. Fica FORA do .container para poder ter fundo diferente ou
+             ficar centralizado na largura total da tela.
+             © é a entidade HTML para o símbolo de copyright (©). -->
 
-      </div>
-
-      <nav class="footer-nav" aria-label="Links do rodapé">
-      <!-- Segundo <nav> da página. aria-label="Links do rodapé" o diferencia do
-           aria-label="Navegação principal" do header para leitores de tela. -->
-
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="produtos.html">Produtos</a></li>
-          <li><a href="precos.html">Tabela de Preços</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-        <!-- No footer NÃO há class="active" em nenhum link — convenção de design:
-             indicar a página atual é responsabilidade da navegação principal (header),
-             não do rodapé. -->
-
-      </nav>
-    </div>
-
-    <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
-    <!-- Texto de copyright FORA do .container para ficar na largura total da tela.
-         © é a entidade HTML para o símbolo © (copyright). -->
-
-  </footer>
+    </footer>
 
 </body>
 </html>

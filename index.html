@@ -1,89 +1,64 @@
 <!DOCTYPE html>
-<!-- DOCTYPE: instrução obrigatória que diz pro navegador "isso é HTML5 moderno".
-     Sem ela o navegador pode entrar em "quirks mode" e renderizar a página errada. -->
+<!-- DOCTYPE: instrução obrigatória que diz pro navegador "isso é HTML5". -->
 
 <html lang="pt-BR">
 <!-- <html> é o elemento raiz que envolve TODO o documento.
-     lang="pt-BR" declara o idioma da página (Português do Brasil).
-     Isso ajuda leitores de tela a pronunciar o texto corretamente
-     e ajuda mecanismos de busca a indexar no país certo. -->
+     lang="pt-BR" declara o idioma da página (Português do Brasil). -->
 
 <head>
-<!-- <head> é o "cabeçalho técnico" da página — o usuário NÃO vê nada daqui diretamente.
-     Aqui ficam metadados, links para CSS, configurações do navegador etc. -->
+<!-- <head> é o "cabeçalho técnico" da página — o usuário NÃO vê nada daqui. -->
 
     <meta charset="UTF-8">
     <!-- meta charset define a codificação de caracteres do arquivo.
-         UTF-8 suporta acentos, ç, emojis e praticamente todos os idiomas do mundo.
-         Sem isso, caracteres como "ã", "ê", "ç" aparecem como símbolos estranhos (ex: "ãç"). -->
+         UTF-8 suporta acentos, ç, emojis -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- meta viewport é ESSENCIAL para sites responsivos (mobile-friendly).
          width=device-width → a largura da página se iguala à largura real do dispositivo.
          initial-scale=1.0 → nenhum zoom inicial aplicado.
-         Sem isso o celular renderiza a página como se fosse um desktop e fica minúsculo. -->
+         Sem isso o celular renderiza a página como se fosse um desktop. -->
 
     <title>Quadra Sportwear — Feita para quem vive o esporte</title>
-    <!-- <title> define o texto que aparece:
-         1) Na aba do navegador
-         2) Na barra de favoritos
-         3) Como título nos resultados de busca do Google
-         Cada página deve ter um title único e descritivo. -->
+    <!-- <title> define o texto que aparece na aba do navegador -->
 
     <meta name="description"
         content="Quadra Sportwear: camisetas inspiradas no espírito de time, criadas por três amigas apaixonadas por esporte.">
-    <!-- meta description é o parágrafo resumo que o Google exibe abaixo do título nos resultados de busca.
-         Não influencia diretamente o ranking, mas influencia o usuário clicar ou não no link.
-         Ideal: entre 150–160 caracteres. -->
+    <!-- meta description é o parágrafo resumo que o Google exibe abaixo do título nos resultados de busca. -->
 
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet"> carrega um arquivo CSS externo.
-         href="style.css" é o caminho do arquivo (nesse caso, na mesma pasta do HTML).
-         O navegador baixa e aplica esse CSS antes de renderizar a página visualmente. -->
+         href="style.css" é o caminho do arquivo (na mesma pasta do HTML). -->
 
 </head>
 
 <body>
-<!-- <body> contém TUDO que é visível na tela para o usuário.
-     É onde ficam textos, imagens, botões, formulários, etc. -->
+<!-- <body> contém TUDO que é visível na tela para o usuário. -->
 
-    <!-- ====================================================
-         HEADER — Cabeçalho fixo do site com logo e navegação
-    ===================================================== -->
-
+    <!-- HEADER — Cabeçalho do site com logo e navegação -->
     <header class="site-header">
-    <!-- <header> é uma tag semântica HTML5 que representa o cabeçalho do site ou de uma seção.
-         Semântica significa que a tag comunica o PROPÓSITO do conteúdo, não só o visual.
-         Leitores de tela e mecanismos de busca entendem que aqui está o cabeçalho principal.
-         class="site-header" é uma classe CSS usada para estilizar este elemento no style.css. -->
+    <!-- <header> cabeçalho do site ou de uma seção. -->
 
         <div class="container header-inner">
         <!-- <div> é um elemento de bloco genérico SEM significado semântico — serve só para agrupar
              e aplicar estilos CSS.
-             class="container" → provavelmente define uma largura máxima e centraliza o conteúdo.
-             class="header-inner" → define o layout interno do cabeçalho (ex: flexbox com logo à
-             esquerda e nav à direita). -->
+             class="container" → define uma largura máxima e centraliza o conteúdo.
+             class="header-inner" → define o layout interno do cabeçalho. -->
 
             <a href="index.html" class="logo">
             <!-- <a href="index.html"> é um link. Clicar nele navega para a página inicial (index.html).
-                 Envolver o logo num <a> é boa prática: usuários esperam clicar no logo para voltar à Home.
                  class="logo" permite estilizar este link como logo no CSS. -->
 
                 <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                     role="img" aria-label="Logotipo Quadra Sportwear">
+                    >
                 <!-- <svg> é um gráfico vetorial embutido diretamente no HTML.
-                     SVG (Scalable Vector Graphics) é desenhado com código, não é uma imagem bitmap.
-                     Vantagens: escala sem perder qualidade em qualquer resolução (celular, 4K, etc.).
-                     viewBox="0 0 100 100" → define o sistema de coordenadas interno do SVG
-                     (começa em x=0,y=0 e tem 100 unidades de largura e altura).
-                     xmlns → namespace obrigatório para SVG embutido em HTML.
-                     role="img" → informa a leitores de tela que este SVG é uma imagem.
-                     aria-label → texto alternativo lido por leitores de tela no lugar do SVG. -->
+                     SVG (Scalable Vector Graphics) é desenhado com código.
+                     viewBox="0 0 100 100" → define o sistema de coordenadas interno do SVG (começa em x=0,y=0 e tem 100 unidades de largura e altura).
+                     xmlns → namespace obrigatório para SVG embutido em HTML.-->
 
                     <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
                     <!-- <circle> desenha um círculo.
                          cx="50" cy="50" → centro do círculo nas coordenadas x=50, y=50 (centro do viewBox).
-                         r="46" → raio de 46 unidades.
+                         r="46" → raio de 46.
                          fill="var(--graphite)" → cor de preenchimento usando variável CSS (definida no :root do CSS).
                          stroke="var(--teal)" → cor da borda.
                          stroke-width="5" → espessura da borda. -->
@@ -122,16 +97,13 @@
                     QUADRA
                     <strong>SPORTWEAR</strong>
                 </span>
-                <!-- <span> é um elemento inline genérico (como <div>, mas para texto).
-                     Aqui agrupa o texto do logo para estilização.
-                     <strong> indica texto de forte importância — por padrão aparece em negrito
-                     e é lido com ênfase por leitores de tela. -->
+                <!-- <span> agrupa o texto do logo para estilização.
+                     <strong> indica texto de forte importância. -->
 
             </a> <!-- fecha o <a href="index.html" class="logo"> -->
 
             <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
-            <!-- TRUQUE CSS PURO para menu hambúrguer mobile SEM JavaScript.
-                 É um <input type="checkbox"> que fica ESCONDIDO visualmente (via CSS: display:none ou opacity:0).
+            <!-- É um <input type="checkbox"> que fica ESCONDIDO visualmente (via CSS: display:none ou opacity:0).
                  Quando marcada (checked) → menu aberto. Quando desmarcada → menu fechado.
                  O CSS usa o seletor :checked para mostrar/esconder a <nav>.
                  id="nav-toggle" é o identificador único, referenciado pelo label abaixo. -->
@@ -143,7 +115,7 @@
                  É o elemento visível que o usuário clica para abrir o menu no celular. -->
 
                 <span></span><span></span><span></span>
-                <!-- Três <span> vazios representam as 3 linhas do ícone hambúrguer (☰).
+                <!-- Três <span> vazios representam as 3 linhas do ícone (☰).
                      O CSS transforma cada span em uma linha horizontal e, quando o menu está aberto,
                      as linhas se animam para formar um X (✕). -->
 
@@ -151,20 +123,15 @@
 
             <nav class="main-nav" aria-label="Navegação principal">
             <!-- <nav> é tag semântica HTML5 para blocos de links de navegação.
-                 Informa a tecnologias assistivas e buscadores que este é um menu de navegação.
-                 aria-label="Navegação principal" distingue este nav de outros na página
-                 (ex: o nav do rodapé tem aria-label diferente). -->
+                 aria-label="Navegação principal" distingue este nav de outros na página. -->
 
                 <ul>
-                <!-- <ul> = Unordered List (lista não ordenada). Itens sem numeração.
-                     A semântica aqui é importante: uma lista de links de navegação
-                     É, de fato, uma lista — faz sentido usar <ul>. -->
+                <!-- <ul> = lista não ordenada: Itens sem numeração.-->
 
                     <li><a href="index.html" class="active">Home</a></li>
-                    <!-- <li> = List Item (item de lista).
+                    <!-- <li> = item de lista.
                          <a href="index.html"> → link que leva à página inicial.
-                         class="active" → marca visualmente (ex: sublinhado coral) que o usuário ESTÁ nessa página.
-                         O desenvolvedor deve trocar a classe active manualmente em cada página HTML. -->
+                         class="active" → marca visualmente (sublinhado coral) que o usuário ESTÁ nessa página.-->
 
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="produtos.html">Produtos</a></li>
@@ -180,81 +147,64 @@
         </div> <!-- fecha .container.header-inner -->
     </header>
 
-    <!-- ====================================================
-         MAIN — Conteúdo principal da página
-    ===================================================== -->
+    <!-- MAIN — Conteúdo principal da página -->
 
     <main>
-    <!-- <main> é tag semântica HTML5 que envolve o CONTEÚDO PRINCIPAL da página.
-         Só deve haver um <main> por página.
-         Leitores de tela oferecem atalho de teclado para pular direto ao <main>,
-         ignorando o header/nav (funcionalidade "skip to content"). -->
+    <!-- <main> CONTEÚDO PRINCIPAL da página.
+         Só deve haver um <main> por página. -->
 
-        <!-- ------------------------------------------------
-             SEÇÃO HERO — Banner principal com chamada para ação
-        ------------------------------------------------- -->
+        <!-- SEÇÃO HERO — Banner principal com chamada para ação -->
 
         <section class="hero">
-        <!-- <section> é tag semântica HTML5 para agrupar conteúdo com um tema próprio.
-             Diferente de <div>, <section> implica que o conteúdo faz parte de uma estrutura maior
-             e idealmente tem um título (h1, h2...) dentro dele.
-             class="hero" → o CSS usa essa classe para estilizar o banner principal (normalmente
-             ocupa a tela inteira com imagem de fundo, texto centralizado e botões de ação). -->
+        <!-- <section> agrupar conteúdo com um tema próprio.
+             class="hero" → o CSS usa essa classe para estilizar o banner principal. -->
 
             <span class="hero-number" aria-hidden="true">07</span>
             <!-- <span> inline usado para exibir o número decorativo "07" no fundo.
                  aria-hidden="true" → MUITO IMPORTANTE: diz aos leitores de tela para IGNORAR
-                 completamente este elemento. É pura decoração visual, não tem significado de conteúdo.
+                 completamente este elemento. É só decoração visual, não tem significado de conteúdo.
                  Sem aria-hidden, um leitor de tela leria "07" no meio da página sem contexto. -->
 
             <div class="container">
             <!-- <div class="container"> → caixa centralizadora do conteúdo.
-                 O CSS define que .container tem largura máxima (ex: 1200px) e fica centrada
+                 O CSS define que .container tem largura máxima e fica centrada
                  com margin: 0 auto. Padrão comum em layouts web. -->
 
                 <div class="hero-inner">
-                <!-- Mais uma div de agrupamento, usada para layout interno do hero
-                     (posicionamento vertical do texto, padding, etc.). -->
+                <!-- Div de agrupamento, usada para layout interno do hero. -->
 
                     <span class="hero-eyebrow">Coleção esportiva</span>
-                    <!-- "Eyebrow" (sobrancelha) é o nome do design para o textinho pequeno
+                    <!-- "Eyebrow" nome do design para o textinho pequeno
                          que aparece ACIMA do título principal.
-                         Geralmente em caixa alta, cor de destaque, tamanho pequeno.
-                         Não tem valor semântico especial, por isso é um <span> e não um heading. -->
+                         Geralmente em caixa alta, cor de destaque, tamanho pequeno. -->
 
                     <h1>Quadra Sportwear</h1>
-                    <!-- <h1> é o título de MAIOR hierarquia da página.
-                         Regra: só pode haver UM <h1> por página (SEO e acessibilidade).
-                         Mecanismos de busca dão peso especial ao conteúdo do h1 para entender
-                         do que trata a página. -->
+                    <!-- <h1> é o título de MAIOR hierarquia da página. -->
 
                     <p class="hero-slogan">
                         Movimento para dentro e fora das quadras.
                     </p>
                     <!-- <p> = parágrafo. Elemento de bloco para textos.
-                         class="hero-slogan" → estiliza este parágrafo como slogan
-                         (provavelmente fonte maior, cor diferente, etc.). -->
+                         class="hero-slogan" → estiliza este parágrafo como slogan. -->
 
                     <p class="hero-text">
                         Peças criadas para quem vive em movimento. Inspiradas no esporte,
                         pensadas para o conforto do dia a dia e desenvolvidas para acompanhar
                         cada desafio dentro e fora das quadras.
                     </p>
-                    <!-- Parágrafo com o texto descritivo do hero. class="hero-text" controla
-                         o estilo (tamanho, cor, espaçamento) separado do slogan. -->
+                    <!-- Parágrafo com o texto descritivo do hero. 
+                        class="hero-text" controla o estilo (tamanho, cor, espaçamento) separado do slogan. -->
 
                     <div class="hero-actions">
-                    <!-- <div> de agrupamento para os botões de ação (call-to-action / CTA).
-                         O CSS provavelmente usa flexbox aqui para colocar os botões lado a lado. -->
+                    <!-- <div> de agrupamento para os botões de ação. -->
 
                         <a href="produtos.html" class="btn btn-primary">Ver coleção</a>
-                        <!-- Link estilizado como BOTÃO primário (cor sólida, ex: coral).
-                             Usar <a> em vez de <button> quando o elemento navega para outra página.
-                             <button> é usado para ações sem navegação (ex: enviar formulário, abrir modal).
+                        <!-- Link estilizado como BOTÃO primário.
+                             Usa <a> em vez de <button> porque o elemento navega para outra página.
                              class="btn btn-primary" → aplica estilos de botão principal do CSS. -->
 
                         <a href="sobre.html" class="btn btn-outline">Conhecer a marca</a>
-                        <!-- Botão secundário (outline = só contorno, fundo transparente).
+                        <!-- Botão secundário.
                              Hierarquia visual: btn-primary chama mais atenção que btn-outline,
                              indicando qual ação é mais importante para o negócio. -->
 
@@ -263,27 +213,23 @@
             </div>
         </section>
 
-        <!-- ------------------------------------------------
-             SEÇÃO APRESENTAÇÃO — Texto sobre a empresa + elemento gráfico
-        ------------------------------------------------- -->
+        <!-- SEÇÃO APRESENTAÇÃO — Texto sobre a empresa + elemento gráfico -->
 
         <section class="apresentacao">
-        <!-- Outra <section> com tema próprio: apresentação da empresa.
-             Boa prática: cada <section> representa um "bloco de conteúdo" distinto na página. -->
+        <!-- Tema próprio: apresentação da empresa.
+             Cada <section> representa um bloco de conteúdo distinto na página. -->
 
             <div class="container apresentacao-grid">
-            <!-- apresentacao-grid → o CSS usa provavelmente CSS Grid ou Flexbox
-                 para dividir esta div em 2 colunas: texto à esquerda, gráfico à direita. -->
+            <!-- apresentacao-grid → o CSS usa CSS Grid ou Flexbox para dividir 
+                 esta div em 2 colunas: texto à esquerda, gráfico à direita. -->
 
                 <div>
-                <!-- Div sem classe específica que contém o texto da apresentação.
-                     Ocupa a primeira coluna do grid. -->
+                <!-- Div sem classe específica que contém o texto da apresentação. -->
 
                     <h2>Do esporte para o <span>dia a dia</span></h2>
-                    <!-- <h2> é o título de segundo nível (abaixo do h1).
-                         A hierarquia correta é h1 > h2 > h3 > h4 > h5 > h6 — nunca pular níveis.
+                    <!-- <h2> é o título de segundo nível.
                          O <span> dentro do h2 existe para estilizar uma palavra diferente
-                         (ex: cor coral) sem quebrar a hierarquia semântica do título. -->
+                         (cor coral). -->
 
                     <p>
                         A Quadra Sportwear nasceu da vontade de três amigas de transformar
@@ -303,18 +249,15 @@
                 <!-- Div PROPOSITALMENTE VAZIA de conteúdo HTML.
                      Todo o elemento gráfico (gradiente, listras, texto "QUADRA") é criado
                      100% pelo CSS usando os pseudo-elementos ::before e ::after.
-                     aria-hidden="true" → como é decoração pura, leitores de tela ignoram.
-                     Isso é uma técnica de "CSS art" — criar visuais sem imagens nem SVG. -->
+                     aria-hidden="true" → como é decoração pura, leitores de tela ignoram. -->
 
             </div>
         </section>
 
-        <!-- ------------------------------------------------
-             SEÇÃO DESTAQUES — Cards com diferenciais da marca
-        ------------------------------------------------- -->
+        <!-- SEÇÃO DESTAQUES — Cards com diferenciais da marca -->
 
         <section class="destaques">
-        <!-- Terceira seção da página: os "diferenciais" ou "destaques" da marca. -->
+        <!-- Terceira seção da página. -->
 
             <div class="container">
 
@@ -328,14 +271,10 @@
                 </div>
 
                 <div class="destaques-grid">
-                <!-- destaques-grid → CSS Grid (provavelmente) que organiza os cards em colunas.
-                     Em desktop: 4 cards lado a lado. Em mobile: empilhados (1 por linha).
-                     Isso é responsividade via media queries no CSS. -->
+                <!-- destaques-grid → CSS Grid que organiza os cards em colunas. -->
 
                     <article class="destaque-card">
-                    <!-- <article> é tag semântica HTML5 para conteúdo que FAZ SENTIDO SOZINHO,
-                         independente do resto da página. Um card de produto, post de blog,
-                         notícia — qualquer coisa que você poderia copiar e distribuir separadamente.
+                    <!-- <article> conteúdo que FAZ SENTIDO SOZINHO, independente do resto da página. 
                          Aqui cada card de destaque é um <article> porque tem título e texto próprios.
                          class="destaque-card" → estilização visual do card no CSS. -->
 
@@ -344,8 +283,7 @@
                              É <span> porque é texto inline sem hierarquia semântica especial. -->
 
                         <h3>Tecido que joga junto</h3>
-                        <!-- <h3> é o terceiro nível de título. Hierarquia: h1 (página) → h2 (seção) → h3 (card).
-                             Pular de h2 para h4, por exemplo, é má prática de acessibilidade. -->
+                        <!-- <h3> é o terceiro nível de título. -->
 
                         <p>Malha respirável e elástica, pensada pra acompanhar o movimento de um jogo — ou de um dia
                             corrido.</p>
@@ -370,8 +308,7 @@
                         <h3>Feita por quem joga</h3>
                         <p>Cada coleção nasce de quem entende de saque, ataque e bloqueio — não só de moda.</p>
                     </article>
-                    <!-- Os 4 cards seguem exatamente o mesmo padrão de estrutura.
-                         Consistência de estrutura é importante: facilita CSS, leitura e manutenção. -->
+                    <!-- Os 4 cards seguem exatamente o mesmo padrão de estrutura. -->
 
                 </div>
             </div>
@@ -379,30 +316,23 @@
 
     </main>
 
-    <!-- ====================================================
-         FOOTER — Rodapé com logo, nav secundária e copyright
-    ===================================================== -->
+    <!-- FOOTER — Rodapé com logo, nav secundária e copyright -->
 
     <footer class="site-footer">
-    <!-- <footer> é tag semântica HTML5 para o rodapé do site ou de uma seção.
-         Tipicamente contém: logo, links de navegação secundária, contatos,
-         redes sociais, copyright, política de privacidade etc. -->
+    <!-- <footer> rodapé do site ou de uma seção. -->
 
         <div class="container footer-inner">
-        <!-- footer-inner → provavelmente Flexbox para organizar logo e nav lado a lado. -->
+        <!-- footer-inner → Flexbox para organizar logo e nav lado a lado. -->
 
             <div class="footer-brand">
             <!-- Agrupa o logo e o tagline do rodapé. -->
 
                 <div class="logo">
-                <!-- REPETIÇÃO do logo do header — padrão comum em sites.
-                     O rodapé sempre repete o logo da marca. -->
+                <!-- REPETIÇÃO do logo do header. -->
 
                     <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                          role="img" aria-label="Logotipo Quadra Sportwear">
-                    <!-- SVG idêntico ao do header. Em um projeto real,
-                         poderia ser um componente reutilizável (em React/Vue) ou
-                         um símbolo SVG definido uma vez com <symbol> e reutilizado com <use>. -->
+                    <!-- SVG idêntico ao do header. -->
 
                         <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
                         <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
@@ -420,8 +350,8 @@
                         <span>QUADRA</span>
                         <strong>SPORTWEAR</strong>
                     </div>
-                    <!-- Diferença sutil do header: aqui logo-text usa <div> em vez de <span>
-                         (comportamento de bloco vs. inline). O <span> e <strong> dentro
+                    <!-- Diferença sutil do header: aqui logo-text usa <div> em vez de <span>.
+                         O <span> e <strong> dentro
                          funcionam da mesma forma que no header. -->
 
                 </div>
@@ -430,13 +360,13 @@
                     Feita para quem joga, vive e veste esporte.
                 </p>
                 <!-- Tagline (slogan curto) da marca no rodapé.
-                     É um <p> porque é um parágrafo de texto separado, não um título. -->
+                     É um <p> porque é um parágrafo de texto separado. -->
 
             </div>
 
             <nav class="footer-nav" aria-label="Links do rodapé">
             <!-- Segundo <nav> da página. O aria-label "Links do rodapé" diferencia este
-                 da navegação principal ("Navegação principal") para leitores de tela.
+                 da navegação principal.
                  Sem aria-label diferente, seria ambíguo qual nav é qual. -->
 
                 <ul>
@@ -446,9 +376,7 @@
                     <li><a href="precos.html">Tabela de Preços</a></li>
                     <li><a href="contato.html">Contato</a></li>
                 </ul>
-                <!-- Repete os mesmos links do menu principal — padrão de usabilidade.
-                     Note que nenhum item tem class="active" aqui: o rodapé não costuma
-                     indicar qual página está ativa (isso é só na nav principal). -->
+                <!-- Repete os mesmos links do menu principal. -->
 
             </nav>
         </div>
