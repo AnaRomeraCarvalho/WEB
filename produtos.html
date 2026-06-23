@@ -5,14 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Produtos — Quadra Sportwear</title>
-  <meta name="description" content="Conheça as camisetas da Quadra Sportwear: Attack Tee, Match Point, Velocity Fit e muito mais.">
+  <meta name="description" content="Conheça as camisetas da Quadra Sportwear: Quadra Black, Quadra Ocean, Quadra Red e muito mais.">
+
+  <!-- jQuery via CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="produtos.css">
 </head>
 
 <body>
 
-  <!-- HEADER — Mesmo header das outras páginas; active em "Produtos" -->
   <header class="site-header">
     <div class="container header-inner">
 
@@ -55,44 +58,50 @@
       <div class="container">
         <span class="hero-prod-eyebrow">Coleção 2026</span>
         <h1>Nossas camisetas</h1>
-        <p>Seis peças criadas para mulheres que vivem o esporte — dentro e fora da quadra.</p>
+        <p>Seis modelos criados para quem vive o esporte — dentro e fora da quadra.</p>
       </div>
     </section>
 
-    <!-- FILTRO VISUAL (decorativo, sem JS — Pessoa 3 pode evoluir) -->
     <section class="produtos-secao">
       <div class="container">
 
         <div class="produtos-topo">
-          <!-- Contador de itens -->
           <p class="produtos-contador">6 produtos encontrados</p>
-          <!-- Tag de coleção -->
           <span class="produtos-tag">Coleção Completa 2026</span>
         </div>
 
-        <!-- GRID DE CARDS: 4 colunas no desktop -->
+        <!-- GRID DE CARDS -->
         <div class="produtos-grid">
 
-          <!-- CARD 1 — Attack Tee -->
+          <!-- CARD 1 — Quadra Black -->
           <article class="produto-card">
             <div class="produto-img">
               <!--
-                PLACEHOLDER — substitua src pela imagem real da camiseta.
-                Sugestão de nome do arquivo: attack-tee.jpg
+                data-fem e data-masc guardam os caminhos das imagens.
+                O jQuery usa esses atributos para trocar o src ao clicar no toggle.
               -->
-              <img src="attack-tee.jpg" alt="Camiseta Attack Tee — modelo de vôlei em grafite e coral">
-
-              <!-- Badge de categoria sobreposta na imagem -->
-              <span class="produto-badge badge-volei">Vôlei</span>
+              <img
+                src="img/quadra_black_feminino.jpeg"
+                data-fem="img/quadra_black_feminino.jpeg"
+                data-masc="img/quadra_black_masculino.jpeg"
+                alt="Camiseta Quadra Black — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-black">Black</span>
             </div>
 
             <div class="produto-info">
-              <!-- Número de produto (estilo número de jogador) -->
               <span class="produto-num">Nº 01</span>
-              <h2 class="produto-nome">Attack Tee</h2>
+              <h2 class="produto-nome">Quadra Black</h2>
               <p class="produto-desc">
-                Corte atlético que valoriza a silhueta. Feita para o saque, o ataque e qualquer momento fora da quadra.
+                Design moderno e resistência para elevar sua performance em quadra.
               </p>
+
+              <!-- TOGGLE FEMININO / MASCULINO -->
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
+
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;79,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -100,18 +109,27 @@
             </div>
           </article>
 
-          <!-- CARD 2 — Match Point -->
+          <!-- CARD 2 — Quadra Ocean -->
           <article class="produto-card">
             <div class="produto-img">
-              <img src="match-point.jpg" alt="Camiseta Match Point — modelo vôlei casual em teal e branco">
-              <span class="produto-badge badge-casual">Vôlei Casual</span>
+              <img
+                src="img/quadra_ocean_feminino.jpeg"
+                data-fem="img/quadra_ocean_feminino.jpeg"
+                data-masc="img/quadra_ocean_masculino.jpeg"
+                alt="Camiseta Quadra Ocean — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-ocean">Ocean</span>
             </div>
             <div class="produto-info">
               <span class="produto-num">Nº 02</span>
-              <h2 class="produto-nome">Match Point</h2>
+              <h2 class="produto-nome">Quadra Ocean</h2>
               <p class="produto-desc">
-                Conforto e estilo que andam juntos. Você não precisa estar na quadra para se sentir no jogo.
+                Conforto e leveza desenvolvidos para máxima liberdade de movimento.
               </p>
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;84,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -119,18 +137,27 @@
             </div>
           </article>
 
-          <!-- CARD 3 — Velocity Fit -->
+          <!-- CARD 3 — Quadra Red -->
           <article class="produto-card">
             <div class="produto-img">
-              <img src="velocity-fit.jpg" alt="Camiseta Velocity Fit — performance esportiva em teal">
-              <span class="produto-badge badge-perf">Performance</span>
+              <img
+                src="img/quadra_red_feminino.jpeg"
+                data-fem="img/quadra_red_feminino.jpeg"
+                data-masc="img/quadra_red_masculino.jpeg"
+                alt="Camiseta Quadra Red — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-red">Red</span>
             </div>
             <div class="produto-info">
               <span class="produto-num">Nº 03</span>
-              <h2 class="produto-nome">Velocity Fit</h2>
+              <h2 class="produto-nome">Quadra Red</h2>
               <p class="produto-desc">
-                Tecido dry-fit que acompanha cada movimento. Para quem treina com dedicação e quer se sentir bem enquanto isso.
+                Modelo versátil que combina estilo esportivo e tecnologia premium.
               </p>
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;89,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -138,18 +165,27 @@
             </div>
           </article>
 
-          <!-- CARD 4 — Team Spirit -->
+          <!-- CARD 4 — Quadra Carbon -->
           <article class="produto-card">
             <div class="produto-img">
-              <img src="team-spirit.jpg" alt="Camiseta Team Spirit — estilo casual esportivo grafite">
-              <span class="produto-badge badge-casual">Casual Esportivo</span>
+              <img
+                src="img/quadra_carbon_feminino.jpeg"
+                data-fem="img/quadra_carbon_feminino.jpeg"
+                data-masc="img/quadra_carbon_masculino.jpeg"
+                alt="Camiseta Quadra Carbon — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-carbon">Carbon</span>
             </div>
             <div class="produto-info">
               <span class="produto-num">Nº 04</span>
-              <h2 class="produto-nome">Team Spirit</h2>
+              <h2 class="produto-nome">Quadra Carbon</h2>
               <p class="produto-desc">
-                Para quem carrega o espírito de equipe onde quer que vá. Versátil, leve e com uma identidade que é só sua.
+                Criada para atletas que exigem desempenho e durabilidade em cada partida.
               </p>
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;74,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -157,18 +193,27 @@
             </div>
           </article>
 
-          <!-- CARD 5 — Victory Wear -->
+          <!-- CARD 5 — Quadra Green -->
           <article class="produto-card">
             <div class="produto-img">
-              <img src="victory-wear.jpg" alt="Camiseta Victory Wear — streetwear esportivo coral">
-              <span class="produto-badge badge-street">Streetwear</span>
+              <img
+                src="img/quadra_green_feminino.jpeg"
+                data-fem="img/quadra_green_feminino.jpeg"
+                data-masc="img/quadra_green_masculino.jpeg"
+                alt="Camiseta Quadra Green — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-green">Green</span>
             </div>
             <div class="produto-info">
               <span class="produto-num">Nº 05</span>
-              <h2 class="produto-nome">Victory Wear</h2>
+              <h2 class="produto-nome">Quadra Green</h2>
               <p class="produto-desc">
-                O esporte chegou nas ruas. Gráficos ousados, modelagem solta e aquela energia que só quem joga tem.
+                Respirabilidade e conforto ideais para treinos e competições intensas.
               </p>
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;94,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -176,18 +221,27 @@
             </div>
           </article>
 
-          <!-- CARD 6 — Court Energy -->
+          <!-- CARD 6 — Quadra Aqua -->
           <article class="produto-card">
             <div class="produto-img">
-              <img src="court-energy.jpg" alt="Camiseta Court Energy — oversized sport em grafite e teal">
-              <span class="produto-badge badge-over">Oversized Sport</span>
+              <img
+                src="img/quadra_aqua_feminino.jpeg"
+                data-fem="img/quadra_aqua_feminino.jpeg"
+                data-masc="img/quadra_aqua_masculino.jpeg"
+                alt="Camiseta Quadra Aqua — modelo feminino"
+                class="produto-foto">
+              <span class="produto-badge badge-aqua">Aqua</span>
             </div>
             <div class="produto-info">
               <span class="produto-num">Nº 06</span>
-              <h2 class="produto-nome">Court Energy</h2>
+              <h2 class="produto-nome">Quadra Aqua</h2>
               <p class="produto-desc">
-                Oversized do jeito certo: abraça sem prender. A energia da quadra num caimento despojado e feminino.
+                Tecido leve e respirável, desenvolvido para garantir conforto e desempenho em qualquer partida.
               </p>
+              <div class="genero-toggle">
+                <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
+                <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
+              </div>
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;99,90</span>
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
@@ -197,7 +251,7 @@
 
         </div><!-- /produtos-grid -->
 
-        <!-- CTA para tabela de preços -->
+        <!-- CTA -->
         <div class="produtos-cta">
           <p>Encontrou a sua? Confira os tamanhos disponíveis na tabela de preços.</p>
           <a href="precos.html" class="btn btn-primary">Ver tabela de preços</a>
@@ -208,7 +262,7 @@
 
   </main>
 
-  <!-- FOOTER — Mesmo footer das outras páginas -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -243,6 +297,48 @@
     </div>
     <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
   </footer>
+
+  <!-- =======================================================
+       JQUERY — Toggle Feminino / Masculino
+
+       Lógica:
+       1. Ao clicar num btn-genero, identifica qual card é pai
+       2. Busca a imagem (.produto-foto) dentro desse card
+       3. Lê o atributo data-fem ou data-masc conforme o botão
+       4. Troca o src da imagem e atualiza o alt
+       5. Atualiza estado visual (classe .ativo) e aria-pressed
+       ======================================================= -->
+  <script>
+    $(document).ready(function () {
+
+      $(document).on('click', '.btn-genero', function () {
+        const $btn    = $(this);
+        const $card   = $btn.closest('.produto-card');
+        const genero  = $btn.data('genero'); // "feminino" ou "masculino"
+        const $img    = $card.find('.produto-foto');
+        const nome    = $card.find('.produto-nome').text().trim();
+
+        // 1. Troca a imagem conforme o gênero selecionado
+        if (genero === 'feminino') {
+          $img.attr('src', $img.data('fem'));
+          $img.attr('alt', nome + ' — modelo feminino');
+        } else {
+          $img.attr('src', $img.data('masc'));
+          $img.attr('alt', nome + ' — modelo masculino');
+        }
+
+        // 2. Atualiza estado visual dos botões DENTRO deste card apenas
+        $card.find('.btn-genero')
+          .removeClass('ativo')
+          .attr('aria-pressed', 'false');
+
+        $btn
+          .addClass('ativo')
+          .attr('aria-pressed', 'true');
+      });
+
+    });
+  </script>
 
 </body>
 </html>

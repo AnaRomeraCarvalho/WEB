@@ -820,6 +820,178 @@ h1, h2, h3 {
   gap: 20px;
 }
 
+/* ==========================================================
+   PRODUTOS.CSS
+   Estilos específicos das páginas produtos.html e (importado
+   pelo precos.html quando necessário). Depende das variáveis
+   e utilitários definidos em style.css.
+   ========================================================== */
+
+/* -------------------------------------------------------
+   HERO DA PÁGINA PRODUTOS
+   ------------------------------------------------------- */
+.hero-produtos {
+  padding: 80px 0 56px;
+  border-bottom: 3px solid var(--graphite);
+  background: var(--bg);
+}
+
+.hero-prod-eyebrow {
+  /* Mesmo padrão da eyebrow do hero-sobre */
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  border: 1px solid var(--teal);
+  padding: 4px 12px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.hero-produtos h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  color: var(--graphite);
+}
+
+.hero-produtos p {
+  font-size: 1.05rem;
+  color: var(--graphite-soft);
+  max-width: 520px;
+}
+
+/* -------------------------------------------------------
+   SEÇÃO PRINCIPAL DE PRODUTOS
+   ------------------------------------------------------- */
+.produtos-secao {
+  padding: 60px 0 90px;
+}
+
+/* Barra superior: contador + tag de coleção */
+.produtos-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #D8DADA;
+}
+
+.produtos-contador {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--graphite-soft);
+  letter-spacing: 1px;
+}
+
+.produtos-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--coral-dark);
+  border: 1px solid var(--coral);
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+/* -------------------------------------------------------
+   GRID DE CARDS — 4 colunas desktop
+   ------------------------------------------------------- */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* ==========================================================
+   PRODUTOS.CSS
+   Estilos específicos das páginas produtos.html e (importado
+   pelo precos.html quando necessário). Depende das variáveis
+   e utilitários definidos em style.css.
+   ========================================================== */
+
+/* -------------------------------------------------------
+   HERO DA PÁGINA PRODUTOS
+   ------------------------------------------------------- */
+.hero-produtos {
+  padding: 80px 0 56px;
+  border-bottom: 3px solid var(--graphite);
+  background: var(--bg);
+}
+
+.hero-prod-eyebrow {
+  /* Mesmo padrão da eyebrow do hero-sobre */
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  border: 1px solid var(--teal);
+  padding: 4px 12px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.hero-produtos h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  color: var(--graphite);
+}
+
+.hero-produtos p {
+  font-size: 1.05rem;
+  color: var(--graphite-soft);
+  max-width: 520px;
+}
+
+/* -------------------------------------------------------
+   SEÇÃO PRINCIPAL DE PRODUTOS
+   ------------------------------------------------------- */
+.produtos-secao {
+  padding: 60px 0 90px;
+}
+
+/* Barra superior: contador + tag de coleção */
+.produtos-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #D8DADA;
+}
+
+.produtos-contador {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--graphite-soft);
+  letter-spacing: 1px;
+}
+
+.produtos-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--coral-dark);
+  border: 1px solid var(--coral);
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+/* -------------------------------------------------------
+   GRID DE CARDS — 4 colunas desktop
+   ------------------------------------------------------- */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
 /* -------------------------------------------------------
    CARD DE PRODUTO
    ------------------------------------------------------- */
@@ -842,18 +1014,23 @@ h1, h2, h3 {
 .produto-img {
   position: relative;       /* para posicionar o badge por cima */
   width: 100%;
-  aspect-ratio: 4 / 3;      /* proporção fixa para todas as imagens ficarem alinhadas */
-  background: #E8EAE8;       /* cinza placeholder enquanto a imagem não carrega */
+  aspect-ratio: 3 / 2;      /* proporção fixa para todas as imagens ficarem alinhadas */
+  min-height: 220px;         /* altura mínima garante que imagens menores não encolham demais */
+  background: #FFFFFF;       /* fundo branco para preencher o espaço ao redor da imagem */
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .produto-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;         /* recorta a imagem para preencher o espaço sem distorcer */
+  object-fit: contain;       /* mostra a imagem inteira sem cortar, preenchendo com fundo */
+  object-position: center;
   display: block;
-  /* Transição suave no hover do card inteiro */
   transition: transform 0.35s ease;
+  padding: 8px;              /* respiro interno para a imagem não encostar nas bordas */
 }
 
 .produto-card:hover .produto-img img {
@@ -967,6 +1144,345 @@ h1, h2, h3 {
 /* Cards pares: botão inverte a lógica de cor */
 .produto-card:nth-child(even) .btn-card:hover {
   background: var(--teal);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DO GRID
+   ------------------------------------------------------- */
+.produtos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.produtos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Produtos
+   ------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .produtos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-produtos h1 {
+    font-size: 2.4rem;
+  }
+
+  .produtos-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .produtos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+/* -------------------------------------------------------
+   BADGES — cores por modelo
+   ------------------------------------------------------- */
+.badge-black  { background: #1C1E1F;    color: #FFFFFF; }
+.badge-ocean  { background: #0B4F8A;    color: #FFFFFF; }
+.badge-red    { background: #CC2200;    color: #FFFFFF; }
+.badge-carbon { background: #3A3D3E;    color: #D8DADA; }
+.badge-green  { background: #1A6B2F;    color: #FFFFFF; }
+.badge-aqua   { background: var(--teal);color: #FFFFFF; }
+
+/* -------------------------------------------------------
+   TOGGLE FEMININO / MASCULINO
+   ------------------------------------------------------- */
+.genero-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  margin-top: 4px;
+}
+
+.btn-genero {
+  flex: 1;                          /* os dois botões dividem igualmente a largura */
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 7px 6px;
+  border-radius: 4px;
+  border: 1px solid #D0D2D0;
+  background: transparent;
+  color: var(--graphite-soft);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-genero:hover {
+  border-color: var(--graphite);
+  color: var(--graphite);
+}
+
+/* Estado ativo: botão selecionado */
+.btn-genero.ativo {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--white);
+}
+
+/* Cards pares: ativo usa teal em vez de graphite */
+.produto-card:nth-child(even) .btn-genero.ativo {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DO GRID
+   ------------------------------------------------------- */
+.produtos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.produtos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Produtos
+   ------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .produtos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-produtos h1 {
+    font-size: 2.4rem;
+  }
+
+  .produtos-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .produtos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+/* -------------------------------------------------------
+   BADGES — cores por modelo
+   ------------------------------------------------------- */
+.badge-black  { background: #1C1E1F;    color: #FFFFFF; }
+.badge-ocean  { background: #0B4F8A;    color: #FFFFFF; }
+.badge-red    { background: #CC2200;    color: #FFFFFF; }
+.badge-carbon { background: #3A3D3E;    color: #D8DADA; }
+.badge-green  { background: #1A6B2F;    color: #FFFFFF; }
+.badge-aqua   { background: var(--teal);color: #FFFFFF; }
+
+/* -------------------------------------------------------
+   TOGGLE FEMININO / MASCULINO
+   ------------------------------------------------------- */
+.genero-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  margin-top: 4px;
+}
+
+.btn-genero {
+  flex: 1;                          /* os dois botões dividem igualmente a largura */
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 7px 6px;
+  border-radius: 4px;
+  border: 1px solid #D0D2D0;
+  background: transparent;
+  color: var(--graphite-soft);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-genero:hover {
+  border-color: var(--graphite);
+  color: var(--graphite);
+}
+
+/* Estado ativo: botão selecionado */
+.btn-genero.ativo {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--white);
+}
+
+/* Cards pares: ativo usa teal em vez de graphite */
+.produto-card:nth-child(even) .btn-genero.ativo {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DO GRID
+   ------------------------------------------------------- */
+.produtos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.produtos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Produtos
+   ------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .produtos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-produtos h1 {
+    font-size: 2.4rem;
+  }
+
+  .produtos-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .produtos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+/* -------------------------------------------------------
+   BADGES — cores por modelo
+   ------------------------------------------------------- */
+.badge-black  { background: #1C1E1F;    color: #FFFFFF; }
+.badge-ocean  { background: #0B4F8A;    color: #FFFFFF; }
+.badge-red    { background: #CC2200;    color: #FFFFFF; }
+.badge-carbon { background: #3A3D3E;    color: #D8DADA; }
+.badge-green  { background: #1A6B2F;    color: #FFFFFF; }
+.badge-aqua   { background: var(--teal);color: #FFFFFF; }
+
+/* -------------------------------------------------------
+   TOGGLE FEMININO / MASCULINO
+   ------------------------------------------------------- */
+.genero-toggle {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  margin-top: 4px;
+}
+
+.btn-genero {
+  flex: 1;                          /* os dois botões dividem igualmente a largura */
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  padding: 7px 6px;
+  border-radius: 4px;
+  border: 1px solid #D0D2D0;
+  background: transparent;
+  color: var(--graphite-soft);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-genero:hover {
+  border-color: var(--graphite);
+  color: var(--graphite);
+}
+
+/* Estado ativo: botão selecionado */
+.btn-genero.ativo {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--white);
+}
+
+/* Cards pares: ativo usa teal em vez de graphite */
+.produto-card:nth-child(even) .btn-genero.ativo {
+  background: var(--teal-dark);
+  border-color: var(--teal-dark);
 }
 
 /* -------------------------------------------------------
@@ -1172,6 +1688,248 @@ h1, h2, h3 {
   min-height: 1.4em; /* evita que a página "pule" quando o texto aparece */
   margin-bottom: 12px;
 }
+
+/* -------------------------------------------------------
+   WRAPPER DE SCROLL HORIZONTAL (mobile)
+   ------------------------------------------------------- */
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;          /* scroll horizontal no mobile se a tabela não couber */
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid #E2E4E2;
+}
+
+/* -------------------------------------------------------
+   TABELA DE PREÇOS
+   ------------------------------------------------------- */
+.tabela-precos {
+  width: 100%;
+  border-collapse: collapse;  /* remove espaços entre bordas das células */
+  font-size: 0.92rem;
+  background: var(--white);
+}
+
+/* Cabeçalho da tabela */
+.tabela-precos thead tr {
+  background: var(--graphite);
+  color: var(--white);
+}
+
+.tabela-precos thead th {
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Colunas de tamanho (P/M/G) centralizadas */
+.tabela-precos th.col-tamanho,
+.tabela-precos td.td-tam {
+  text-align: center;
+  width: 70px;
+}
+
+/* Linhas do corpo da tabela */
+.tabela-precos tbody tr {
+  border-bottom: 1px solid #E8EAE8;
+  transition: background 0.15s ease;
+}
+
+.tabela-precos tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Zebra: linhas alternadas com fundo levemente diferente */
+.tabela-precos tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+
+.tabela-precos tbody tr:hover {
+  background: #EBF8F7; /* verde-água clarinho no hover */
+}
+
+/* Células comuns do corpo */
+.tabela-precos tbody td {
+  padding: 14px 18px;
+  color: var(--graphite);
+  vertical-align: middle;
+}
+
+/* Célula de disponibilidade (✓ / —) */
+.tabela-precos td.td-tam {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Disponível → verde-água */
+.tabela-precos td.td-tam:not(:empty) {
+  /* Aplica cor baseada no conteúdo via CSS (limitado, mas funcional) */
+  color: var(--graphite-soft);
+}
+
+/* Destaque na coluna filtrada (adicionado via jQuery) */
+.tabela-precos th.coluna-ativa {
+  background: var(--coral);
+  color: var(--white);
+}
+
+.tabela-precos td.coluna-ativa {
+  background: #FFF2EF; /* coral clarinho */
+  font-weight: 700;
+}
+
+/* Nome da camiseta com número */
+.td-nome {
+  white-space: nowrap;
+}
+
+.tabela-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--coral-dark);
+  display: inline-block;
+  margin-right: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* Preço em destaque */
+.td-preco {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--graphite);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------
+   PILLS DE ESTILO NAS CÉLULAS DA TABELA
+   ------------------------------------------------------- */
+.pill-estilo {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 30px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pill-volei  { background: var(--graphite); color: var(--teal); }
+.pill-casual { background: #E6F8F7;         color: var(--teal-dark); }
+.pill-perf   { background: #FFF2EF;         color: var(--coral-dark); }
+.pill-street { background: var(--coral);    color: var(--white); }
+.pill-over   { background: var(--teal);     color: var(--white); }
+
+/* -------------------------------------------------------
+   RODAPÉ DA TABELA (tfoot)
+   ------------------------------------------------------- */
+.tabela-precos tfoot td {
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.8px;
+  color: var(--graphite-soft);
+  background: var(--bg);
+  border-top: 2px solid var(--graphite);
+  text-align: center;
+}
+
+/* -------------------------------------------------------
+   LEGENDA ABAIXO DA TABELA
+   ------------------------------------------------------- */
+.tabela-legenda {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding: 0 4px;
+}
+
+.tabela-legenda span {
+  font-size: 0.82rem;
+  color: var(--graphite-soft);
+}
+
+.tabela-legenda strong {
+  color: var(--graphite);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DA TABELA
+   ------------------------------------------------------- */
+.precos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.precos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Preços
+   ------------------------------------------------------- */
+@media (max-width: 750px) {
+  .hero-precos h1 {
+    font-size: 2.4rem;
+  }
+
+  .tabela-controles {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-limpar {
+    margin-left: 0;
+  }
+
+  .tabela-legenda {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .precos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .tabela-precos thead th,
+  .tabela-precos tbody td {
+    padding: 12px 12px;
+    font-size: 0.82rem;
+  }
+}
+
+/* -------------------------------------------------------
+   PILLS — cores por modelo (substituem as antigas)
+   ------------------------------------------------------- */
+.pill-black  { background: #1C1E1F;     color: #FFFFFF; }
+.pill-ocean  { background: #0B4F8A;     color: #FFFFFF; }
+.pill-red    { background: #CC2200;     color: #FFFFFF; }
+.pill-carbon { background: #3A3D3E;     color: #D8DADA; }
+.pill-green  { background: #1A6B2F;     color: #FFFFFF; }
+.pill-aqua   { background: var(--teal); color: #FFFFFF; }
 
 /* -------------------------------------------------------
    WRAPPER DE SCROLL HORIZONTAL (mobile)
