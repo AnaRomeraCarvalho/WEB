@@ -1,49 +1,92 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
+
+  <!-- Faz a página se adaptar ao tamanho da tela (responsividade para celular) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título exibido na aba do navegador -->
   <title>Tabela de Preços — Quadra Sportwear</title>
+
+  <!-- Descrição que aparece nos resultados de busca do Google -->
   <meta name="description" content="Consulte os preços e tamanhos disponíveis das camisetas Quadra Sportwear.">
 
-  <!-- jQuery via CDN -->
+  <!--
+    Importa a biblioteca jQuery via CDN (da internet, sem precisar baixar o arquivo).
+    jQuery é usada aqui para:
+    - Gerar os botões de filtro automaticamente
+    - Filtrar colunas e linhas da tabela ao clicar nos botões
+    - Atualizar textos dinamicamente sem recarregar a página
+  -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+  <!-- CSS geral do site (header, footer, cores, fontes...) -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- CSS específico desta página (tabela, botões de filtro, badges...) -->
   <link rel="stylesheet" href="precos.css">
 </head>
 
 <body>
 
-  <!-- HEADER — active em "Tabela de Preços" -->
+  <!-- ==========================================
+       CABEÇALHO — aparece no topo de todas as páginas
+       O link "Tabela de Preços" está com class="active" (destaque no menu)
+       ========================================== -->
   <header class="site-header">
     <div class="container header-inner">
 
+      <!-- LOGOTIPO clicável que leva para a página inicial -->
       <a href="index.html" class="logo">
+
+        <!--
+          SVG = imagem vetorial desenhada com código (sem arquivo externo de imagem).
+          Forma o símbolo circular da marca. Cada <path> é uma curva matemática.
+          Aparece no canto superior esquerdo da página.
+        -->
         <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
              role="img" aria-label="Logotipo Quadra Sportwear">
+          <!-- Círculo de fundo com borda em teal -->
           <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+          <!-- Arco superior em coral -->
           <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <!-- Arco inferior em coral -->
           <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <!-- Curva lateral esquerda em teal -->
           <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <!-- Curva lateral direita em teal -->
           <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <!-- Letra "Q" centralizada no símbolo -->
           <text x="50" y="61" text-anchor="middle"
                 font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
         </svg>
+
+        <!-- Texto da marca ao lado do símbolo -->
         <span class="logo-text">QUADRA <strong>SPORTWEAR</strong></span>
       </a>
 
+      <!--
+        MENU HAMBURGUER para celular (as 3 barrinhas).
+        Funciona com CSS puro: o checkbox invisível controla
+        se o menu aparece ou não ao ser marcado/desmarcado.
+      -->
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
       <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
+        <span></span><!-- barrinha 1 -->
+        <span></span><!-- barrinha 2 -->
+        <span></span><!-- barrinha 3 -->
       </label>
 
+      <!-- MENU DE NAVEGAÇÃO — links para todas as páginas -->
       <nav class="main-nav" aria-label="Navegação principal">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="sobre.html">Sobre</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <!-- class="active" deixa este link destacado no menu, pois é a página atual -->
           <li><a href="precos.html" class="active">Tabela de Preços</a></li>
           <li><a href="contato.html">Contato</a></li>
         </ul>
@@ -54,7 +97,9 @@
 
   <main>
 
-    <!-- HERO DA PÁGINA -->
+    <!-- SEÇÃO HERO — faixa de destaque no topo desta página
+         Exibe: "Preços e tamanhos", o título e um subtítulo.
+         É a primeira coisa que o usuário vê ao entrar na página de preços. -->
     <section class="hero-precos">
       <div class="container">
         <span class="hero-prec-eyebrow">Preços e tamanhos</span>
@@ -63,51 +108,65 @@
       </div>
     </section>
 
-    <!-- SEÇÃO DA TABELA -->
+    <!-- SEÇÃO PRINCIPAL: controles de filtro + tabela -->
     <section class="precos-secao">
       <div class="container">
 
-        <!-- -----------------------------------------------
+        <!-- ==========================================
              CONTROLES DA TABELA DINÂMICA
-             Opção 3: o usuário filtra a tabela por tamanho
-             usando botões criados e manipulados via jQuery.
-             ----------------------------------------------- -->
+             Área com os botões de filtro (P, M, G) e o botão "Limpar filtro".
+             Os botões P/M/G são GERADOS AUTOMATICAMENTE pelo jQuery —
+             não estão escritos aqui no HTML, aparecem via JavaScript.
+             ========================================== -->
         <div class="tabela-controles">
           <p class="tabela-label">Filtrar por tamanho:</p>
 
+          <!--
+            Container vazio que o jQuery preenche com os botões de filtro.
+            Quando a página carrega, o JS lê o array ['P','M','G'] e cria
+            um <button> para cada tamanho, inserindo-os aqui dentro.
+            Vantagem: para adicionar um tamanho novo, basta editar o array no JS.
+          -->
           <div class="filtros-grupo" id="filtros-tamanho">
-            <!--
-              Os botões de filtro são gerados pelo jQuery (veja o script no final).
-              Isso significa que se você adicionar mais tamanhos ao array no JS,
-              os botões aparecem automaticamente aqui — sem mexer no HTML.
-            -->
+            <!-- Botões gerados automaticamente pelo jQuery -->
           </div>
 
-          <!-- Botão para limpar o filtro e ver tudo -->
+          <!-- Botão fixo para limpar o filtro e mostrar todos os tamanhos novamente -->
           <button class="btn-limpar" id="btn-limpar" aria-label="Mostrar todos os tamanhos">
             Limpar filtro
           </button>
         </div>
 
-        <!-- Texto de resultado dinâmico (atualizado pelo jQuery) -->
+        <!--
+          Texto de resultado atualizado dinamicamente pelo jQuery.
+          Exemplo do que aparece: "Tamanho M: 6 camiseta(s) disponível(is)"
+          aria-live="polite" faz leitores de tela anunciarem a mudança automaticamente.
+        -->
         <p class="tabela-resultado" id="tabela-resultado" aria-live="polite">
-          <!-- Ex: "Exibindo tamanho: M — 6 camisetas disponíveis" -->
+          <!-- Preenchido pelo jQuery ao aplicar um filtro -->
         </p>
 
-        <!-- -----------------------------------------------
-             TABELA HTML
-             Estrutura semântica completa com thead, tbody, tfoot.
-             O jQuery manipula a visibilidade de linhas (tr)
-             e o conteúdo do tfoot conforme o filtro ativo.
-             ----------------------------------------------- -->
+        <!-- ==========================================
+             TABELA DE PREÇOS
+             Estrutura semântica HTML com:
+             - <thead>: cabeçalho com nomes das colunas
+             - <tbody>: linhas com os produtos
+             - <tfoot>: rodapé atualizado pelo jQuery
+             O jQuery mostra/oculta colunas e linhas conforme o filtro.
+             ========================================== -->
         <div class="tabela-wrapper" role="region" aria-label="Tabela de preços">
           <table class="tabela-precos" id="tabela-precos">
 
+            <!-- CABEÇALHO DA TABELA -->
             <thead>
               <tr>
                 <th scope="col">Camiseta</th>
                 <th scope="col">Estilo</th>
-                <!-- As colunas de tamanho têm data-tamanho para o jQuery filtrar -->
+                <!--
+                  As colunas de tamanho têm class="col-tamanho" e data-tamanho.
+                  O jQuery usa esses atributos para saber qual coluna mostrar/ocultar
+                  quando o usuário clica em um botão de filtro.
+                -->
                 <th scope="col" class="col-tamanho" data-tamanho="P">P</th>
                 <th scope="col" class="col-tamanho" data-tamanho="M">M</th>
                 <th scope="col" class="col-tamanho" data-tamanho="G">G</th>
@@ -115,25 +174,34 @@
               </tr>
             </thead>
 
+            <!-- CORPO DA TABELA — uma linha por produto -->
             <tbody id="tabela-corpo">
               <!--
-                Cada <tr> tem um atributo data-estilo com a categoria do produto.
-                As células de disponibilidade usam ✓ (disponível) ou — (indisponível).
-                O jQuery pode usar isso para filtros futuros (Pessoa 3 pode expandir).
+                Cada <tr> tem data-estilo com o nome do modelo (ex: "Black").
+                Cada célula de tamanho tem class="td-tam" e data-tamanho.
+                ✓ = disponível neste tamanho
+                — = indisponível neste tamanho
+
+                O jQuery lê o conteúdo dessas células: se for "—",
+                oculta a linha quando aquele tamanho está filtrado.
               -->
 
+              <!-- Linha 1: Quadra Black -->
               <tr data-estilo="Black">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 01</span>
                   Quadra Black
                 </td>
+                <!-- Badge colorido que identifica o estilo visualmente -->
                 <td><span class="pill-estilo pill-black">Black</span></td>
+                <!-- Células de disponibilidade por tamanho -->
                 <td class="td-tam" data-tamanho="P">✓</td>
                 <td class="td-tam" data-tamanho="M">✓</td>
                 <td class="td-tam" data-tamanho="G">✓</td>
                 <td class="td-preco">R$ 79,90</td>
               </tr>
 
+              <!-- Linha 2: Quadra Ocean -->
               <tr data-estilo="Ocean">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 02</span>
@@ -146,6 +214,7 @@
                 <td class="td-preco">R$ 84,90</td>
               </tr>
 
+              <!-- Linha 3: Quadra Red -->
               <tr data-estilo="Red">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 03</span>
@@ -158,6 +227,7 @@
                 <td class="td-preco">R$ 89,90</td>
               </tr>
 
+              <!-- Linha 4: Quadra Carbon -->
               <tr data-estilo="Carbon">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 04</span>
@@ -170,6 +240,7 @@
                 <td class="td-preco">R$ 74,90</td>
               </tr>
 
+              <!-- Linha 5: Quadra Green -->
               <tr data-estilo="Green">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 05</span>
@@ -182,6 +253,7 @@
                 <td class="td-preco">R$ 94,90</td>
               </tr>
 
+              <!-- Linha 6: Quadra Aqua -->
               <tr data-estilo="Aqua">
                 <td class="td-nome">
                   <span class="tabela-num">Nº 06</span>
@@ -196,11 +268,15 @@
 
             </tbody>
 
+            <!-- RODAPÉ DA TABELA — atualizado pelo jQuery conforme o filtro -->
             <tfoot>
               <tr>
-                <!-- colspan="6" faz a célula ocupar todas as 6 colunas -->
+                <!--
+                  colspan="6" faz esta célula ocupar todas as 6 colunas da tabela.
+                  O jQuery substitui o texto aqui ao aplicar ou limpar um filtro.
+                  Ex filtrado: "Filtro ativo: tamanho M | 6 produto(s) disponível(is)"
+                -->
                 <td colspan="6" id="tabela-rodape">
-                  <!-- Atualizado dinamicamente pelo jQuery: conta itens visíveis e exibe resumo -->
                   6 camisetas na coleção &nbsp;|&nbsp; ✓ = disponível no tamanho &nbsp;|&nbsp; — = indisponível
                 </td>
               </tr>
@@ -209,14 +285,14 @@
           </table>
         </div><!-- /tabela-wrapper -->
 
-        <!-- Legenda abaixo da tabela -->
+        <!-- Legenda explicativa abaixo da tabela -->
         <div class="tabela-legenda">
           <span><strong>✓</strong> Disponível</span>
           <span><strong>—</strong> Indisponível neste tamanho</span>
           <span>Preço base único por modelo (independente do tamanho)</span>
         </div>
 
-        <!-- CTA para voltar aos produtos -->
+        <!-- CTA (Call to Action) — convida o usuário a ver os produtos -->
         <div class="precos-cta">
           <p>Quer conhecer melhor cada camiseta antes de escolher?</p>
           <a href="produtos.html" class="btn btn-primary">Ver todos os produtos</a>
@@ -227,11 +303,16 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ==========================================
+       RODAPÉ DO SITE
+       ========================================== -->
   <footer class="site-footer">
     <div class="container footer-inner">
+
+      <!-- Coluna esquerda: marca e slogan -->
       <div class="footer-brand">
         <div class="logo">
+          <!-- SVG do logotipo — mesmo símbolo do header, repetido no footer -->
           <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                role="img" aria-label="Logotipo Quadra Sportwear">
             <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
@@ -250,6 +331,7 @@
         <p class="footer-tagline">Feita para quem joga, vive e veste esporte.</p>
       </div>
 
+      <!-- Coluna direita: links de navegação no rodapé -->
       <nav class="footer-nav" aria-label="Links do rodapé">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -260,159 +342,183 @@
         </ul>
       </nav>
     </div>
+
+    <!-- Linha de copyright na base do rodapé -->
     <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- =======================================================
-       JAVASCRIPT / JQUERY — Tabela de Preços Dinâmica (Opção 3)
+  <!-- ==========================================
+       JAVASCRIPT / JQUERY — Tabela de Preços Dinâmica
 
-       Funcionalidades implementadas:
-       1. Geração automática dos botões de filtro por tamanho
-       2. Filtro de colunas: ao clicar em P/M/G, destaca a coluna
-          e oculta as demais colunas de tamanho
-       3. Filtro de linhas: oculta produtos indisponíveis no tamanho
-          selecionado (células com "—")
-       4. Atualização dinâmica do texto de resultado e do rodapé
-       5. Botão "Limpar filtro" restaura a visão completa
-       6. Estado "ativo" nos botões (classe CSS .ativo)
-       ======================================================= -->
+       O QUE FAZ NO SITE:
+       Acima da tabela há botões "P", "M" e "G".
+       Ao clicar em um deles:
+         → As colunas dos outros tamanhos somem da tabela
+         → A coluna do tamanho escolhido fica destacada
+         → Produtos indisponíveis naquele tamanho ficam ocultos
+         → O texto de resultado e o rodapé da tabela são atualizados
+       Clicar novamente no mesmo botão (ou em "Limpar filtro") restaura tudo.
+       ========================================== -->
   <script>
+    // Aguarda toda a página carregar antes de executar qualquer código jQuery
     $(document).ready(function () {
 
-      /* --------------------------------------------------
-         1. DADOS DOS TAMANHOS
-         Altere este array para adicionar ou remover tamanhos.
-         Os botões de filtro são gerados automaticamente.
-         -------------------------------------------------- */
+      /* ─────────────────────────────────────────────────────
+         BLOCO 1 — ARRAY DE TAMANHOS
+         Define quais tamanhos existem.
+         Para adicionar "GG", basta colocar 'GG' aqui — o botão
+         e a lógica de filtro funcionam automaticamente.
+         ───────────────────────────────────────────────────── */
       const tamanhos = ['P', 'M', 'G'];
 
-      /* --------------------------------------------------
-         2. GERAÇÃO DINÂMICA DOS BOTÕES DE FILTRO
-         Para cada tamanho no array, cria um <button>
-         com data-tamanho e appenda no #filtros-tamanho.
-         -------------------------------------------------- */
-      tamanhos.forEach(function (tam) {
-        const $btn = $('<button>')
-          .addClass('btn-filtro')
-          .attr('data-tamanho', tam)
-          .attr('aria-pressed', 'false')
-          .text(tam);
+      /* ─────────────────────────────────────────────────────
+         BLOCO 2 — GERAÇÃO AUTOMÁTICA DOS BOTÕES DE FILTRO
+         Para cada tamanho no array acima, o jQuery:
+         1. Cria um elemento <button> com $('<button>')
+         2. Adiciona classe CSS, atributo data-tamanho e texto
+         3. Insere o botão dentro do #filtros-tamanho no HTML
 
-        $('#filtros-tamanho').append($btn);
+         O usuário vê os botões "P", "M", "G" aparecerem
+         na área de filtros acima da tabela.
+         ───────────────────────────────────────────────────── */
+      tamanhos.forEach(function (tam) {
+        const $btn = $('<button>')          // cria o elemento <button>
+          .addClass('btn-filtro')           // adiciona a classe de estilo CSS
+          .attr('data-tamanho', tam)        // guarda o tamanho como atributo (ex: data-tamanho="M")
+          .attr('aria-pressed', 'false')    // acessibilidade: botão ainda não pressionado
+          .text(tam);                       // texto visível do botão: "P", "M" ou "G"
+
+        $('#filtros-tamanho').append($btn); // insere o botão no HTML da página
       });
 
-      /* --------------------------------------------------
-         3. FUNÇÃO AUXILIAR: restaura a tabela ao estado
-         completo (todas as colunas e linhas visíveis).
-         -------------------------------------------------- */
-      function limparFiltro() {
-        // Mostra todas as colunas de tamanho no thead
-        $('th.col-tamanho').show();
+      /* ─────────────────────────────────────────────────────
+         BLOCO 3 — FUNÇÃO limparFiltro()
+         Chamada pelo botão "Limpar filtro" ou ao clicar
+         novamente no botão já ativo.
 
-        // Mostra todas as células de tamanho no tbody
+         Restaura a tabela ao estado original:
+         - Todas as colunas de tamanho visíveis
+         - Todas as linhas de produto visíveis
+         - Nenhum botão de filtro ativo
+         - Textos de resultado e rodapé no padrão
+         ───────────────────────────────────────────────────── */
+      function limparFiltro() {
+        // Exibe todas as colunas de tamanho no cabeçalho (th) e no corpo (td)
+        $('th.col-tamanho').show();
         $('td.td-tam').show();
 
-        // Mostra todas as linhas do tbody
+        // Exibe todas as linhas de produto
         $('#tabela-corpo tr').show();
 
-        // Remove estilo de destaque das colunas
+        // Remove o destaque visual da coluna ativa
         $('td.td-tam, th.col-tamanho').removeClass('coluna-ativa');
 
-        // Remove o estado "ativo" de todos os botões
+        // Remove o estado "ativo" de todos os botões de filtro
         $('.btn-filtro').removeClass('ativo').attr('aria-pressed', 'false');
 
-        // Limpa o texto de resultado
+        // Apaga o texto de resultado (ex: "Tamanho M: 6 camisetas")
         $('#tabela-resultado').text('');
 
-        // Restaura o texto do rodapé padrão
+        // Restaura o texto padrão no rodapé da tabela
         $('#tabela-rodape').html(
           '6 camisetas na coleção &nbsp;|&nbsp; ✓ = disponível no tamanho &nbsp;|&nbsp; — = indisponível'
         );
       }
 
-      /* --------------------------------------------------
-         4. FUNÇÃO PRINCIPAL: aplica o filtro por tamanho.
+      /* ─────────────────────────────────────────────────────
+         BLOCO 4 — FUNÇÃO aplicarFiltro(tamanho)
+         Chamada ao clicar em um botão de filtro (P, M ou G).
+         Recebe o tamanho escolhido como parâmetro (ex: "M").
 
-         Lógica:
-         a) Oculta colunas dos outros tamanhos (th e td)
+         Passo a passo:
+         a) Oculta as colunas dos outros tamanhos
          b) Destaca visualmente a coluna do tamanho escolhido
-         c) Oculta linhas com "—" na coluna selecionada
-            (produtos indisponíveis naquele tamanho)
+         c) Percorre cada linha da tabela:
+            - Se a célula daquele tamanho tiver "✓" → mantém a linha visível
+            - Se tiver "—" → oculta a linha (produto indisponível)
          d) Conta quantos produtos ficaram visíveis
          e) Atualiza o texto de resultado e o rodapé
-         -------------------------------------------------- */
+         ───────────────────────────────────────────────────── */
       function aplicarFiltro(tamanho) {
-        // a) Reseta visibilidade de todas as colunas primeiro
+
+        // a) Primeiro mostra tudo (reset), depois oculta o que não é do tamanho escolhido
         $('th.col-tamanho').show();
         $('td.td-tam').show();
         $('td.td-tam, th.col-tamanho').removeClass('coluna-ativa');
 
-        // b) Oculta colunas dos OUTROS tamanhos
+        // Oculta colunas dos OUTROS tamanhos (usando .not() para excluir o selecionado)
         $('th.col-tamanho').not('[data-tamanho="' + tamanho + '"]').hide();
         $('td.td-tam').not('[data-tamanho="' + tamanho + '"]').hide();
 
-        // c) Destaca a coluna do tamanho selecionado
+        // b) Adiciona classe de destaque na coluna do tamanho filtrado
         $('th.col-tamanho[data-tamanho="' + tamanho + '"]').addClass('coluna-ativa');
         $('td.td-tam[data-tamanho="' + tamanho + '"]').addClass('coluna-ativa');
 
-        // d) Oculta linhas onde o produto NÃO está disponível neste tamanho
-        //    (células com conteúdo "—" indicam indisponibilidade)
-        let visiveis = 0;
+        // c) Percorre cada linha do corpo da tabela para verificar disponibilidade
+        let visiveis = 0; // contador de produtos disponíveis no tamanho filtrado
+
         $('#tabela-corpo tr').each(function () {
+          // Pega a célula do tamanho filtrado dentro desta linha
           const $celula = $(this).find('td.td-tam[data-tamanho="' + tamanho + '"]');
+
+          // Verifica se o conteúdo da célula é "✓" (disponível)
           const disponivel = $celula.text().trim() === '✓';
 
           if (disponivel) {
-            $(this).show();
-            visiveis++;
+            $(this).show();  // produto disponível → linha aparece
+            visiveis++;      // incrementa o contador
           } else {
-            $(this).hide();
+            $(this).hide();  // produto indisponível → linha some da tabela
           }
         });
 
-        // e) Atualiza o texto de resultado acima da tabela
+        // d) Monta o texto de resultado com base na contagem
         const textoResultado = visiveis > 0
           ? 'Tamanho ' + tamanho + ': ' + visiveis + ' camiseta(s) disponível(is)'
           : 'Nenhuma camiseta disponível no tamanho ' + tamanho;
 
+        // Atualiza o parágrafo de resultado acima da tabela
         $('#tabela-resultado').text(textoResultado);
 
-        // f) Atualiza o rodapé da tabela com o resumo do filtro
+        // e) Atualiza o rodapé da tabela com o resumo do filtro ativo
         $('#tabela-rodape').html(
           'Filtro ativo: tamanho <strong>' + tamanho + '</strong> &nbsp;|&nbsp; '
           + visiveis + ' produto(s) disponível(is)'
         );
       }
 
-      /* --------------------------------------------------
-         5. EVENTOS DE CLIQUE NOS BOTÕES DE FILTRO
-         -------------------------------------------------- */
+      /* ─────────────────────────────────────────────────────
+         BLOCO 5 — EVENTO DE CLIQUE NOS BOTÕES DE FILTRO (P, M, G)
+         Escuta cliques em qualquer botão com classe "btn-filtro".
+         ───────────────────────────────────────────────────── */
       $(document).on('click', '.btn-filtro', function () {
-        const tamanho = $(this).data('tamanho');
-        const jaAtivo  = $(this).hasClass('ativo');
+        const tamanho = $(this).data('tamanho'); // lê qual tamanho este botão representa
+        const jaAtivo = $(this).hasClass('ativo'); // verifica se já estava selecionado
 
-        // Se o botão clicado já estava ativo → limpa o filtro (toggle)
+        // Se clicar no botão que já estava ativo → funciona como toggle (desliga o filtro)
         if (jaAtivo) {
           limparFiltro();
-          return;
+          return; // encerra a função aqui
         }
 
-        // Marca o botão clicado como ativo e desmarca os outros
+        // Remove "ativo" de todos os botões e marca só o clicado
         $('.btn-filtro').removeClass('ativo').attr('aria-pressed', 'false');
         $(this).addClass('ativo').attr('aria-pressed', 'true');
 
-        // Aplica o filtro
+        // Aplica o filtro para o tamanho selecionado
         aplicarFiltro(tamanho);
       });
 
-      /* --------------------------------------------------
-         6. BOTÃO "LIMPAR FILTRO"
-         -------------------------------------------------- */
+      /* ─────────────────────────────────────────────────────
+         BLOCO 6 — EVENTO DO BOTÃO "LIMPAR FILTRO"
+         Ao clicar no botão fixo "Limpar filtro",
+         chama a função limparFiltro() para restaurar tudo.
+         ───────────────────────────────────────────────────── */
       $('#btn-limpar').on('click', function () {
         limparFiltro();
       });
 
-    }); // fim do $(document).ready
+    }); // fim do $(document).ready — garante que tudo rodou após o HTML carregar
   </script>
 
 </body>

@@ -1,47 +1,100 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
+  <!-- O <head> contém configurações da página que o usuário NÃO vê diretamente -->
+
   <meta charset="UTF-8">
+
+  <!-- Faz a página se adaptar ao tamanho da tela do celular (responsividade) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Título que aparece na aba do navegador -->
   <title>Produtos — Quadra Sportwear</title>
+
+  <!-- Descrição que aparece nos resultados de busca do Google -->
   <meta name="description" content="Conheça as camisetas da Quadra Sportwear: Quadra Black, Quadra Ocean, Quadra Red e muito mais.">
 
-  <!-- jQuery via CDN -->
+  <!--
+    Importa a biblioteca jQuery diretamente da internet (CDN).
+    jQuery simplifica o JavaScript, permitindo manipular elementos da página
+    com comandos mais curtos. É usada aqui para o toggle Feminino/Masculino.
+  -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+  <!-- Importa o CSS geral do site (cores, fontes, header, footer...) -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Importa o CSS específico desta página de produtos (grid de cards, badges...) -->
   <link rel="stylesheet" href="produtos.css">
 </head>
 
 <body>
+  <!-- Tudo que fica dentro de <body> é o que o usuário vê na tela -->
 
+  <!-- ==========================================
+       CABEÇALHO (aparece no topo de todas as páginas)
+       ========================================== -->
   <header class="site-header">
     <div class="container header-inner">
+      <!-- "container" centraliza o conteúdo e limita a largura máxima -->
 
+      <!-- LOGOTIPO — clicável, leva para a página inicial -->
       <a href="index.html" class="logo">
+
+        <!--
+          SVG = imagem vetorial desenhada com código (não é um arquivo .png/.jpg).
+          Esse SVG forma o símbolo circular da marca Quadra Sportwear.
+          Cada <path> é uma linha curva desenhada matematicamente.
+          Aparece no canto superior esquerdo do site.
+        -->
         <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
              role="img" aria-label="Logotipo Quadra Sportwear">
+
+          <!-- Círculo de fundo com borda colorida -->
           <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+
+          <!-- Linha curva superior em coral (arco de cima) -->
           <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+
+          <!-- Linha curva inferior em coral (arco de baixo) -->
           <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+
+          <!-- Linha curva lateral esquerda em teal -->
           <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+
+          <!-- Linha curva lateral direita em teal -->
           <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+
+          <!-- Letra "Q" centralizada no meio do círculo -->
           <text x="50" y="61" text-anchor="middle"
                 font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
         </svg>
+
+        <!-- Texto "QUADRA SPORTWEAR" ao lado do símbolo -->
         <span class="logo-text">QUADRA <strong>SPORTWEAR</strong></span>
       </a>
 
+      <!--
+        MENU HAMBURGUER (visível só no celular)
+        Funciona com CSS puro: o <input type="checkbox"> fica invisível,
+        mas quando marcado, o CSS mostra o menu de navegação.
+        O <label> com as 3 barrinhas (span) é o botão visível ao usuário.
+      -->
       <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
       <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
+        <span></span><!-- barrinha 1 -->
+        <span></span><!-- barrinha 2 -->
+        <span></span><!-- barrinha 3 -->
       </label>
 
+      <!-- MENU DE NAVEGAÇÃO PRINCIPAL — links para todas as páginas do site -->
       <nav class="main-nav" aria-label="Navegação principal">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="sobre.html">Sobre</a></li>
+          <!-- class="active" deixa o link desta página destacado no menu -->
           <li><a href="produtos.html" class="active">Produtos</a></li>
           <li><a href="precos.html">Tabela de Preços</a></li>
           <li><a href="contato.html">Contato</a></li>
@@ -51,9 +104,14 @@
     </div>
   </header>
 
+  <!-- ==========================================
+       CONTEÚDO PRINCIPAL DA PÁGINA
+       ========================================== -->
   <main>
 
-    <!-- HERO PRODUTOS -->
+    <!-- SEÇÃO HERO — faixa de destaque no topo da página de produtos
+         Exibe: "Coleção 2026", o título "Nossas camisetas" e um subtítulo.
+         É a primeira coisa que o usuário vê ao entrar nesta página. -->
     <section class="hero-produtos">
       <div class="container">
         <span class="hero-prod-eyebrow">Coleção 2026</span>
@@ -62,23 +120,42 @@
       </div>
     </section>
 
+    <!-- SEÇÃO PRINCIPAL DOS PRODUTOS -->
     <section class="produtos-secao">
       <div class="container">
 
+        <!-- Barra superior com contador e tag da coleção -->
         <div class="produtos-topo">
           <p class="produtos-contador">6 produtos encontrados</p>
           <span class="produtos-tag">Coleção Completa 2026</span>
         </div>
 
-        <!-- GRID DE CARDS -->
+        <!-- ==========================================
+             GRID DE CARDS DE PRODUTOS
+             O CSS organiza esses cards em colunas automaticamente.
+             Cada <article> representa um produto/card individual.
+             ========================================== -->
         <div class="produtos-grid">
 
-          <!-- CARD 1 — Quadra Black -->
+          <!-- ==========================================
+               CARD 1 — Quadra Black
+               Estrutura padrão de todos os cards:
+               - .produto-img  → área da imagem + badge colorido
+               - .produto-info → textos, toggle e botão
+               ========================================== -->
           <article class="produto-card">
+
+            <!-- ÁREA DA IMAGEM -->
             <div class="produto-img">
+
               <!--
-                data-fem e data-masc guardam os caminhos das imagens.
-                O jQuery usa esses atributos para trocar o src ao clicar no toggle.
+                A imagem do produto.
+                - src: caminho da imagem que aparece por padrão (feminino)
+                - data-fem: caminho da foto feminina (atributo personalizado)
+                - data-masc: caminho da foto masculina (atributo personalizado)
+
+                O jQuery lê esses atributos "data-" ao clicar nos botões
+                e troca o "src" para mostrar a foto correta sem recarregar a página.
               -->
               <img
                 src="img/quadra_black_feminino.jpeg"
@@ -86,30 +163,53 @@
                 data-masc="img/quadra_black_masculino.jpeg"
                 alt="Camiseta Quadra Black — modelo feminino"
                 class="produto-foto">
+
+              <!-- Badge colorido que aparece sobre a imagem (ex: "Black", "Ocean") -->
               <span class="produto-badge badge-black">Black</span>
             </div>
 
+            <!-- ÁREA DE INFORMAÇÕES DO PRODUTO -->
             <div class="produto-info">
+
+              <!-- Número do produto (decorativo, mostra a ordem na coleção) -->
               <span class="produto-num">Nº 01</span>
+
+              <!-- Nome do produto — usado também pelo jQuery para atualizar o "alt" da imagem -->
               <h2 class="produto-nome">Quadra Black</h2>
+
+              <!-- Descrição curta exibida abaixo do nome -->
               <p class="produto-desc">
                 Design moderno e resistência para elevar sua performance em quadra.
               </p>
 
-              <!-- TOGGLE FEMININO / MASCULINO -->
+              <!--
+                TOGGLE FEMININO / MASCULINO
+                São dois botões dentro de cada card.
+                - data-genero="feminino" e data-genero="masculino" identificam qual botão é qual.
+                - class="ativo" marca qual botão está selecionado no momento (destaque visual via CSS).
+                - aria-pressed é acessibilidade: informa leitores de tela se o botão está ativado.
+
+                O jQuery escuta o clique nesses botões e troca a imagem acima.
+              -->
               <div class="genero-toggle">
                 <button class="btn-genero ativo" data-genero="feminino" aria-pressed="true">♀ Feminino</button>
                 <button class="btn-genero" data-genero="masculino" aria-pressed="false">♂ Masculino</button>
               </div>
 
+              <!-- Rodapé do card: preço e botão para ver tabela de tamanhos -->
               <div class="produto-rodape">
                 <span class="produto-preco">R$&nbsp;79,90</span>
+                <!-- &nbsp; é um espaço que não quebra linha entre "R$" e o valor -->
                 <a href="precos.html" class="btn-card">Ver tamanhos</a>
               </div>
             </div>
           </article>
+          <!-- /CARD 1 -->
 
-          <!-- CARD 2 — Quadra Ocean -->
+          <!-- ==========================================
+               CARD 2 — Quadra Ocean
+               Mesma estrutura do Card 1, apenas com dados diferentes.
+               ========================================== -->
           <article class="produto-card">
             <div class="produto-img">
               <img
@@ -136,8 +236,11 @@
               </div>
             </div>
           </article>
+          <!-- /CARD 2 -->
 
-          <!-- CARD 3 — Quadra Red -->
+          <!-- ==========================================
+               CARD 3 — Quadra Red
+               ========================================== -->
           <article class="produto-card">
             <div class="produto-img">
               <img
@@ -164,8 +267,11 @@
               </div>
             </div>
           </article>
+          <!-- /CARD 3 -->
 
-          <!-- CARD 4 — Quadra Carbon -->
+          <!-- ==========================================
+               CARD 4 — Quadra Carbon
+               ========================================== -->
           <article class="produto-card">
             <div class="produto-img">
               <img
@@ -192,8 +298,11 @@
               </div>
             </div>
           </article>
+          <!-- /CARD 4 -->
 
-          <!-- CARD 5 — Quadra Green -->
+          <!-- ==========================================
+               CARD 5 — Quadra Green
+               ========================================== -->
           <article class="produto-card">
             <div class="produto-img">
               <img
@@ -220,8 +329,11 @@
               </div>
             </div>
           </article>
+          <!-- /CARD 5 -->
 
-          <!-- CARD 6 — Quadra Aqua -->
+          <!-- ==========================================
+               CARD 6 — Quadra Aqua
+               ========================================== -->
           <article class="produto-card">
             <div class="produto-img">
               <img
@@ -248,10 +360,12 @@
               </div>
             </div>
           </article>
+          <!-- /CARD 6 -->
 
         </div><!-- /produtos-grid -->
 
-        <!-- CTA -->
+        <!-- CTA (Call to Action) — chamada para ação ao final dos produtos
+             Incentiva o usuário a ir para a página de preços/tamanhos -->
         <div class="produtos-cta">
           <p>Encontrou a sua? Confira os tamanhos disponíveis na tabela de preços.</p>
           <a href="precos.html" class="btn btn-primary">Ver tabela de preços</a>
@@ -262,11 +376,17 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ==========================================
+       RODAPÉ DO SITE (aparece em todas as páginas)
+       Contém: logotipo, slogan e links de navegação
+       ========================================== -->
   <footer class="site-footer">
     <div class="container footer-inner">
+
+      <!-- Coluna esquerda: marca e slogan -->
       <div class="footer-brand">
         <div class="logo">
+          <!-- SVG do logotipo — mesmo desenho do header, repetido no footer -->
           <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                role="img" aria-label="Logotipo Quadra Sportwear">
             <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
@@ -282,9 +402,11 @@
             <strong>SPORTWEAR</strong>
           </div>
         </div>
+        <!-- Slogan da marca exibido no rodapé -->
         <p class="footer-tagline">Feita para quem joga, vive e veste esporte.</p>
       </div>
 
+      <!-- Coluna direita: links de navegação repetidos no rodapé -->
       <nav class="footer-nav" aria-label="Links do rodapé">
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -295,30 +417,56 @@
         </ul>
       </nav>
     </div>
+
+    <!-- Linha de copyright na base do rodapé -->
     <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- =======================================================
-       JQUERY — Toggle Feminino / Masculino
+  <!-- ==========================================
+       JAVASCRIPT COM JQUERY — Toggle Feminino/Masculino
 
-       Lógica:
-       1. Ao clicar num btn-genero, identifica qual card é pai
-       2. Busca a imagem (.produto-foto) dentro desse card
-       3. Lê o atributo data-fem ou data-masc conforme o botão
-       4. Troca o src da imagem e atualiza o alt
-       5. Atualiza estado visual (classe .ativo) e aria-pressed
-       ======================================================= -->
+       O QUE FAZ NO SITE:
+       Em cada card de produto há dois botões: "♀ Feminino" e "♂ Masculino".
+       Ao clicar em um deles, a foto da camiseta muda instantaneamente
+       (sem recarregar a página) para mostrar o modelo do gênero selecionado.
+       O botão clicado também fica visualmente destacado (sublinhado/colorido).
+
+       COMO FUNCIONA (passo a passo):
+       ========================================== -->
   <script>
+
+    // $(document).ready() garante que o código só executa DEPOIS que
+    // toda a página HTML foi carregada. Sem isso, o jQuery tentaria
+    // manipular elementos que ainda não existem e daria erro.
     $(document).ready(function () {
 
+      // Escuta cliques em QUALQUER botão com classe "btn-genero" na página.
+      // Usar $(document).on() em vez de $('.btn-genero').on() é melhor prática,
+      // pois funciona mesmo se os botões fossem adicionados depois do carregamento.
       $(document).on('click', '.btn-genero', function () {
-        const $btn    = $(this);
-        const $card   = $btn.closest('.produto-card');
-        const genero  = $btn.data('genero'); // "feminino" ou "masculino"
-        const $img    = $card.find('.produto-foto');
-        const nome    = $card.find('.produto-nome').text().trim();
 
-        // 1. Troca a imagem conforme o gênero selecionado
+        // $(this) = o botão específico que o usuário acabou de clicar
+        const $btn = $(this);
+
+        // .closest('.produto-card') sobe na árvore HTML até encontrar
+        // o card pai deste botão. Isso garante que só o card clicado
+        // seja afetado, e não todos os outros cards da página.
+        const $card = $btn.closest('.produto-card');
+
+        // Lê o atributo data-genero do botão clicado: "feminino" ou "masculino"
+        const genero = $btn.data('genero');
+
+        // Encontra a imagem (.produto-foto) DENTRO deste card específico
+        const $img = $card.find('.produto-foto');
+
+        // Pega o nome do produto (ex: "Quadra Black") para usar no texto alternativo da imagem
+        const nome = $card.find('.produto-nome').text().trim();
+
+        // ── PASSO 1: Troca a imagem ──────────────────────────────────────
+        // Se clicou em "Feminino": usa o valor do atributo data-fem da imagem
+        // Se clicou em "Masculino": usa o valor do atributo data-masc da imagem
+        // .attr('src', ...) substitui o caminho da imagem → ela muda na tela
+        // .attr('alt', ...) atualiza o texto alternativo (acessibilidade)
         if (genero === 'feminino') {
           $img.attr('src', $img.data('fem'));
           $img.attr('alt', nome + ' — modelo feminino');
@@ -327,17 +475,24 @@
           $img.attr('alt', nome + ' — modelo masculino');
         }
 
-        // 2. Atualiza estado visual dos botões DENTRO deste card apenas
+        // ── PASSO 2: Atualiza o visual dos botões ───────────────────────
+        // Remove a classe "ativo" de TODOS os botões deste card
+        // e define aria-pressed="false" em todos (nenhum selecionado)
         $card.find('.btn-genero')
           .removeClass('ativo')
           .attr('aria-pressed', 'false');
 
+        // Depois, adiciona "ativo" APENAS no botão que foi clicado
+        // e define aria-pressed="true" nele (este está selecionado)
+        // O CSS usa a classe "ativo" para aplicar o estilo de destaque
         $btn
           .addClass('ativo')
           .attr('aria-pressed', 'true');
-      });
 
-    });
+      }); // fim do .on('click')
+
+    }); // fim do $(document).ready()
+
   </script>
 
 </body>
