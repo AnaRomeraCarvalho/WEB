@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato — Quadra Sportwear</title>
+  <meta name="description" content="Entre em contato com a Quadra Sportwear. Tire suas dúvidas, faça pedidos ou envie sugestões.">
+
+  <link rel="stylesheet" href="style.css">
+  <!-- style.css já contém todas as variáveis, reset, header, footer e responsividade do site. -->
+
+</head>
+
+<body>
+
+  <!-- HEADER — Idêntico ao das outras páginas.
+       ÚNICA diferença: class="active" está no link "Contato". -->
+
+  <header class="site-header">
+
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo">
+
+        <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Logotipo Quadra Sportwear">
+          <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+          <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <text x="50" y="61" text-anchor="middle"
+                font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
+        </svg>
+
+        <span class="logo-text">
+          QUADRA
+          <strong>SPORTWEAR</strong>
+        </span>
+
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html">Tabela de Preços</a></li>
+          <li><a href="contato.html" class="active">Contato</a></li>
+          <!-- class="active" → sublinhado coral marca que o usuário ESTÁ nesta página -->
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO DA PÁGINA DE CONTATO -->
+    <section class="hero-contato">
+    <!-- Mesmo padrão visual dos heróis das outras páginas internas (sobre, produtos, precos):
+         fundo bg, borda inferior, eyebrow + h1 + texto de apoio -->
+
+      <div class="container">
+        <span class="hero-cont-eyebrow">Fale com a gente</span>
+        <!-- Eyebrow = etiqueta pequena acima do título. Estilo monoespaçado + borda = "pílula". -->
+
+        <h1>Contato</h1>
+
+        <p>Dúvidas, pedidos especiais ou só quer trocar uma ideia sobre esporte? A gente responde.</p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO PRINCIPAL: FORMULÁRIO + INFORMAÇÕES -->
+    <section class="contato-secao">
+
+      <div class="container contato-grid">
+      <!-- contato-grid → CSS Grid que divide a seção em 2 colunas:
+           coluna maior (formulário) + coluna menor (informações de contato) -->
+
+        <!-- ===== COLUNA 1: FORMULÁRIO ===== -->
+        <div class="contato-form-wrapper">
+
+          <h2>Envie sua mensagem</h2>
+          <p class="contato-subtitulo">Preencha o formulário e retornamos em até 2 dias úteis.</p>
+
+          <!-- FORMULÁRIO COMPLETO -->
+          <form id="form-contato" class="form-contato" novalidate>
+          <!-- id="form-contato" → usado pelo JavaScript/jQuery para capturar o submit.
+               novalidate → desativa a validação nativa do HTML5. O jQuery fará a validação
+               customizada, com mensagens e estilos do próprio site. -->
+
+            <!-- LINHA 1: Nome + E-mail lado a lado -->
+            <div class="form-row">
+            <!-- form-row → Flexbox que coloca dois campos na mesma linha em telas médias/grandes.
+                 No celular, o CSS os empilha com flex-direction: column. -->
+
+              <div class="form-group">
+              <!-- form-group = par label + input. Agrupados para controlar o layout e as
+                   mensagens de erro de cada campo de forma independente. -->
+
+                <label for="nome">
+                  Nome completo
+                  <span class="campo-obrigatorio" aria-label="campo obrigatório">*</span>
+                  <!-- <span> com asterisco indica campo obrigatório.
+                       aria-label → leitores de tela leem "campo obrigatório" em vez de "*". -->
+                </label>
+
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Ex.: Ana Paula Silva"
+                  autocomplete="name"
+                  maxlength="80"
+                >
+                <!-- type="text" → campo de texto genérico.
+                     autocomplete="name" → sugere nomes salvos no navegador.
+                     maxlength="80" → limite de 80 caracteres no HTML (o JS também valida). -->
+
+                <span class="erro-msg" id="erro-nome" role="alert" aria-live="polite"></span>
+                <!-- Elemento vazio que o jQuery vai PREENCHER com a mensagem de erro se o campo
+                     falhar na validação.
+                     role="alert" + aria-live="polite" → leitores de tela anunciam o erro
+                     automaticamente assim que ele aparece, sem precisar re-focar no campo. -->
+
+              </div>
+
+              <div class="form-group">
+                <label for="email">
+                  E-mail
+                  <span class="campo-obrigatorio" aria-label="campo obrigatório">*</span>
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Ex.: ana@email.com"
+                  autocomplete="email"
+                >
+                <!-- type="email" → alguns navegadores já validam o formato no teclado mobile
+                     (exibe @ no teclado virtual). A validação real é feita pelo jQuery. -->
+
+                <span class="erro-msg" id="erro-email" role="alert" aria-live="polite"></span>
+              </div>
+
+            </div>
+            <!-- fim .form-row -->
+
+            <!-- LINHA 2: Assunto + Telefone lado a lado -->
+            <div class="form-row">
+
+              <div class="form-group">
+                <label for="assunto">
+                  Assunto
+                  <span class="campo-obrigatorio" aria-label="campo obrigatório">*</span>
+                </label>
+
+                <select id="assunto" name="assunto">
+                <!-- <select> cria uma lista suspensa (dropdown).
+                     Cada <option> é um item da lista.
+                     value="" → a opção padrão tem valor vazio, usada para validar
+                     se o usuário escolheu alguma opção real. -->
+                  <option value="">Selecione um assunto</option>
+                  <option value="pedido">Fazer um pedido</option>
+                  <option value="duvida">Dúvida sobre produtos</option>
+                  <option value="tamanho">Dúvida sobre tamanhos</option>
+                  <option value="parceria">Proposta de parceria</option>
+                  <option value="outro">Outro</option>
+                </select>
+
+                <span class="erro-msg" id="erro-assunto" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="telefone">
+                  Telefone
+                  <span class="campo-opcional">(opcional)</span>
+                </label>
+
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(11) 99999-9999"
+                  autocomplete="tel"
+                  maxlength="15"
+                >
+                <!-- type="tel" → exibe o teclado numérico no celular.
+                     campo-opcional → sem asterisco, sem validação obrigatória. -->
+              </div>
+
+            </div>
+            <!-- fim .form-row -->
+
+            <!-- LINHA 3: Textarea com contador de caracteres -->
+            <div class="form-group">
+              <label for="mensagem">
+                Mensagem
+                <span class="campo-obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                rows="6"
+                placeholder="Escreva sua mensagem aqui..."
+                maxlength="500"
+              ></textarea>
+              <!-- <textarea> → campo de texto de múltiplas linhas.
+                   rows="6" → altura inicial de 6 linhas.
+                   maxlength="500" → limite de 500 caracteres (o contador mostra o progresso). -->
+
+              <div class="contador-wrapper">
+              <!-- Wrapper que alinha o contador (direita) e a mensagem de erro (esquerda). -->
+                <span class="erro-msg" id="erro-mensagem" role="alert" aria-live="polite"></span>
+                <span class="contador-chars" id="contador" aria-live="polite">
+                  <span id="chars-usados">0</span>/500
+                </span>
+                <!-- aria-live="polite" → atualizar o contador anuncia a contagem pra leitores
+                     de tela de forma discreta (não interrompe o usuário enquanto digita). -->
+              </div>
+            </div>
+
+            <!-- LINHA 4: Checkbox de aceite -->
+            <div class="form-group form-group-check">
+              <label class="label-check">
+                <input type="checkbox" id="aceite" name="aceite">
+                <!-- type="checkbox" → caixa de marcação. O jQuery valida se está marcada. -->
+                <span>Concordo em ser contatada pela Quadra Sportwear por e-mail.</span>
+              </label>
+              <span class="erro-msg" id="erro-aceite" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- BOTÃO DE ENVIO -->
+            <button type="submit" class="btn btn-primary btn-enviar" id="btn-enviar">
+              Enviar mensagem
+            </button>
+            <!-- type="submit" → aciona o evento submit do <form> quando clicado.
+                 O jQuery captura esse evento com $('#form-contato').on('submit', ...) e
+                 faz a validação ANTES de qualquer envio real. -->
+
+          </form>
+
+          <!-- MENSAGEM DE SUCESSO (oculta por padrão; jQuery mostra após envio bem-sucedido) -->
+          <div class="form-sucesso" id="form-sucesso" aria-live="assertive" hidden>
+          <!-- hidden → atributo HTML que esconde o elemento (equivalente a display:none).
+               O jQuery remove este atributo para exibir a mensagem.
+               aria-live="assertive" → leitores de tela leem imediatamente. -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="var(--teal)" stroke-width="2"/>
+              <path d="M7 12.5l3.5 3.5 6-7" stroke="var(--teal)" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <strong>Mensagem enviada!</strong>
+              <p>Obrigada pelo contato. Retornamos em até 2 dias úteis.</p>
+            </div>
+          </div>
+
+        </div>
+        <!-- fim .contato-form-wrapper -->
+
+        <!-- ===== COLUNA 2: INFORMAÇÕES DE CONTATO ===== -->
+        <aside class="contato-info">
+        <!-- <aside> = conteúdo relacionado mas complementar ao principal.
+             Aqui: informações de contato ao lado do formulário. -->
+
+          <div class="info-card">
+
+            <h3>Informações</h3>
+
+            <ul class="info-lista">
+            <!-- Lista semântica com os dados de contato da marca. -->
+
+              <li class="info-item">
+                <span class="info-icone" aria-hidden="true">
+                  <!-- Ícone de e-mail (SVG inline) -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+                    <path d="M2 8l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="info-label">E-mail</span>
+                  <a href="mailto:contato@quadrasportwear.com.br" class="info-valor">
+                    contato@quadrasportwear.com.br
+                  </a>
+                </div>
+              </li>
+
+              <li class="info-item">
+                <span class="info-icone" aria-hidden="true">
+                  <!-- Ícone de telefone (SVG inline) -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.16 21 3 13.84 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.21.2 2.4.57 3.5a1 1 0 0 1-.25 1L6.6 10.8z"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="info-label">WhatsApp</span>
+                  <a href="https://wa.me/5511999999999" class="info-valor" target="_blank"
+                     rel="noopener noreferrer">
+                    <!-- rel="noopener noreferrer" → segurança: impede que a página aberta
+                         acesse a janela original via window.opener. -->
+                    (11) 99999-9999
+                  </a>
+                </div>
+              </li>
+
+              <li class="info-item">
+                <span class="info-icone" aria-hidden="true">
+                  <!-- Ícone de localização (SVG inline) -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                          stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="info-label">Localização</span>
+                  <span class="info-valor">São Paulo — SP, Brasil</span>
+                </div>
+              </li>
+
+              <li class="info-item">
+                <span class="info-icone" aria-hidden="true">
+                  <!-- Ícone de relógio (horário) -->
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <span class="info-label">Atendimento</span>
+                  <span class="info-valor">Seg–Sex, 9h às 18h</span>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+
+          <!-- CARD REDES SOCIAIS -->
+          <div class="info-card info-card-redes">
+            <h3>Redes Sociais</h3>
+            <p>Acompanhe a coleção e o dia a dia da marca.</p>
+            <div class="redes-lista">
+
+              <a href="#" class="rede-link" aria-label="Instagram da Quadra Sportwear"
+                 target="_blank" rel="noopener noreferrer">
+                <!-- aria-label descreve o destino para leitores de tela (o ícone não tem texto). -->
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                </svg>
+                Instagram
+              </a>
+
+              <a href="#" class="rede-link" aria-label="TikTok da Quadra Sportwear"
+                 target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                TikTok
+              </a>
+
+            </div>
+          </div>
+
+        </aside>
+        <!-- fim .contato-info -->
+
+      </div>
+      <!-- fim .contato-grid -->
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER — Idêntico ao das outras páginas -->
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Logotipo Quadra Sportwear">
+            <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+            <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+            <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+            <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+            <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+            <text x="50" y="61" text-anchor="middle"
+                  font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
+          </svg>
+          <div class="logo-text">
+            <span>QUADRA</span>
+            <strong>SPORTWEAR</strong>
+          </div>
+        </div>
+        <p class="footer-tagline">Feita para quem joga, vive e veste esporte.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Links do rodapé">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html">Tabela de Preços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
+
+  </footer>
+
+  <!-- BOTÃO VOLTAR AO TOPO (Opção 5) -->
+  <button id="btn-topo" class="btn-topo" aria-label="Voltar ao topo da página" hidden>
+  <!-- hidden → começa oculto. O jQuery mostra quando o scroll passa de 300px.
+       aria-label → descreve a ação para leitores de tela. -->
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- jQuery CDN — biblioteca carregada ANTES do script.js para que $ esteja disponível -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+  </script>
+  <!-- integrity + crossorigin → Subresource Integrity (SRI): o navegador verifica que o arquivo
+       baixado do CDN não foi adulterado, comparando com o hash fornecido. -->
+
+  <script src="script.js"></script>
+  <!-- script.js carregado no final do <body>: garante que o HTML já existe
+       quando o JavaScript tenta manipulá-lo (document ready). -->
+
+</body>
+</html>

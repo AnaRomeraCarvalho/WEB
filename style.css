@@ -1316,3 +1316,575 @@ h1, h2, h3 {
     font-size: 0.82rem;
   }
 }
+
+/* ==========================================================
+   CONTATO.CSS
+   Estilos específicos da página contato.html e das
+   funcionalidades JavaScript (validação, contador, btn-topo).
+   Depende das variáveis e utilitários definidos em style.css.
+   ========================================================== */
+
+/* -------------------------------------------------------
+   HERO DA PÁGINA DE CONTATO
+   ------------------------------------------------------- */
+.hero-contato {
+  padding: 80px 0 56px;
+  border-bottom: 3px solid var(--graphite);
+  background: var(--bg);
+}
+
+.hero-cont-eyebrow {
+  /* Mesmo padrão das outras páginas internas */
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--coral-dark);
+  border: 1px solid var(--coral);
+  padding: 4px 12px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.hero-contato h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  color: var(--graphite);
+}
+
+.hero-contato p {
+  font-size: 1.05rem;
+  color: var(--graphite-soft);
+  max-width: 520px;
+}
+
+/* -------------------------------------------------------
+   SEÇÃO PRINCIPAL: GRID FORMULÁRIO + ASIDE
+   ------------------------------------------------------- */
+.contato-secao {
+  padding: 60px 0 90px;
+}
+
+.contato-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr; /* formulário maior, aside menor */
+  gap: 48px;
+  align-items: start; /* cada coluna começa no topo (não estica para igualar alturas) */
+}
+
+/* -------------------------------------------------------
+   WRAPPER DO FORMULÁRIO
+   ------------------------------------------------------- */
+.contato-form-wrapper h2 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.contato-subtitulo {
+  color: var(--graphite-soft);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+/* -------------------------------------------------------
+   FORMULÁRIO
+   ------------------------------------------------------- */
+.form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* espaço entre cada form-group ou form-row */
+}
+
+/* Linha com 2 campos lado a lado */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas iguais */
+  gap: 20px;
+}
+
+/* Par label + campo */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label */
+.form-group label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--graphite);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Asterisco de campo obrigatório */
+.campo-obrigatorio {
+  color: var(--coral);
+  margin-left: 3px;
+}
+
+/* Texto "(opcional)" */
+.campo-opcional {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--graphite-soft);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+
+/* Inputs, selects e textareas — estilo base compartilhado */
+.form-contato input,
+.form-contato select,
+.form-contato textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--graphite);
+  background: var(--white);
+  border: 2px solid #D8DADA;
+  border-radius: 6px;
+  padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  outline: none; /* removemos o outline padrão; usamos box-shadow abaixo no :focus */
+}
+
+.form-contato input::placeholder,
+.form-contato textarea::placeholder {
+  color: #B0B4B4;
+}
+
+/* Foco: borda teal + sombra sutil */
+.form-contato input:focus,
+.form-contato select:focus,
+.form-contato textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(14, 168, 160, 0.15);
+}
+
+/* Estado de ERRO (adicionado pelo jQuery) */
+.form-contato input.input-erro,
+.form-contato select.input-erro,
+.form-contato textarea.input-erro {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px rgba(255, 90, 54, 0.12);
+}
+
+/* Mensagem de erro */
+.erro-msg {
+  font-size: 0.8rem;
+  color: var(--coral-dark);
+  min-height: 1.2em; /* reserva espaço fixo para não "empurrar" o layout ao aparecer */
+  font-weight: 500;
+}
+
+/* Select: aparência personalizada */
+.form-contato select {
+  appearance: none;         /* remove a seta nativa do sistema operacional */
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B5F61' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px; /* espaço para a seta customizada não sobrepor o texto */
+  cursor: pointer;
+}
+
+/* Textarea: não redimensionar horizontalmente */
+.form-contato textarea {
+  resize: vertical; /* permite redimensionar apenas verticalmente */
+  min-height: 140px;
+}
+
+/* Wrapper do contador (alinha erro à esquerda, contador à direita) */
+.contador-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Contador de caracteres */
+.contador-chars {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--graphite-soft);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+/* Estados do contador */
+.contador-chars.contador-ok    { color: var(--graphite-soft); }
+.contador-chars.contador-aviso { color: var(--coral-dark); }
+.contador-chars.contador-limite {
+  color: var(--coral);
+  font-weight: 700;
+}
+
+/* Linha do checkbox */
+.form-group-check {
+  gap: 4px;
+}
+
+.label-check {
+  display: flex !important;   /* sobrescreve o flex-direction:column do form-group */
+  flex-direction: row !important;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--graphite-soft);
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+.label-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;     /* evita que encolha */
+  accent-color: var(--coral); /* colore o checkbox com a cor da marca */
+  margin-top: 2px;     /* alinha com a primeira linha do texto */
+  cursor: pointer;
+}
+
+/* Botão de envio */
+.btn-enviar {
+  align-self: flex-start; /* não estica até a largura total */
+  margin-top: 4px;
+}
+
+/* Estado desabilitado durante o envio */
+.btn-enviar:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none; /* cancela o translateY do hover */
+}
+
+/* Mensagem de sucesso */
+.form-sucesso[hidden] { display: none; }
+
+.form-sucesso {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #EBF8F7;
+  border: 2px solid var(--teal);
+  border-radius: 8px;
+  padding: 28px 24px;
+  margin-top: 8px;
+}
+
+.form-sucesso svg {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.form-sucesso strong {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.form-sucesso p {
+  color: var(--graphite-soft);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   ASIDE: CARDS DE INFORMAÇÃO
+   ------------------------------------------------------- */
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.info-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 28px 24px;
+  border: 1px solid #E2E4E2;
+}
+
+.info-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--bg);
+}
+
+/* Lista de itens de contato */
+.info-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Ícone de cada item */
+.info-icone {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--bg);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--coral);
+}
+
+.info-icone svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Label e valor */
+.info-label {
+  display: block;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--graphite-soft);
+  margin-bottom: 2px;
+}
+
+.info-valor {
+  font-size: 0.92rem;
+  color: var(--graphite);
+  font-weight: 500;
+  word-break: break-word; /* evita que e-mail longo vaze do container */
+}
+
+a.info-valor:hover {
+  color: var(--coral);
+}
+
+/* Card de redes sociais */
+.info-card-redes h3 {
+  margin-bottom: 8px;
+}
+
+.info-card-redes > p {
+  font-size: 0.88rem;
+  color: var(--graphite-soft);
+  margin-bottom: 18px;
+}
+
+.redes-lista {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.rede-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--graphite);
+  background: var(--bg);
+  border: 1px solid #D8DADA;
+  border-radius: 6px;
+  padding: 8px 14px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.rede-link svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.rede-link:hover {
+  background: var(--graphite);
+  color: var(--white);
+  border-color: var(--graphite);
+}
+
+/* -------------------------------------------------------
+   BOTÃO VOLTAR AO TOPO (Opção 5)
+   ------------------------------------------------------- */
+.btn-topo {
+  position: fixed;       /* fica fixo na tela, mesmo ao rolar */
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: var(--coral);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;    /* círculo perfeito */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255, 90, 54, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 200;          /* acima do header (z-index: 100) */
+}
+
+.btn-topo[hidden] {
+  display: none; /* garante que o hidden do HTML funcione mesmo com position:fixed */
+}
+
+.btn-topo svg {
+  width: 22px;
+  height: 22px;
+}
+
+.btn-topo:hover {
+  background: var(--coral-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 90, 54, 0.4);
+}
+
+.btn-topo:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Contato
+   ------------------------------------------------------- */
+
+/* Tablet: formulário e aside em coluna única */
+@media (max-width: 900px) {
+  .contato-grid {
+    grid-template-columns: 1fr; /* empilha as duas colunas */
+  }
+
+  .hero-contato h1 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Celular: form-row de 2 colunas vira 1 coluna */
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr; /* campos um embaixo do outro no celular */
+  }
+
+  .hero-contato h1 {
+    font-size: 2rem;
+  }
+
+  .contato-secao {
+    padding: 40px 0 70px;
+  }
+
+  .btn-topo {
+    bottom: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-sucesso {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVIDADE GLOBAL COMPLEMENTAR
+   Ajustes que melhoram todas as páginas no mobile.
+   (Complementa o @media já existente no style.css)
+   ========================================================== */
+
+/* Tablet médio */
+@media (max-width: 900px) {
+  /* Footer: marca e nav empilhados, centralizados */
+  .footer-brand {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-tagline {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+/* Celular */
+@media (max-width: 700px) {
+  /* Hero da home: botões empilhados */
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Seção apresentacao: esconde o gráfico decorativo no mobile
+     (economiza espaço e o conteúdo fica mais limpo) */
+  .apresentacao-grafico {
+    display: none;
+  }
+
+  /* Valores: pílulas ocupam toda a linha disponível */
+  .valor-pill {
+    flex: 1 1 calc(50% - 8px); /* 2 por linha */
+    text-align: center;
+  }
+
+  /* Título hero sobre */
+  .hero-sobre h1 {
+    font-size: 2.3rem;
+  }
+
+  /* Histórico: esconde o crachá no mobile */
+  .historia-crest {
+    display: none;
+  }
+
+  /* Missão/Visão: cards em coluna no mobile */
+  .mvv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer: links em 2 colunas no mobile */
+  .footer-nav ul {
+    gap: 16px;
+  }
+
+  /* Reduz padding das seções em mobile */
+  .apresentacao,
+  .destaques,
+  .mvv,
+  .valores,
+  .historia {
+    padding: 60px 0;
+  }
+}
+
+/* Celular pequeno (< 400px) */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-sobre h1,
+  .hero-produtos h1,
+  .hero-precos h1,
+  .hero-contato h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    width: 100%;          /* botões ocupam largura total em telas muito pequenas */
+    text-align: center;
+  }
+}
