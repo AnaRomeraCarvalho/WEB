@@ -11,7 +11,7 @@
    diferentes, a gente escreve var(--coral) e troca em UM lugar só
    se um dia quiser mudar a cor da marca inteira. */
 :root {
-  /* VARIÁVEIS
+  /* VARIÁVEIS */
   --coral: #FF5A36;        /* cor principal da marca (botões, destaques) */
   --coral-dark: #E84323;   /* coral mais escuro, usado no hover (quando passa o mouse) */
   --teal: #0EA8A0;         /* verde-água, cor secundária */
