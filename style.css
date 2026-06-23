@@ -645,3 +645,674 @@ h1, h2, h3 {
   .hero h1 { font-size: 2.6rem; } /* título ainda menor no celular */
   .hero-number { display: none; } /* esconde o número gigante de fundo no celular (não cabe bem em tela pequena) */
 }
+
+/* ==========================================================
+   PRODUTOS.CSS
+   Estilos específicos das páginas produtos.html e (importado
+   pelo precos.html quando necessário). Depende das variáveis
+   e utilitários definidos em style.css.
+   ========================================================== */
+
+/* -------------------------------------------------------
+   HERO DA PÁGINA PRODUTOS
+   ------------------------------------------------------- */
+.hero-produtos {
+  padding: 80px 0 56px;
+  border-bottom: 3px solid var(--graphite);
+  background: var(--bg);
+}
+
+.hero-prod-eyebrow {
+  /* Mesmo padrão da eyebrow do hero-sobre */
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  border: 1px solid var(--teal);
+  padding: 4px 12px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.hero-produtos h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  color: var(--graphite);
+}
+
+.hero-produtos p {
+  font-size: 1.05rem;
+  color: var(--graphite-soft);
+  max-width: 520px;
+}
+
+/* -------------------------------------------------------
+   SEÇÃO PRINCIPAL DE PRODUTOS
+   ------------------------------------------------------- */
+.produtos-secao {
+  padding: 60px 0 90px;
+}
+
+/* Barra superior: contador + tag de coleção */
+.produtos-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #D8DADA;
+}
+
+.produtos-contador {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--graphite-soft);
+  letter-spacing: 1px;
+}
+
+.produtos-tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--coral-dark);
+  border: 1px solid var(--coral);
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+/* -------------------------------------------------------
+   GRID DE CARDS — 4 colunas desktop
+   ------------------------------------------------------- */
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* -------------------------------------------------------
+   CARD DE PRODUTO
+   ------------------------------------------------------- */
+.produto-card {
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;          /* garante que a imagem respeite o border-radius */
+  border: 1px solid #E2E4E2;
+  display: flex;
+  flex-direction: column;    /* imagem em cima, info embaixo */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(28, 30, 31, 0.12);
+}
+
+/* --- Área da imagem --- */
+.produto-img {
+  position: relative;       /* para posicionar o badge por cima */
+  width: 100%;
+  aspect-ratio: 4 / 3;      /* proporção fixa para todas as imagens ficarem alinhadas */
+  background: #E8EAE8;       /* cinza placeholder enquanto a imagem não carrega */
+  overflow: hidden;
+}
+
+.produto-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* recorta a imagem para preencher o espaço sem distorcer */
+  display: block;
+  /* Transição suave no hover do card inteiro */
+  transition: transform 0.35s ease;
+}
+
+.produto-card:hover .produto-img img {
+  transform: scale(1.04);   /* zoom leve na imagem quando o card é hoverado */
+}
+
+/* Badge de categoria sobreposto na imagem */
+.produto-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+/* Cores por categoria */
+.badge-volei   { background: var(--graphite); color: var(--teal); }
+.badge-casual  { background: var(--teal);     color: var(--white); }
+.badge-perf    { background: var(--coral);    color: var(--white); }
+.badge-street  { background: var(--coral-dark); color: var(--white); }
+.badge-over    { background: var(--teal-dark);  color: var(--white); }
+
+/* --- Área de informações --- */
+.produto-info {
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;            /* ocupa o espaço restante do card, empurrando o rodapé pra baixo */
+}
+
+/* Número estilo "número de jogador" */
+.produto-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--coral-dark);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Cards pares têm número em teal (alternância visual, igual nos destaque-cards da Home) */
+.produto-card:nth-child(even) .produto-num {
+  color: var(--teal-dark);
+}
+
+.produto-nome {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--graphite);
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.produto-desc {
+  font-size: 0.85rem;
+  color: var(--graphite-soft);
+  line-height: 1.55;
+  flex-grow: 1;            /* empurra o rodapé (preço + botão) para baixo */
+  margin-bottom: 16px;
+}
+
+/* Rodapé do card: preço à esquerda, botão à direita */
+.produto-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;        /* garante que fique sempre colado na base do card */
+  padding-top: 14px;
+  border-top: 1px solid #E8EAE8;
+}
+
+.produto-preco {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--graphite);
+  white-space: nowrap;
+}
+
+/* Botão compacto dentro do card */
+.btn-card {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: var(--graphite);
+  color: var(--white);
+  border: 2px solid transparent;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn-card:hover {
+  background: var(--coral);
+  transform: translateY(-1px);
+}
+
+/* Cards pares: botão inverte a lógica de cor */
+.produto-card:nth-child(even) .btn-card:hover {
+  background: var(--teal);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DO GRID
+   ------------------------------------------------------- */
+.produtos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.produtos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Produtos
+   ------------------------------------------------------- */
+@media (max-width: 1050px) {
+  .produtos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-produtos h1 {
+    font-size: 2.4rem;
+  }
+
+  .produtos-topo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .produtos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
+
+/* ==========================================================
+   PRECOS.CSS
+   Estilos específicos da página precos.html.
+   Depende das variáveis e utilitários de style.css.
+   ========================================================== */
+
+/* -------------------------------------------------------
+   HERO DA PÁGINA DE PREÇOS
+   ------------------------------------------------------- */
+.hero-precos {
+  padding: 80px 0 56px;
+  border-bottom: 3px solid var(--graphite);
+  background: var(--bg);
+}
+
+.hero-prec-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-dark);
+  border: 1px solid var(--teal);
+  padding: 4px 12px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+
+.hero-precos h1 {
+  font-size: 3rem;
+  margin-bottom: 14px;
+  color: var(--graphite);
+}
+
+.hero-precos p {
+  font-size: 1.05rem;
+  color: var(--graphite-soft);
+  max-width: 520px;
+}
+
+/* -------------------------------------------------------
+   SEÇÃO PRINCIPAL
+   ------------------------------------------------------- */
+.precos-secao {
+  padding: 60px 0 90px;
+}
+
+/* -------------------------------------------------------
+   CONTROLES DO FILTRO DINÂMICO
+   ------------------------------------------------------- */
+.tabela-controles {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 20px 24px;
+  background: var(--white);
+  border: 1px solid #E2E4E2;
+  border-radius: 8px;
+}
+
+.tabela-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--graphite-soft);
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* Grupo que recebe os botões gerados pelo jQuery */
+.filtros-grupo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Botão de filtro por tamanho (gerado via jQuery) */
+.btn-filtro {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  border: 2px solid var(--graphite);
+  background: transparent;
+  color: var(--graphite);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.btn-filtro:hover {
+  background: var(--graphite);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+/* Estado ativo: botão selecionado */
+.btn-filtro.ativo {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--white);
+}
+
+.btn-filtro.ativo:hover {
+  background: var(--coral-dark);
+  border-color: var(--coral-dark);
+}
+
+/* Botão limpar filtro */
+.btn-limpar {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #C8CAC8;
+  background: transparent;
+  color: var(--graphite-soft);
+  cursor: pointer;
+  margin-left: auto; /* empurra o botão para a extremidade direita */
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-limpar:hover {
+  color: var(--coral-dark);
+  border-color: var(--coral);
+}
+
+/* -------------------------------------------------------
+   TEXTO DE RESULTADO DINÂMICO
+   ------------------------------------------------------- */
+.tabela-resultado {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 1px;
+  color: var(--teal-dark);
+  min-height: 1.4em; /* evita que a página "pule" quando o texto aparece */
+  margin-bottom: 12px;
+}
+
+/* -------------------------------------------------------
+   WRAPPER DE SCROLL HORIZONTAL (mobile)
+   ------------------------------------------------------- */
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;          /* scroll horizontal no mobile se a tabela não couber */
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid #E2E4E2;
+}
+
+/* -------------------------------------------------------
+   TABELA DE PREÇOS
+   ------------------------------------------------------- */
+.tabela-precos {
+  width: 100%;
+  border-collapse: collapse;  /* remove espaços entre bordas das células */
+  font-size: 0.92rem;
+  background: var(--white);
+}
+
+/* Cabeçalho da tabela */
+.tabela-precos thead tr {
+  background: var(--graphite);
+  color: var(--white);
+}
+
+.tabela-precos thead th {
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Colunas de tamanho (P/M/G) centralizadas */
+.tabela-precos th.col-tamanho,
+.tabela-precos td.td-tam {
+  text-align: center;
+  width: 70px;
+}
+
+/* Linhas do corpo da tabela */
+.tabela-precos tbody tr {
+  border-bottom: 1px solid #E8EAE8;
+  transition: background 0.15s ease;
+}
+
+.tabela-precos tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Zebra: linhas alternadas com fundo levemente diferente */
+.tabela-precos tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+
+.tabela-precos tbody tr:hover {
+  background: #EBF8F7; /* verde-água clarinho no hover */
+}
+
+/* Células comuns do corpo */
+.tabela-precos tbody td {
+  padding: 14px 18px;
+  color: var(--graphite);
+  vertical-align: middle;
+}
+
+/* Célula de disponibilidade (✓ / —) */
+.tabela-precos td.td-tam {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Disponível → verde-água */
+.tabela-precos td.td-tam:not(:empty) {
+  /* Aplica cor baseada no conteúdo via CSS (limitado, mas funcional) */
+  color: var(--graphite-soft);
+}
+
+/* Destaque na coluna filtrada (adicionado via jQuery) */
+.tabela-precos th.coluna-ativa {
+  background: var(--coral);
+  color: var(--white);
+}
+
+.tabela-precos td.coluna-ativa {
+  background: #FFF2EF; /* coral clarinho */
+  font-weight: 700;
+}
+
+/* Nome da camiseta com número */
+.td-nome {
+  white-space: nowrap;
+}
+
+.tabela-num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--coral-dark);
+  display: inline-block;
+  margin-right: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* Preço em destaque */
+.td-preco {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--graphite);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------
+   PILLS DE ESTILO NAS CÉLULAS DA TABELA
+   ------------------------------------------------------- */
+.pill-estilo {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 30px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pill-volei  { background: var(--graphite); color: var(--teal); }
+.pill-casual { background: #E6F8F7;         color: var(--teal-dark); }
+.pill-perf   { background: #FFF2EF;         color: var(--coral-dark); }
+.pill-street { background: var(--coral);    color: var(--white); }
+.pill-over   { background: var(--teal);     color: var(--white); }
+
+/* -------------------------------------------------------
+   RODAPÉ DA TABELA (tfoot)
+   ------------------------------------------------------- */
+.tabela-precos tfoot td {
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.8px;
+  color: var(--graphite-soft);
+  background: var(--bg);
+  border-top: 2px solid var(--graphite);
+  text-align: center;
+}
+
+/* -------------------------------------------------------
+   LEGENDA ABAIXO DA TABELA
+   ------------------------------------------------------- */
+.tabela-legenda {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding: 0 4px;
+}
+
+.tabela-legenda span {
+  font-size: 0.82rem;
+  color: var(--graphite-soft);
+}
+
+.tabela-legenda strong {
+  color: var(--graphite);
+}
+
+/* -------------------------------------------------------
+   CTA ABAIXO DA TABELA
+   ------------------------------------------------------- */
+.precos-cta {
+  margin-top: 56px;
+  padding: 36px 40px;
+  background: var(--graphite);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.precos-cta p {
+  color: #D8DADA;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------
+   RESPONSIVIDADE — Preços
+   ------------------------------------------------------- */
+@media (max-width: 750px) {
+  .hero-precos h1 {
+    font-size: 2.4rem;
+  }
+
+  .tabela-controles {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .btn-limpar {
+    margin-left: 0;
+  }
+
+  .tabela-legenda {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .precos-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .tabela-precos thead th,
+  .tabela-precos tbody td {
+    padding: 12px 12px;
+    font-size: 0.82rem;
+  }
+}

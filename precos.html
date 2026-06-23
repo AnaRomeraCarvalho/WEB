@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela de Preços — Quadra Sportwear</title>
+  <meta name="description" content="Consulte os preços e tamanhos disponíveis das camisetas Quadra Sportwear.">
+
+  <!-- jQuery via CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="precos.css">
+</head>
+
+<body>
+
+  <!-- HEADER — active em "Tabela de Preços" -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo">
+        <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+             role="img" aria-label="Logotipo Quadra Sportwear">
+          <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+          <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+          <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+          <text x="50" y="61" text-anchor="middle"
+                font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
+        </svg>
+        <span class="logo-text">QUADRA <strong>SPORTWEAR</strong></span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html" class="active">Tabela de Preços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO DA PÁGINA -->
+    <section class="hero-precos">
+      <div class="container">
+        <span class="hero-prec-eyebrow">Preços e tamanhos</span>
+        <h1>Tabela de preços</h1>
+        <p>Todos os tamanhos disponíveis para cada camiseta da coleção 2026.</p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DA TABELA -->
+    <section class="precos-secao">
+      <div class="container">
+
+        <!-- -----------------------------------------------
+             CONTROLES DA TABELA DINÂMICA
+             Opção 3: o usuário filtra a tabela por tamanho
+             usando botões criados e manipulados via jQuery.
+             ----------------------------------------------- -->
+        <div class="tabela-controles">
+          <p class="tabela-label">Filtrar por tamanho:</p>
+
+          <div class="filtros-grupo" id="filtros-tamanho">
+            <!--
+              Os botões de filtro são gerados pelo jQuery (veja o script no final).
+              Isso significa que se você adicionar mais tamanhos ao array no JS,
+              os botões aparecem automaticamente aqui — sem mexer no HTML.
+            -->
+          </div>
+
+          <!-- Botão para limpar o filtro e ver tudo -->
+          <button class="btn-limpar" id="btn-limpar" aria-label="Mostrar todos os tamanhos">
+            Limpar filtro
+          </button>
+        </div>
+
+        <!-- Texto de resultado dinâmico (atualizado pelo jQuery) -->
+        <p class="tabela-resultado" id="tabela-resultado" aria-live="polite">
+          <!-- Ex: "Exibindo tamanho: M — 6 camisetas disponíveis" -->
+        </p>
+
+        <!-- -----------------------------------------------
+             TABELA HTML
+             Estrutura semântica completa com thead, tbody, tfoot.
+             O jQuery manipula a visibilidade de linhas (tr)
+             e o conteúdo do tfoot conforme o filtro ativo.
+             ----------------------------------------------- -->
+        <div class="tabela-wrapper" role="region" aria-label="Tabela de preços">
+          <table class="tabela-precos" id="tabela-precos">
+
+            <thead>
+              <tr>
+                <th scope="col">Camiseta</th>
+                <th scope="col">Estilo</th>
+                <!-- As colunas de tamanho têm data-tamanho para o jQuery filtrar -->
+                <th scope="col" class="col-tamanho" data-tamanho="P">P</th>
+                <th scope="col" class="col-tamanho" data-tamanho="M">M</th>
+                <th scope="col" class="col-tamanho" data-tamanho="G">G</th>
+                <th scope="col">Preço base</th>
+              </tr>
+            </thead>
+
+            <tbody id="tabela-corpo">
+              <!--
+                Cada <tr> tem um atributo data-estilo com a categoria do produto.
+                As células de disponibilidade usam ✓ (disponível) ou — (indisponível).
+                O jQuery pode usar isso para filtros futuros (Pessoa 3 pode expandir).
+              -->
+
+              <tr data-estilo="Vôlei">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 01</span>
+                  Attack Tee
+                </td>
+                <td><span class="pill-estilo pill-volei">Vôlei</span></td>
+                <td class="td-tam" data-tamanho="P">✓</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">✓</td>
+                <td class="td-preco">R$ 79,90</td>
+              </tr>
+
+              <tr data-estilo="Vôlei Casual">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 02</span>
+                  Match Point
+                </td>
+                <td><span class="pill-estilo pill-casual">Vôlei Casual</span></td>
+                <td class="td-tam" data-tamanho="P">✓</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">✓</td>
+                <td class="td-preco">R$ 84,90</td>
+              </tr>
+
+              <tr data-estilo="Performance">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 03</span>
+                  Velocity Fit
+                </td>
+                <td><span class="pill-estilo pill-perf">Performance</span></td>
+                <td class="td-tam" data-tamanho="P">✓</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">—</td>
+                <td class="td-preco">R$ 89,90</td>
+              </tr>
+
+              <tr data-estilo="Casual Esportivo">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 04</span>
+                  Team Spirit
+                </td>
+                <td><span class="pill-estilo pill-casual">Casual Esportivo</span></td>
+                <td class="td-tam" data-tamanho="P">—</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">✓</td>
+                <td class="td-preco">R$ 74,90</td>
+              </tr>
+
+              <tr data-estilo="Streetwear">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 05</span>
+                  Victory Wear
+                </td>
+                <td><span class="pill-estilo pill-street">Streetwear</span></td>
+                <td class="td-tam" data-tamanho="P">✓</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">✓</td>
+                <td class="td-preco">R$ 94,90</td>
+              </tr>
+
+              <tr data-estilo="Oversized Sport">
+                <td class="td-nome">
+                  <span class="tabela-num">Nº 06</span>
+                  Court Energy
+                </td>
+                <td><span class="pill-estilo pill-over">Oversized Sport</span></td>
+                <td class="td-tam" data-tamanho="P">—</td>
+                <td class="td-tam" data-tamanho="M">✓</td>
+                <td class="td-tam" data-tamanho="G">✓</td>
+                <td class="td-preco">R$ 99,90</td>
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <!-- colspan="6" faz a célula ocupar todas as 6 colunas -->
+                <td colspan="6" id="tabela-rodape">
+                  <!-- Atualizado dinamicamente pelo jQuery: conta itens visíveis e exibe resumo -->
+                  6 camisetas na coleção &nbsp;|&nbsp; ✓ = disponível no tamanho &nbsp;|&nbsp; — = indisponível
+                </td>
+              </tr>
+            </tfoot>
+
+          </table>
+        </div><!-- /tabela-wrapper -->
+
+        <!-- Legenda abaixo da tabela -->
+        <div class="tabela-legenda">
+          <span><strong>✓</strong> Disponível</span>
+          <span><strong>—</strong> Indisponível neste tamanho</span>
+          <span>Preço base único por modelo (independente do tamanho)</span>
+        </div>
+
+        <!-- CTA para voltar aos produtos -->
+        <div class="precos-cta">
+          <p>Quer conhecer melhor cada camiseta antes de escolher?</p>
+          <a href="produtos.html" class="btn btn-primary">Ver todos os produtos</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+               role="img" aria-label="Logotipo Quadra Sportwear">
+            <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
+            <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
+            <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
+            <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+            <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
+            <text x="50" y="61" text-anchor="middle"
+                  font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">Q</text>
+          </svg>
+          <div class="logo-text">
+            <span>QUADRA</span>
+            <strong>SPORTWEAR</strong>
+          </div>
+        </div>
+        <p class="footer-tagline">Feita para quem joga, vive e veste esporte.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Links do rodapé">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="precos.html">Tabela de Preços</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- =======================================================
+       JAVASCRIPT / JQUERY — Tabela de Preços Dinâmica (Opção 3)
+
+       Funcionalidades implementadas:
+       1. Geração automática dos botões de filtro por tamanho
+       2. Filtro de colunas: ao clicar em P/M/G, destaca a coluna
+          e oculta as demais colunas de tamanho
+       3. Filtro de linhas: oculta produtos indisponíveis no tamanho
+          selecionado (células com "—")
+       4. Atualização dinâmica do texto de resultado e do rodapé
+       5. Botão "Limpar filtro" restaura a visão completa
+       6. Estado "ativo" nos botões (classe CSS .ativo)
+       ======================================================= -->
+  <script>
+    $(document).ready(function () {
+
+      /* --------------------------------------------------
+         1. DADOS DOS TAMANHOS
+         Altere este array para adicionar ou remover tamanhos.
+         Os botões de filtro são gerados automaticamente.
+         -------------------------------------------------- */
+      const tamanhos = ['P', 'M', 'G'];
+
+      /* --------------------------------------------------
+         2. GERAÇÃO DINÂMICA DOS BOTÕES DE FILTRO
+         Para cada tamanho no array, cria um <button>
+         com data-tamanho e appenda no #filtros-tamanho.
+         -------------------------------------------------- */
+      tamanhos.forEach(function (tam) {
+        const $btn = $('<button>')
+          .addClass('btn-filtro')
+          .attr('data-tamanho', tam)
+          .attr('aria-pressed', 'false')
+          .text(tam);
+
+        $('#filtros-tamanho').append($btn);
+      });
+
+      /* --------------------------------------------------
+         3. FUNÇÃO AUXILIAR: restaura a tabela ao estado
+         completo (todas as colunas e linhas visíveis).
+         -------------------------------------------------- */
+      function limparFiltro() {
+        // Mostra todas as colunas de tamanho no thead
+        $('th.col-tamanho').show();
+
+        // Mostra todas as células de tamanho no tbody
+        $('td.td-tam').show();
+
+        // Mostra todas as linhas do tbody
+        $('#tabela-corpo tr').show();
+
+        // Remove estilo de destaque das colunas
+        $('td.td-tam, th.col-tamanho').removeClass('coluna-ativa');
+
+        // Remove o estado "ativo" de todos os botões
+        $('.btn-filtro').removeClass('ativo').attr('aria-pressed', 'false');
+
+        // Limpa o texto de resultado
+        $('#tabela-resultado').text('');
+
+        // Restaura o texto do rodapé padrão
+        $('#tabela-rodape').html(
+          '6 camisetas na coleção &nbsp;|&nbsp; ✓ = disponível no tamanho &nbsp;|&nbsp; — = indisponível'
+        );
+      }
+
+      /* --------------------------------------------------
+         4. FUNÇÃO PRINCIPAL: aplica o filtro por tamanho.
+
+         Lógica:
+         a) Oculta colunas dos outros tamanhos (th e td)
+         b) Destaca visualmente a coluna do tamanho escolhido
+         c) Oculta linhas com "—" na coluna selecionada
+            (produtos indisponíveis naquele tamanho)
+         d) Conta quantos produtos ficaram visíveis
+         e) Atualiza o texto de resultado e o rodapé
+         -------------------------------------------------- */
+      function aplicarFiltro(tamanho) {
+        // a) Reseta visibilidade de todas as colunas primeiro
+        $('th.col-tamanho').show();
+        $('td.td-tam').show();
+        $('td.td-tam, th.col-tamanho').removeClass('coluna-ativa');
+
+        // b) Oculta colunas dos OUTROS tamanhos
+        $('th.col-tamanho').not('[data-tamanho="' + tamanho + '"]').hide();
+        $('td.td-tam').not('[data-tamanho="' + tamanho + '"]').hide();
+
+        // c) Destaca a coluna do tamanho selecionado
+        $('th.col-tamanho[data-tamanho="' + tamanho + '"]').addClass('coluna-ativa');
+        $('td.td-tam[data-tamanho="' + tamanho + '"]').addClass('coluna-ativa');
+
+        // d) Oculta linhas onde o produto NÃO está disponível neste tamanho
+        //    (células com conteúdo "—" indicam indisponibilidade)
+        let visiveis = 0;
+        $('#tabela-corpo tr').each(function () {
+          const $celula = $(this).find('td.td-tam[data-tamanho="' + tamanho + '"]');
+          const disponivel = $celula.text().trim() === '✓';
+
+          if (disponivel) {
+            $(this).show();
+            visiveis++;
+          } else {
+            $(this).hide();
+          }
+        });
+
+        // e) Atualiza o texto de resultado acima da tabela
+        const textoResultado = visiveis > 0
+          ? 'Tamanho ' + tamanho + ': ' + visiveis + ' camiseta(s) disponível(is)'
+          : 'Nenhuma camiseta disponível no tamanho ' + tamanho;
+
+        $('#tabela-resultado').text(textoResultado);
+
+        // f) Atualiza o rodapé da tabela com o resumo do filtro
+        $('#tabela-rodape').html(
+          'Filtro ativo: tamanho <strong>' + tamanho + '</strong> &nbsp;|&nbsp; '
+          + visiveis + ' produto(s) disponível(is)'
+        );
+      }
+
+      /* --------------------------------------------------
+         5. EVENTOS DE CLIQUE NOS BOTÕES DE FILTRO
+         -------------------------------------------------- */
+      $(document).on('click', '.btn-filtro', function () {
+        const tamanho = $(this).data('tamanho');
+        const jaAtivo  = $(this).hasClass('ativo');
+
+        // Se o botão clicado já estava ativo → limpa o filtro (toggle)
+        if (jaAtivo) {
+          limparFiltro();
+          return;
+        }
+
+        // Marca o botão clicado como ativo e desmarca os outros
+        $('.btn-filtro').removeClass('ativo').attr('aria-pressed', 'false');
+        $(this).addClass('ativo').attr('aria-pressed', 'true');
+
+        // Aplica o filtro
+        aplicarFiltro(tamanho);
+      });
+
+      /* --------------------------------------------------
+         6. BOTÃO "LIMPAR FILTRO"
+         -------------------------------------------------- */
+      $('#btn-limpar').on('click', function () {
+        limparFiltro();
+      });
+
+    }); // fim do $(document).ready
+  </script>
+
+</body>
+</html>
