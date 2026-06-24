@@ -347,6 +347,27 @@
     <p class="footer-copy">© 2026 Quadra Sportwear. Todos os direitos reservados.</p>
   </footer>
 
+  <!-- BOTÃO VOLTAR AO TOPO (Opção 5) -->
+  <button id="btn-topo" class="btn-topo" aria-label="Voltar ao topo da página" hidden>
+  <!-- hidden → começa oculto. O jQuery mostra quando o scroll passa de 300px.
+       aria-label → descreve a ação para leitores de tela. -->
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- jQuery CDN — biblioteca carregada ANTES do script.js para que $ esteja disponível -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+  </script>
+  <!-- integrity + crossorigin → Subresource Integrity (SRI): o navegador verifica que o arquivo
+       baixado do CDN não foi adulterado, comparando com o hash fornecido. -->
+
+  <script src="script.js"></script>
+  <!-- script.js carregado no final do <body>: garante que o HTML já existe
+       quando o JavaScript tenta manipulá-lo (document ready). -->
+
   <!-- ==========================================
        JAVASCRIPT / JQUERY — Tabela de Preços Dinâmica
 
