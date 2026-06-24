@@ -1,90 +1,57 @@
 <!DOCTYPE html>
-<!-- DOCTYPE: instrução obrigatória que diz pro navegador "isso é HTML5". -->
-
 <html lang="pt-BR">
-<!-- <html> é o elemento raiz que envolve TODO o documento.
-     lang="pt-BR" declara o idioma da página (Português do Brasil). -->
 
 <head>
-<!-- <head> é o "cabeçalho técnico" da página — o usuário NÃO vê nada daqui. -->
 
     <meta charset="UTF-8">
-    <!-- meta charset define a codificação de caracteres do arquivo.
-         UTF-8 suporta acentos, ç, emojis -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- meta viewport é ESSENCIAL para sites responsivos (mobile-friendly).
          width=device-width → a largura da página se iguala à largura real do dispositivo.
          initial-scale=1.0 → nenhum zoom inicial aplicado.
          Sem isso o celular renderiza a página como se fosse um desktop. -->
-
     <title>Quadra Sportwear — Feita para quem vive o esporte</title>
-    <!-- <title> define o texto que aparece na aba do navegador -->
-
     <meta name="description"
         content="Quadra Sportwear: camisetas inspiradas no espírito de time, criadas por três amigas apaixonadas por esporte.">
     <!-- meta description é o parágrafo resumo que o Google exibe abaixo do título nos resultados de busca. -->
-
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet"> carrega um arquivo CSS externo.
-         href="style.css" é o caminho do arquivo (na mesma pasta do HTML). -->
 
 </head>
 
 <body>
-<!-- <body> contém TUDO que é visível na tela para o usuário. -->
+
 
     <!-- HEADER — Cabeçalho do site com logo e navegação -->
     <header class="site-header">
-    <!-- <header> cabeçalho do site ou de uma seção. -->
+        <!-- <header> cabeçalho do site ou de uma seção. -->
 
         <div class="container header-inner">
-        <!-- <div> é um elemento de bloco genérico SEM significado semântico — serve só para agrupar
+            <!-- <div> é um elemento de bloco genérico SEM significado semântico — serve só para agrupar
              e aplicar estilos CSS.
              class="container" → define uma largura máxima e centraliza o conteúdo.
              class="header-inner" → define o layout interno do cabeçalho. -->
 
             <a href="index.html" class="logo">
-            <!-- <a href="index.html"> é um link. Clicar nele navega para a página inicial (index.html).
+                <!-- <a href="index.html"> é um link. Clicar nele navega para a página inicial (index.html).
                  class="logo" permite estilizar este link como logo no CSS. -->
 
-                <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                    >
-                <!-- <svg> é um gráfico vetorial embutido diretamente no HTML.
-                     SVG (Scalable Vector Graphics) é desenhado com código.
-                     viewBox="0 0 100 100" → define o sistema de coordenadas interno do SVG (começa em x=0,y=0 e tem 100 unidades de largura e altura).
-                     xmlns → namespace obrigatório para SVG embutido em HTML.-->
+                <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo Quadra Sportwear">
+                    <!-- SVG = imagem vetorial desenhada com código (sem arquivo externo de imagem).
+                    Forma o símbolo circular da marca. Cada <path> é uma curva matemática.
+                    Aparece no canto superior esquerdo da página.-->
 
+                    <!-- Círculo de fundo com borda em teal -->
                     <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
-                    <!-- <circle> desenha um círculo.
-                         cx="50" cy="50" → centro do círculo nas coordenadas x=50, y=50 (centro do viewBox).
-                         r="46" → raio de 46.
-                         fill="var(--graphite)" → cor de preenchimento usando variável CSS (definida no :root do CSS).
-                         stroke="var(--teal)" → cor da borda.
-                         stroke-width="5" → espessura da borda. -->
-
+                    <!-- Arco superior em coral -->
                     <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
-                    <!-- <path> desenha formas livres com um mini-linguagem de comandos (o atributo d).
-                         M20 30 → Move (mova o "lápis") para x=20, y=30 sem desenhar.
-                         Q50 10 80 30 → Curva quadrática de Bézier: ponto de controle x=50,y=10, destino x=80,y=30.
-                         fill="none" → sem preenchimento (só o contorno).
-                         stroke="var(--coral)" → cor da linha (coral, definida como variável CSS). -->
-
+                    <!-- Arco inferior em coral -->
                     <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
-                    <!-- Mesma lógica do path anterior, mas desenhando a curva inferior do logo.
-                         M20 70 → posição inicial mais abaixo.
-                         Q50 90 80 70 → curva que desce para y=90 no meio (ponto de controle) e volta a y=70. -->
-
+                    <!-- Curva lateral esquerda em teal -->
                     <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-                    <!-- Linha curva vertical do lado esquerdo do logo (cor teal/verde-azul). -->
-
+                    <!-- Curva lateral direita em teal -->
                     <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-                    <!-- Linha curva vertical do lado direito, simétrica à anterior. -->
-
-                    <text x="50" y="61" text-anchor="middle"
-                          font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
-                        Q
-                    </text>
+                    <!-- Letra "Q" centralizada no símbolo -->
+                    <text x="50" y="61" text-anchor="middle" font-family="Anton, Arial Black, sans-serif" font-size="34"
+                        fill="#FFFFFF">Q</text>
                     <!-- <text> dentro do SVG renderiza texto vetorial.
                          x="50" y="61" → posição do texto (x=centro, y=baseline da letra).
                          text-anchor="middle" → centraliza o texto horizontalmente em torno do ponto x.
@@ -109,7 +76,7 @@
                  id="nav-toggle" é o identificador único, referenciado pelo label abaixo. -->
 
             <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu">
-            <!-- <label> associado ao input acima via for="nav-toggle" (deve bater com o id do input).
+                <!-- <label> associado ao input acima via for="nav-toggle" (deve bater com o id do input).
                  Clicar em qualquer parte deste label automaticamente marca/desmarca o checkbox.
                  aria-label="Abrir menu" → texto para leitores de tela, já que o label não tem texto visível.
                  É o elemento visível que o usuário clica para abrir o menu no celular. -->
@@ -122,11 +89,11 @@
             </label>
 
             <nav class="main-nav" aria-label="Navegação principal">
-            <!-- <nav> é tag semântica HTML5 para blocos de links de navegação.
+                <!-- <nav> é tag semântica HTML5 para blocos de links de navegação.
                  aria-label="Navegação principal" distingue este nav de outros na página. -->
 
                 <ul>
-                <!-- <ul> = lista não ordenada: Itens sem numeração.-->
+                    <!-- <ul> = lista não ordenada: Itens sem numeração.-->
 
                     <li><a href="index.html" class="active">Home</a></li>
                     <!-- <li> = item de lista.
@@ -150,13 +117,13 @@
     <!-- MAIN — Conteúdo principal da página -->
 
     <main>
-    <!-- <main> CONTEÚDO PRINCIPAL da página.
+        <!-- <main> CONTEÚDO PRINCIPAL da página.
          Só deve haver um <main> por página. -->
 
         <!-- SEÇÃO HERO — Banner principal com chamada para ação -->
 
         <section class="hero">
-        <!-- <section> agrupar conteúdo com um tema próprio.
+            <!-- <section> agrupar conteúdo com um tema próprio.
              class="hero" → o CSS usa essa classe para estilizar o banner principal. -->
 
             <span class="hero-number" aria-hidden="true">07</span>
@@ -166,12 +133,12 @@
                  Sem aria-hidden, um leitor de tela leria "07" no meio da página sem contexto. -->
 
             <div class="container">
-            <!-- <div class="container"> → caixa centralizadora do conteúdo.
+                <!-- <div class="container"> → caixa centralizadora do conteúdo.
                  O CSS define que .container tem largura máxima e fica centrada
                  com margin: 0 auto. Padrão comum em layouts web. -->
 
                 <div class="hero-inner">
-                <!-- Div de agrupamento, usada para layout interno do hero. -->
+                    <!-- Div de agrupamento, usada para layout interno do hero. -->
 
                     <span class="hero-eyebrow">Coleção esportiva</span>
                     <!-- "Eyebrow" nome do design para o textinho pequeno
@@ -196,7 +163,7 @@
                         class="hero-text" controla o estilo (tamanho, cor, espaçamento) separado do slogan. -->
 
                     <div class="hero-actions">
-                    <!-- <div> de agrupamento para os botões de ação. -->
+                        <!-- <div> de agrupamento para os botões de ação. -->
 
                         <a href="produtos.html" class="btn btn-primary">Ver coleção</a>
                         <!-- Link estilizado como BOTÃO primário.
@@ -216,15 +183,15 @@
         <!-- SEÇÃO APRESENTAÇÃO — Texto sobre a empresa + elemento gráfico -->
 
         <section class="apresentacao">
-        <!-- Tema próprio: apresentação da empresa.
+            <!-- Tema próprio: apresentação da empresa.
              Cada <section> representa um bloco de conteúdo distinto na página. -->
 
             <div class="container apresentacao-grid">
-            <!-- apresentacao-grid → o CSS usa CSS Grid ou Flexbox para dividir 
+                <!-- apresentacao-grid → o CSS usa CSS Grid ou Flexbox para dividir 
                  esta div em 2 colunas: texto à esquerda, gráfico à direita. -->
 
                 <div>
-                <!-- Div sem classe específica que contém o texto da apresentação. -->
+                    <!-- Div sem classe específica que contém o texto da apresentação. -->
 
                     <h2>Do esporte para o <span>dia a dia</span></h2>
                     <!-- <h2> é o título de segundo nível.
@@ -257,12 +224,12 @@
         <!-- SEÇÃO DESTAQUES — Cards com diferenciais da marca -->
 
         <section class="destaques">
-        <!-- Terceira seção da página. -->
+            <!-- Terceira seção da página. -->
 
             <div class="container">
 
                 <div class="destaques-header">
-                <!-- Div que agrupa o título e subtítulo desta seção,
+                    <!-- Div que agrupa o título e subtítulo desta seção,
                      separado do grid de cards para controle de layout independente. -->
 
                     <h2>Destaques da marca</h2>
@@ -271,10 +238,10 @@
                 </div>
 
                 <div class="destaques-grid">
-                <!-- destaques-grid → CSS Grid que organiza os cards em colunas. -->
+                    <!-- destaques-grid → CSS Grid que organiza os cards em colunas. -->
 
                     <article class="destaque-card">
-                    <!-- <article> conteúdo que FAZ SENTIDO SOZINHO, independente do resto da página. 
+                        <!-- <article> conteúdo que FAZ SENTIDO SOZINHO, independente do resto da página. 
                          Aqui cada card de destaque é um <article> porque tem título e texto próprios.
                          class="destaque-card" → estilização visual do card no CSS. -->
 
@@ -319,28 +286,28 @@
     <!-- FOOTER — Rodapé com logo, nav secundária e copyright -->
 
     <footer class="site-footer">
-    <!-- <footer> rodapé do site ou de uma seção. -->
+        <!-- <footer> rodapé do site ou de uma seção. -->
 
         <div class="container footer-inner">
-        <!-- footer-inner → Flexbox para organizar logo e nav lado a lado. -->
+            <!-- footer-inner → Flexbox para organizar logo e nav lado a lado. -->
 
             <div class="footer-brand">
-            <!-- Agrupa o logo e o tagline do rodapé. -->
+                <!-- Agrupa o logo e o tagline do rodapé. -->
 
                 <div class="logo">
-                <!-- REPETIÇÃO do logo do header. -->
+                    <!-- REPETIÇÃO do logo do header. -->
 
-                    <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                         role="img" aria-label="Logotipo Quadra Sportwear">
-                    <!-- SVG idêntico ao do header. -->
+                    <svg class="logo-badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"
+                        aria-label="Logotipo Quadra Sportwear">
+                        <!-- SVG idêntico ao do header. -->
 
                         <circle cx="50" cy="50" r="46" fill="var(--graphite)" stroke="var(--teal)" stroke-width="5" />
                         <path d="M20 30 Q50 10 80 30" fill="none" stroke="var(--coral)" stroke-width="4" />
                         <path d="M20 70 Q50 90 80 70" fill="none" stroke="var(--coral)" stroke-width="4" />
                         <path d="M35 18 Q50 50 35 82" fill="none" stroke="var(--teal)" stroke-width="3" />
                         <path d="M65 18 Q50 50 65 82" fill="none" stroke="var(--teal)" stroke-width="3" />
-                        <text x="50" y="61" text-anchor="middle"
-                              font-family="Anton, Arial Black, sans-serif" font-size="34" fill="#FFFFFF">
+                        <text x="50" y="61" text-anchor="middle" font-family="Anton, Arial Black, sans-serif"
+                            font-size="34" fill="#FFFFFF">
                             Q
                         </text>
 
@@ -365,7 +332,7 @@
             </div>
 
             <nav class="footer-nav" aria-label="Links do rodapé">
-            <!-- Segundo <nav> da página. O aria-label "Links do rodapé" diferencia este
+                <!-- Segundo <nav> da página. O aria-label "Links do rodapé" diferencia este
                  da navegação principal.
                  Sem aria-label diferente, seria ambíguo qual nav é qual. -->
 
@@ -389,25 +356,19 @@
     </footer>
 
     <!-- BOTÃO VOLTAR AO TOPO (Opção 5) -->
-  <button id="btn-topo" class="btn-topo" aria-label="Voltar ao topo da página" hidden>
-  <!-- hidden → começa oculto. O jQuery mostra quando o scroll passa de 300px.
-       aria-label → descreve a ação para leitores de tela. -->
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
+    <button id="btn-topo" class="btn-topo" aria-label="Voltar ao topo da página" hidden>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
 
-  <!-- jQuery CDN — biblioteca carregada ANTES do script.js para que $ esteja disponível -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
-  </script>
-  <!-- integrity + crossorigin → Subresource Integrity (SRI): o navegador verifica que o arquivo
-       baixado do CDN não foi adulterado, comparando com o hash fornecido. -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+        </script>
 
-  <script src="script.js"></script>
-  <!-- script.js carregado no final do <body>: garante que o HTML já existe
-       quando o JavaScript tenta manipulá-lo (document ready). -->
+    <script src="script.js"></script>
 
 </body>
+
 </html>
